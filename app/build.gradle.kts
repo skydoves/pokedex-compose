@@ -1,0 +1,88 @@
+import com.skydoves.pokedex.compose.Configuration
+
+plugins {
+  id("skydoves.pokedex.android.application")
+  id("skydoves.pokedex.android.application.compose")
+  id("skydoves.pokedex.android.hilt")
+  id("skydoves.pokedex.spotless")
+  id("kotlin-parcelize")
+  alias(libs.plugins.baselineprofile)
+}
+
+android {
+  namespace = "com.skydoves.pokedex.compose"
+
+  defaultConfig {
+    applicationId = "com.skydoves.pokedex.compose"
+    versionCode = Configuration.versionCode
+    versionName = Configuration.versionName
+    testInstrumentationRunner = "com.skydoves.pokedex.compose.AppTestRunner"
+  }
+
+  buildFeatures {
+    compose = true
+    buildConfig = true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
+  }
+
+  hilt {
+    enableAggregatingTask = true
+  }
+
+  kotlin {
+    sourceSets.configureEach {
+      kotlin.srcDir(layout.buildDirectory.files("generated/ksp/$name/kotlin/"))
+    }
+    sourceSets.all {
+      languageSettings {
+        languageVersion = "2.0"
+      }
+    }
+  }
+
+  testOptions.unitTests {
+    isIncludeAndroidResources = true
+    isReturnDefaultValues = true
+  }
+}
+
+dependencies {
+  // features
+  implementation(projects.feature.home)
+  implementation(projects.feature.details)
+
+  // cores
+  implementation(projects.core.model)
+  implementation(projects.core.designsystem)
+  implementation(projects.core.navigation)
+
+  // compose
+  implementation(libs.androidx.compose.ui)
+  implementation(libs.androidx.compose.runtime)
+  implementation(libs.androidx.compose.foundation)
+
+  // di
+  implementation(libs.hilt.android)
+  ksp(libs.hilt.compiler)
+  androidTestImplementation(libs.hilt.testing)
+  kspAndroidTest(libs.hilt.compiler)
+
+  // baseline profile
+  implementation(libs.profileinstaller)
+  baselineProfile(project(":baselineprofile"))
+
+  // unit test
+  testImplementation(libs.junit)
+  testImplementation(libs.turbine)
+  testImplementation(libs.androidx.test.core)
+  testImplementation(libs.mockito.core)
+  testImplementation(libs.mockito.kotlin)
+  testImplementation(libs.kotlinx.coroutines.test)
+  androidTestImplementation(libs.truth)
+  androidTestImplementation(libs.androidx.junit)
+  androidTestImplementation(libs.androidx.espresso)
+  androidTestImplementation(libs.android.test.runner)
+}

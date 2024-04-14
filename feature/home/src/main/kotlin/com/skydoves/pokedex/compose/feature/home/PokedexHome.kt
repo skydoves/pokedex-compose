@@ -171,7 +171,6 @@ private fun SharedTransitionScope.PokemonCard(
       imageOptions = ImageOptions(contentScale = ContentScale.Inside),
       component = rememberImageComponent {
         +CrossfadePlugin()
-
         +ShimmerPlugin(
           Shimmer.Resonate(
             baseColor = Color.Transparent,
@@ -188,7 +187,7 @@ private fun SharedTransitionScope.PokemonCard(
         }
       },
       previewPlaceholder = painterResource(
-        id = R.drawable.pokemon_preview
+        id = R.drawable.pokemon_preview,
       ),
     )
 

@@ -74,6 +74,7 @@ import com.skydoves.pokedex.compose.core.navigation.boundsTransform
 import com.skydoves.pokedex.compose.core.navigation.currentComposeNavigator
 import com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme
 import com.skydoves.pokedex.compose.core.preview.PreviewUtils
+import com.skydoves.pokedex.compose.designsystem.R
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -92,7 +93,7 @@ fun SharedTransitionScope.PokedexHome(
       animatedVisibilityScope = animatedVisibilityScope,
       uiState = uiState,
       pokemonList = pokemonList.toImmutableList(),
-      homeViewModel = homeViewModel,
+      fetchNextPokemonList = homeViewModel::fetchNextPokemonList,
     )
   }
 }
@@ -102,7 +103,7 @@ private fun SharedTransitionScope.HomeContent(
   animatedVisibilityScope: AnimatedVisibilityScope,
   uiState: HomeUiState,
   pokemonList: ImmutableList<Pokemon>,
-  homeViewModel: HomeViewModel,
+  fetchNextPokemonList: () -> Unit,
 ) {
   Box(modifier = Modifier.fillMaxSize()) {
     val threadHold = 8
@@ -113,7 +114,7 @@ private fun SharedTransitionScope.HomeContent(
     ) {
       itemsIndexed(items = pokemonList, key = { _, pokemon -> pokemon.name }) { index, pokemon ->
         if ((index + threadHold) >= pokemonList.size && uiState != HomeUiState.Loading) {
-          homeViewModel.fetchNextPokemonList()
+          fetchNextPokemonList()
         }
 
         PokemonCard(
@@ -170,7 +171,6 @@ private fun SharedTransitionScope.PokemonCard(
       imageOptions = ImageOptions(contentScale = ContentScale.Inside),
       component = rememberImageComponent {
         +CrossfadePlugin()
-
         +ShimmerPlugin(
           Shimmer.Resonate(
             baseColor = Color.Transparent,
@@ -187,7 +187,7 @@ private fun SharedTransitionScope.PokemonCard(
         }
       },
       previewPlaceholder = painterResource(
-        id = com.skydoves.pokedex.compose.designsystem.R.drawable.pokemon_preview,
+        id = R.drawable.pokemon_preview,
       ),
     )
 
@@ -236,7 +236,7 @@ private fun HomeContentPreview() {
       animatedVisibilityScope = scope,
       uiState = HomeUiState.Idle,
       pokemonList = PreviewUtils.mockPokemonList().toImmutableList(),
-      homeViewModel = HomeViewModel(homeRepository = FakeHomeRepository()),
+      fetchNextPokemonList = { HomeViewModel(homeRepository = FakeHomeRepository()) },
     )
   }
 }

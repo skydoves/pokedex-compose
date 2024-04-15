@@ -200,7 +200,8 @@ private fun SharedTransitionScope.PokemonCard(
           state = rememberSharedContentState(key = "name-${pokemon.name}"),
           animatedVisibilityScope = animatedVisibilityScope,
           boundsTransform = boundsTransform,
-        ).padding(12.dp),
+        )
+        .padding(12.dp),
       text = pokemon.name,
       color = PokedexTheme.colors.black,
       textAlign = TextAlign.Center,

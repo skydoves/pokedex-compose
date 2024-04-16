@@ -194,14 +194,14 @@ private fun SharedTransitionScope.PokemonCard(
     Text(
       modifier = Modifier
         .align(Alignment.CenterHorizontally)
-        .padding(12.dp)
         .fillMaxWidth()
         .pokedexSharedElement(
           isLocalInspectionMode = LocalInspectionMode.current,
           state = rememberSharedContentState(key = "name-${pokemon.name}"),
           animatedVisibilityScope = animatedVisibilityScope,
           boundsTransform = boundsTransform,
-        ),
+        )
+        .padding(12.dp),
       text = pokemon.name,
       color = PokedexTheme.colors.black,
       textAlign = TextAlign.Center,

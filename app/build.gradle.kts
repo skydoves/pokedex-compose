@@ -67,6 +67,9 @@ dependencies {
   implementation(projects.core.designsystem)
   implementation(projects.core.navigation)
 
+  // androidx appcompat
+  implementation(libs.androidx.appcompat)
+
   // compose
   implementation(libs.androidx.compose.ui)
   implementation(libs.androidx.compose.runtime)

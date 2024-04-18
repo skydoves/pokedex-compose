@@ -83,14 +83,6 @@ dependencyResolutionManagement {
         snapshotsOnly()
       }
     }
-
-    // fetch androidx snapshot libraries from sonatype
-    val snapshotVersion = "11670047"
-    maven(url = "https://androidx.dev/snapshots/builds/$snapshotVersion/artifacts/repository/") {
-      mavenContent {
-        snapshotsOnly()
-      }
-    }
   }
 }
 rootProject.name = "pokedex-compose"

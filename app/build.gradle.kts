@@ -19,6 +19,14 @@ android {
     testInstrumentationRunner = "com.skydoves.pokedex.compose.AppTestRunner"
   }
 
+  buildTypes {
+    release {
+      isMinifyEnabled = true
+      isShrinkResources = true
+      proguardFiles("proguard-rules.pro",)
+    }
+  }
+
   buildFeatures {
     compose = true
     buildConfig = true

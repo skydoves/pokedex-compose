@@ -42,8 +42,10 @@ object PreviewUtils {
       PokemonInfo.TypeResponse(slot = 0, type = PokemonInfo.Type("poison")),
     ),
     stats = listOf(
-      PokemonInfo.StatsResponse(baseStat = 22, effort = 0, stat = PokemonInfo.Stat("hp")),
-      PokemonInfo.StatsResponse(baseStat = 40, effort = 0, stat = PokemonInfo.Stat("defense")),
+      PokemonInfo.StatsResponse(baseStat = 20, effort = 0, stat = PokemonInfo.Stat("hp")),
+      PokemonInfo.StatsResponse(baseStat = 40, effort = 0, stat = PokemonInfo.Stat("attack")),
+      PokemonInfo.StatsResponse(baseStat = 60, effort = 0, stat = PokemonInfo.Stat("defense")),
+      PokemonInfo.StatsResponse(baseStat = 80, effort = 0, stat = PokemonInfo.Stat("attack")),
     ),
   )
 }

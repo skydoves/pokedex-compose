@@ -24,7 +24,6 @@ import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.core.model.PokemonInfo
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import android.util.Log
 import javax.annotation.concurrent.Immutable
 
 @Immutable
@@ -37,9 +36,6 @@ internal data class PokedexStatus(
 
 @Composable
 internal fun PokemonInfo.toPokedexStatusList(): ImmutableList<PokedexStatus> {
-  stats.forEach { stat ->
-    Log.d("PokemonStats", "Stat name: ${stat.stat.name}, Base stat: ${stat.baseStat}, Effort: ${stat.effort}")
-  }
 
   return persistentListOf(
     PokedexStatus(

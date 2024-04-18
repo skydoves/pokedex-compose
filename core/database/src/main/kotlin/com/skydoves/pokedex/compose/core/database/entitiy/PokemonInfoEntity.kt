@@ -28,9 +28,6 @@ data class PokemonInfoEntity(
   val weight: Int,
   val experience: Int,
   val types: List<PokemonInfo.TypeResponse>,
-  val hp: Int,
-  val attack: Int,
-  val defense: Int,
-  val speed: Int,
   val exp: Int,
+  val stats: List<PokemonInfo.StatsResponse>
 )

@@ -41,5 +41,9 @@ object PreviewUtils {
       PokemonInfo.TypeResponse(slot = 0, type = PokemonInfo.Type("grass")),
       PokemonInfo.TypeResponse(slot = 0, type = PokemonInfo.Type("poison")),
     ),
+    stats = listOf(
+      PokemonInfo.StatsResponse(baseStat = 22, effort = 0, stat = PokemonInfo.Stat("hp")),
+      PokemonInfo.StatsResponse(baseStat = 40, effort = 0, stat = PokemonInfo.Stat("defense")),
+    ),
   )
 }

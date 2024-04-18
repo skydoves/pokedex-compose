@@ -36,5 +36,6 @@ object MockUtil {
     weight = 69,
     experience = 60,
     types = emptyList(),
+    stats = emptyList()
   )
 }

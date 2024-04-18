@@ -31,12 +31,21 @@ data class PokemonInfo(
   @field:Json(name = "weight") val weight: Int,
   @field:Json(name = "base_experience") val experience: Int,
   @field:Json(name = "types") val types: List<TypeResponse>,
-  val hp: Int = Random.nextInt(MAX_HP),
-  val attack: Int = Random.nextInt(MAX_ATTACK),
-  val defense: Int = Random.nextInt(MAX_DEFENSE),
-  val speed: Int = Random.nextInt(MAX_SPEED),
+  @field:Json(name = "stats") val stats: List<StatsResponse>,
   val exp: Int = Random.nextInt(MAX_EXP),
 ) {
+  val hp: Int by lazy {
+    stats.firstOrNull { it.stat.name == "hp" }?.baseStat ?: Random.nextInt(MAX_HP)
+  }
+  val attack: Int by lazy {
+    stats.firstOrNull { it.stat.name == "attack" }?.baseStat ?: Random.nextInt(MAX_ATTACK)
+  }
+  val defense: Int by lazy {
+    stats.firstOrNull { it.stat.name == "defense" }?.baseStat ?: Random.nextInt(MAX_DEFENSE)
+  }
+  val speed: Int by lazy {
+    stats.firstOrNull { it.stat.name == "speed" }?.baseStat ?: Random.nextInt(MAX_SPEED)
+  }
 
   fun getIdString(): String = String.format("#%03d", id)
   fun getWeightString(): String = String.format("%.1f KG", weight.toFloat() / 10)
@@ -51,6 +60,18 @@ data class PokemonInfo(
   data class TypeResponse(
     @field:Json(name = "slot") val slot: Int,
     @field:Json(name = "type") val type: Type,
+  )
+
+  @JsonClass(generateAdapter = true)
+  data class StatsResponse(
+    @field:Json(name = "base_stat") val baseStat: Int,
+    @field:Json(name = "effort") val effort: Int,
+    @field:Json(name = "stat") val stat: Stat,
+  )
+
+  @JsonClass(generateAdapter = true)
+  data class Stat(
+    @field:Json(name = "name") val name: String,
   )
 
   @JsonClass(generateAdapter = true)

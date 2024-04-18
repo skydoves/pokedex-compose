@@ -37,7 +37,7 @@
 # reflection
 -dontwarn kotlin.reflect.jvm.internal.**
 -dontwarn java.lang.reflect.**
--keep class kotlinx.reflect.lite.* {g
+-keep class kotlinx.reflect.lite.* {
     public protected *;
 }
 

@@ -1,4 +1,6 @@
 import com.skydoves.pokedex.compose.Configuration
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
   id("skydoves.pokedex.android.application")
@@ -19,11 +21,26 @@ android {
     testInstrumentationRunner = "com.skydoves.pokedex.compose.AppTestRunner"
   }
 
+  signingConfigs {
+    val properties = Properties()
+    val localPropertyFile = project.rootProject.file("local.properties")
+    if (localPropertyFile.canRead()) {
+      properties.load(FileInputStream("$rootDir/local.properties"))
+    }
+    create("release") {
+      storeFile = file(properties["RELEASE_KEYSTORE_PATH"] ?: "../keystores/pokedex.jks")
+      keyAlias = properties["RELEASE_KEY_ALIAS"].toString()
+      keyPassword = properties["RELEASE_KEY_PASSWORD"].toString()
+      storePassword = properties["RELEASE_KEYSTORE_PASSWORD"].toString()
+    }
+  }
+
   buildTypes {
     release {
       isMinifyEnabled = true
       isShrinkResources = true
       proguardFiles("proguard-rules.pro",)
+      signingConfig = signingConfigs.getByName("release")
     }
   }
 

@@ -19,3 +19,34 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontwarn org.bouncycastle.jsse.**
+-dontwarn org.conscrypt.*
+-dontwarn org.openjsse.**
+
+-keepnames class * implements android.os.Parcelable {
+   public static final ** CREATOR;
+}
+
+# attributes
+-keepattributes *Annotation*
+-keepattributes Signature
+-keepattributes EnclosingMethod
+-keepattributes SourceFile,LineNumberTable
+
+# reflection
+-dontwarn kotlin.reflect.jvm.internal.**
+-dontwarn java.lang.reflect.**
+-keep class kotlinx.reflect.lite.* {g
+    public protected *;
+}
+
+-keep class kotlinx.reflect.lite.* {
+    public protected *;
+}
+
+-keepclassmembers class * extends java.lang.Enum {
+    <fields>;
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}

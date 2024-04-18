@@ -23,7 +23,7 @@ object MockUtil {
 
   fun mockPokemon() = Pokemon(
     page = 0,
-    name = "bulbasaur",
+    nameField = "bulbasaur",
     url = "https://pokeapi.co/api/v2/pokemon/1/",
   )
 

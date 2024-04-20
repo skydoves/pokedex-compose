@@ -23,6 +23,8 @@
 -dontwarn org.bouncycastle.jsse.**
 -dontwarn org.conscrypt.*
 -dontwarn org.openjsse.**
+# Glide optionally depends on AppCompat
+-dontwarn androidx.appcompat.**
 
 -keepnames class * implements android.os.Parcelable {
    public static final ** CREATOR;

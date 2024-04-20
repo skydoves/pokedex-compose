@@ -11,6 +11,7 @@ android {
 dependencies {
   // image loading
   api(libs.landscapist.glide)
+  // Glide dependency
   api(libs.landscapist.animation)
   api(libs.landscapist.placeholder)
   api(libs.landscapist.palette)
@@ -23,5 +24,4 @@ dependencies {
   api(libs.androidx.compose.material3)
   api(libs.androidx.compose.foundation)
   api(libs.androidx.compose.foundation.layout)
-  api(libs.androidx.compose.constraintlayout)
 }

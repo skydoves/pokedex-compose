@@ -55,9 +55,7 @@ android {
           excludes += listOf(
             "DebugProbesKt.bin",
             "kotlin-tooling-metadata.json",
-            //"/*.properties",
             "kotlin/**",
-            //"META-INF/*.kotlin_module",
             "META-INF/*.version"
           )
         }

@@ -11,7 +11,6 @@ android {
 dependencies {
   // image loading
   api(libs.landscapist.glide)
-  // Glide dependency
   api(libs.landscapist.animation)
   api(libs.landscapist.placeholder)
   api(libs.landscapist.palette)

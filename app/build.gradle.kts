@@ -41,6 +41,27 @@ android {
       isShrinkResources = true
       proguardFiles("proguard-rules.pro",)
       signingConfig = signingConfigs.getByName("release")
+
+      kotlinOptions {
+        freeCompilerArgs += listOf(
+          "-Xno-param-assertions",
+          "-Xno-call-assertions",
+          "-Xno-receiver-assertions"
+        )
+      }
+
+      packaging {
+        resources {
+          excludes += listOf(
+            "DebugProbesKt.bin",
+            "kotlin-tooling-metadata.json",
+            //"/*.properties",
+            "kotlin/**",
+            //"META-INF/*.kotlin_module",
+            "META-INF/*.version"
+          )
+        }
+      }
     }
   }
 

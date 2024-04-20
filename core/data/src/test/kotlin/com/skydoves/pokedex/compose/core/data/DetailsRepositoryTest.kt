@@ -69,10 +69,10 @@ class DetailsRepositoryTest {
     )
 
     repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test {
-      val expectItem = awaitItem()
-      assertEquals(expectItem.id, mockData.id)
-      assertEquals(expectItem.name, mockData.name)
-      assertEquals(expectItem, mockData)
+      val actualItem = awaitItem()
+      assertEquals(mockData.id, actualItem.id)
+      assertEquals(mockData.name, actualItem.name)
+      assertEquals(mockData, actualItem)
       awaitComplete()
     }
 

@@ -43,10 +43,6 @@
     public protected *;
 }
 
--keep class kotlinx.reflect.lite.* {
-    public protected *;
-}
-
 -keepclassmembers class * extends java.lang.Enum {
     <fields>;
     public static **[] values();

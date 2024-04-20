@@ -70,7 +70,7 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 sandwich = { module = "com.github.skydoves:sandwich-retrofit", version.ref = "sandwich" }
-retrofit = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 okhttp-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okHttp" }
 okhttp-mockserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okHttp" }

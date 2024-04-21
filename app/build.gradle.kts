@@ -41,6 +41,25 @@ android {
       isShrinkResources = true
       proguardFiles("proguard-rules.pro",)
       signingConfig = signingConfigs.getByName("release")
+
+      kotlinOptions {
+        freeCompilerArgs += listOf(
+          "-Xno-param-assertions",
+          "-Xno-call-assertions",
+          "-Xno-receiver-assertions"
+        )
+      }
+
+      packaging {
+        resources {
+          excludes += listOf(
+            "DebugProbesKt.bin",
+            "kotlin-tooling-metadata.json",
+            "kotlin/**",
+            "META-INF/*.version"
+          )
+        }
+      }
     }
   }
 
@@ -84,10 +103,8 @@ dependencies {
   implementation(projects.core.designsystem)
   implementation(projects.core.navigation)
 
-  // androidx appcompat
-  implementation(libs.androidx.appcompat)
-
   // compose
+  implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.compose.ui)
   implementation(libs.androidx.compose.runtime)
   implementation(libs.androidx.compose.foundation)

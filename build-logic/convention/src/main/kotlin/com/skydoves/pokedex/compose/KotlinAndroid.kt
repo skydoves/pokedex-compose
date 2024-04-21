@@ -46,7 +46,7 @@ internal fun Project.configureKotlinAndroid(
         "-opt-in=androidx.compose.animation.ExperimentalSharedTransitionApi",
       )
 
-      // Set JVM target to 11
+      // Set JVM target to 17
       jvmTarget = JavaVersion.VERSION_17.toString()
     }
   }

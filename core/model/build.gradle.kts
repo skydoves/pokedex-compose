@@ -35,6 +35,5 @@ dependencies {
   ksp(libs.moshi.codegen)
 
   // kotlinx
-  implementation(libs.kotlinx.serialization.json)
   api(libs.kotlinx.immutable.collection)
 }

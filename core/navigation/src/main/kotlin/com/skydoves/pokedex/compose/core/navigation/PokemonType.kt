@@ -39,7 +39,7 @@ class PokemonType : NavType<Pokemon?>(isNullableAllowed = false) {
     private val pokemonJsonAdapter = Moshi.Builder().build().adapter(Pokemon::class.java)
 
     fun encodeToString(pokemon: Pokemon): String {
-      return Uri.encode(pokemonJsonAdapter.toJson(pokemon))!!
+      return Uri.encode(pokemonJsonAdapter.toJson(pokemon))
     }
   }
 }

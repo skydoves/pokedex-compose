@@ -36,7 +36,6 @@ internal data class PokedexStatus(
 
 @Composable
 internal fun PokemonInfo.toPokedexStatusList(): ImmutableList<PokedexStatus> {
-
   return persistentListOf(
     PokedexStatus(
       type = stringResource(id = com.skydoves.pokedex.compose.designsystem.R.string.hp),

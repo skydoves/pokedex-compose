@@ -21,6 +21,7 @@ import androidx.room.Room
 import com.skydoves.pokedex.compose.core.database.PokedexDatabase
 import com.skydoves.pokedex.compose.core.database.PokemonDao
 import com.skydoves.pokedex.compose.core.database.PokemonInfoDao
+import com.skydoves.pokedex.compose.core.database.StatsResponseConverter
 import com.skydoves.pokedex.compose.core.database.TypeResponseConverter
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -45,11 +46,13 @@ internal object DatabaseModule {
   fun provideAppDatabase(
     application: Application,
     typeResponseConverter: TypeResponseConverter,
+    statsResponseConverter: StatsResponseConverter,
   ): PokedexDatabase {
     return Room
       .databaseBuilder(application, PokedexDatabase::class.java, "Pokedex.db")
       .fallbackToDestructiveMigration()
       .addTypeConverter(typeResponseConverter)
+      .addTypeConverter(statsResponseConverter)
       .build()
   }
 

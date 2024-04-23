@@ -77,10 +77,11 @@ class HomeRepositoryImplTest {
       onComplete = {},
       onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
-      val expectItem = awaitItem()[0]
-      assertEquals(expectItem.page, 0)
-      assertEquals(expectItem.name, "bulbasaur")
-      assertEquals(expectItem, mockPokemonList()[0])
+      val actualItem = awaitItem()[0]
+      assertEquals(0, actualItem.page)
+      // First letter of name is always upper case
+      assertEquals("Bulbasaur", actualItem.name)
+      assertEquals("https://pokeapi.co/api/v2/pokemon/1/", actualItem.url)
       awaitComplete()
     }
 
@@ -103,10 +104,11 @@ class HomeRepositoryImplTest {
       onComplete = {},
       onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
-      val expectItem = awaitItem()[0]
-      assertEquals(expectItem.page, 0)
-      assertEquals(expectItem.name, "bulbasaur")
-      assertEquals(expectItem, mockPokemonList()[0])
+      val actualItem = awaitItem()[0]
+      assertEquals(0, actualItem.page)
+      // First letter of name is always upper case
+      assertEquals("Bulbasaur", actualItem.name)
+      assertEquals("https://pokeapi.co/api/v2/pokemon/1/", actualItem.url)
       awaitComplete()
     }
 

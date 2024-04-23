@@ -24,5 +24,5 @@ android {
 }
 
 dependencies {
-  api(libs.androidx.lifecycle)
+  api(libs.androidx.lifecycle.viewModelCompose)
 }

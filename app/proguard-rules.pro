@@ -23,6 +23,8 @@
 -dontwarn org.bouncycastle.jsse.**
 -dontwarn org.conscrypt.*
 -dontwarn org.openjsse.**
+# Glide optionally depends on AppCompat
+-dontwarn androidx.appcompat.**
 
 -keepnames class * implements android.os.Parcelable {
    public static final ** CREATOR;
@@ -33,17 +35,6 @@
 -keepattributes Signature
 -keepattributes EnclosingMethod
 -keepattributes SourceFile,LineNumberTable
-
-# reflection
--dontwarn kotlin.reflect.jvm.internal.**
--dontwarn java.lang.reflect.**
--keep class kotlinx.reflect.lite.* {
-    public protected *;
-}
-
--keep class kotlinx.reflect.lite.* {
-    public protected *;
-}
 
 -keepclassmembers class * extends java.lang.Enum {
     <fields>;

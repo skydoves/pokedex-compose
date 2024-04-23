@@ -19,5 +19,5 @@ dependencies {
   implementation(libs.androidx.compose.animation)
   api(libs.androidx.navigation.compose)
 
-  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.moshi)
 }

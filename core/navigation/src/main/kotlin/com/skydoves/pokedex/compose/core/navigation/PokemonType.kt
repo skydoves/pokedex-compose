@@ -20,9 +20,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.navigation.NavType
 import com.skydoves.pokedex.compose.core.model.Pokemon
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import java.nio.charset.StandardCharsets
+import com.squareup.moshi.Moshi
 
 class PokemonType : NavType<Pokemon?>(isNullableAllowed = false) {
 
@@ -34,12 +32,14 @@ class PokemonType : NavType<Pokemon?>(isNullableAllowed = false) {
 
   override fun parseValue(value: String): Pokemon {
     val decoded = Uri.decode(value)
-    return Json.decodeFromString(decoded)
+    return pokemonJsonAdapter.fromJson(decoded)!!
   }
 
   companion object {
+    private val pokemonJsonAdapter = Moshi.Builder().build().adapter(Pokemon::class.java)
+
     fun encodeToString(pokemon: Pokemon): String {
-      return Uri.encode(Json.encodeToString(pokemon), StandardCharsets.UTF_8.toString())
+      return Uri.encode(pokemonJsonAdapter.toJson(pokemon))
     }
   }
 }

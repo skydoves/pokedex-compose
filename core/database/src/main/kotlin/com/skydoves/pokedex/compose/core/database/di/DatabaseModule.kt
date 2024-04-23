@@ -24,7 +24,6 @@ import com.skydoves.pokedex.compose.core.database.PokemonInfoDao
 import com.skydoves.pokedex.compose.core.database.StatsResponseConverter
 import com.skydoves.pokedex.compose.core.database.TypeResponseConverter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,7 +38,6 @@ internal object DatabaseModule {
   @Singleton
   fun provideMoshi(): Moshi {
     return Moshi.Builder()
-      .addLast(KotlinJsonAdapterFactory())
       .build()
   }
 

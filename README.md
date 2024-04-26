@@ -47,6 +47,13 @@ Go to the [Releases](https://github.com/skydoves/pokedex-compose/releases) to do
 - [Landscapist Glide](https://github.com/skydoves/landscapist#glide), [animation](https://github.com/skydoves/landscapist#animation), [placeholder](https://github.com/skydoves/landscapist#placeholder): A pluggable, highly optimized Jetpack Compose and Kotlin Multiplatform image loading library that fetches and displays network images with Glide, Coil, and Fresco.
 - [Baseline Profiles](https://medium.com/proandroiddev/improve-your-android-app-performance-with-baseline-profiles-297f388082e6): Enhances app performance by including specifications of classes and methods in the APK that can be utilized by Android Runtime.
 
+## Technical Contents
+
+If you're interested in learning the tech stacks used to build Pokedex Compose, you can find detailed information in the articles linked below:
+
+- [Shared Element Transition In Jetpack Compose: Provide Enriched User Experiences](https://medium.com/@skydoves/shared-element-transition-in-jetpack-compose-provide-enriched-user-experiences-163d4e435869)
+
+
 ## Architecture
 **Pokedex Compose** adheres to the MVVM architecture and implements the Repository pattern, aligning with [Google's official architecture guidance](https://developer.android.com/topic/architecture).
 

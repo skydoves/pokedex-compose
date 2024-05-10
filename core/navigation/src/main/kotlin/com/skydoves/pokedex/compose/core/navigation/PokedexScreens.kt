@@ -16,40 +16,16 @@
 
 package com.skydoves.pokedex.compose.core.navigation
 
-import androidx.navigation.NamedNavArgument
-import androidx.navigation.navArgument
 import com.skydoves.pokedex.compose.core.model.Pokemon
+import kotlinx.serialization.Serializable
 
-sealed class PokedexScreens(
-  val route: String,
-  val navArguments: List<NamedNavArgument> = emptyList(),
-) {
-  val name: String = route.appendArguments(navArguments)
+@Serializable
+sealed interface PokedexScreens {
+  @Serializable
+  data object Home : PokedexScreens
 
-  data object Home : PokedexScreens("home")
-
-  data object Details : PokedexScreens(
-    route = "details",
-    navArguments = listOf(
-      navArgument("pokemon") {
-        type = PokemonType()
-        nullable = false
-      },
-    ),
-  ) {
-    fun createRoute(pokemon: Pokemon) =
-      name.replace("{${navArguments.first().name}}", PokemonType.encodeToString(pokemon))
-  }
-}
-
-private fun String.appendArguments(navArguments: List<NamedNavArgument>): String {
-  val mandatoryArguments = navArguments.filter { it.argument.defaultValue == null }
-    .takeIf { it.isNotEmpty() }
-    ?.joinToString(separator = "/", prefix = "/") { "{${it.name}}" }
-    .orEmpty()
-  val optionalArguments = navArguments.filter { it.argument.defaultValue != null }
-    .takeIf { it.isNotEmpty() }
-    ?.joinToString(separator = "&", prefix = "?") { "${it.name}={${it.name}}" }
-    .orEmpty()
-  return "$this$mandatoryArguments$optionalArguments"
+  @Serializable
+  data class Details(
+    val pokemon: Pokemon,
+  ) : PokedexScreens
 }

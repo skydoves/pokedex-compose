@@ -19,19 +19,21 @@ package com.skydoves.pokedex.compose.navigation
 import androidx.compose.animation.SharedTransitionScope
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.skydoves.pokedex.compose.core.model.Pokemon
 import com.skydoves.pokedex.compose.core.navigation.PokedexScreens
+import com.skydoves.pokedex.compose.core.navigation.PokemonType
 import com.skydoves.pokedex.compose.feature.details.PokedexDetails
 import com.skydoves.pokedex.compose.feature.home.PokedexHome
+import kotlin.reflect.typeOf
 
 context(SharedTransitionScope)
 fun NavGraphBuilder.pokedexNavigation() {
-  composable(route = PokedexScreens.Home.name) {
+  composable<PokedexScreens.Home> {
     PokedexHome(this)
   }
 
-  composable(
-    route = PokedexScreens.Details.name,
-    arguments = PokedexScreens.Details.navArguments,
+  composable<PokedexScreens.Details>(
+    typeMap = mapOf(typeOf<Pokemon>() to PokemonType),
   ) {
     PokedexDetails(this)
   }

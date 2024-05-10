@@ -22,12 +22,12 @@ import javax.inject.Inject
 
 class PokedexComposeNavigator @Inject constructor() : AppComposeNavigator() {
 
-  override fun navigate(route: String, optionsBuilder: (NavOptionsBuilder.() -> Unit)?) {
+  override fun navigate(route: Any, optionsBuilder: (NavOptionsBuilder.() -> Unit)?) {
     val options = optionsBuilder?.let { navOptions(it) }
     navigationCommands.tryEmit(ComposeNavigationCommand.NavigateToRoute(route, options))
   }
 
-  override fun navigateAndClearBackStack(route: String) {
+  override fun navigateAndClearBackStack(route: Any) {
     navigationCommands.tryEmit(
       ComposeNavigationCommand.NavigateToRoute(
         route,
@@ -38,11 +38,11 @@ class PokedexComposeNavigator @Inject constructor() : AppComposeNavigator() {
     )
   }
 
-  override fun popUpTo(route: String, inclusive: Boolean) {
+  override fun popUpTo(route: Any, inclusive: Boolean) {
     navigationCommands.tryEmit(ComposeNavigationCommand.PopUpToRoute(route, inclusive))
   }
 
-  override fun <T> navigateBackWithResult(key: String, result: T, route: String?) {
+  override fun <T> navigateBackWithResult(key: String, result: T, route: Any?) {
     navigationCommands.tryEmit(
       ComposeNavigationCommand.NavigateUpWithResult(
         key = key,

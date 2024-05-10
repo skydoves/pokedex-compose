@@ -36,4 +36,5 @@ dependencies {
 
   // kotlinx
   api(libs.kotlinx.immutable.collection)
+  implementation(libs.kotlinx.serializable.json)
 }

@@ -21,9 +21,11 @@ import androidx.compose.runtime.Immutable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 @Immutable
 @Parcelize
+@Serializable
 @JsonClass(generateAdapter = true)
 data class Pokemon(
   var page: Int = 0,

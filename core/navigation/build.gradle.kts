@@ -1,9 +1,9 @@
 plugins {
   id("skydoves.pokedex.android.library")
   id("skydoves.pokedex.android.library.compose")
-  id("org.jetbrains.kotlin.plugin.serialization")
   id("skydoves.pokedex.android.hilt")
   id("skydoves.pokedex.spotless")
+  id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -20,4 +20,5 @@ dependencies {
   api(libs.androidx.navigation.compose)
 
   implementation(libs.moshi)
+  implementation(libs.kotlinx.serializable.json)
 }

@@ -29,7 +29,7 @@ fun PokedexNavHost(
   SharedTransitionLayout {
     NavHost(
       navController = navHostController,
-      startDestination = PokedexScreens.Home.route,
+      startDestination = PokedexScreens.Home,
     ) {
       pokedexNavigation()
     }

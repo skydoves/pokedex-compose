@@ -36,11 +36,11 @@ abstract class Navigator {
 }
 
 abstract class AppComposeNavigator : Navigator() {
-  abstract fun navigate(route: String, optionsBuilder: (NavOptionsBuilder.() -> Unit)? = null)
-  abstract fun <T> navigateBackWithResult(key: String, result: T, route: String?)
+  abstract fun navigate(route: Any, optionsBuilder: (NavOptionsBuilder.() -> Unit)? = null)
+  abstract fun <T> navigateBackWithResult(key: String, result: T, route: Any?)
 
-  abstract fun popUpTo(route: String, inclusive: Boolean)
-  abstract fun navigateAndClearBackStack(route: String)
+  abstract fun popUpTo(route: Any, inclusive: Boolean)
+  abstract fun navigateAndClearBackStack(route: Any)
 
   suspend fun handleNavigationCommands(navController: NavController) {
     navigationCommands

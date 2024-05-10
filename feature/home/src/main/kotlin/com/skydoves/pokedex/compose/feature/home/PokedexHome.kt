@@ -144,9 +144,7 @@ private fun SharedTransitionScope.PokemonCard(
       .padding(6.dp)
       .fillMaxWidth()
       .testTag("Pokemon")
-      .clickable {
-        composeNavigator.navigate(PokedexScreens.Details.createRoute(pokemon = pokemon))
-      },
+      .clickable { composeNavigator.navigate(PokedexScreens.Details(pokemon = pokemon)) },
     shape = RoundedCornerShape(14.dp),
     colors = CardColors(
       containerColor = backgroundColor,

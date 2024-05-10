@@ -23,14 +23,14 @@ sealed class NavigationCommand {
 }
 
 sealed class ComposeNavigationCommand : NavigationCommand() {
-  data class NavigateToRoute(val route: String, val options: NavOptions? = null) :
+  data class NavigateToRoute(val route: Any, val options: NavOptions? = null) :
     ComposeNavigationCommand()
 
   data class NavigateUpWithResult<T>(
     val key: String,
     val result: T,
-    val route: String? = null,
+    val route: Any? = null,
   ) : ComposeNavigationCommand()
 
-  data class PopUpToRoute(val route: String, val inclusive: Boolean) : ComposeNavigationCommand()
+  data class PopUpToRoute(val route: Any, val inclusive: Boolean) : ComposeNavigationCommand()
 }

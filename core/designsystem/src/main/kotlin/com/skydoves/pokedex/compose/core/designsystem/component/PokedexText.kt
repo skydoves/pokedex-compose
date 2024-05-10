@@ -53,7 +53,7 @@ fun PokedexText(
   maxLines: Int = Int.MAX_VALUE,
   minLines: Int = 1,
   onTextLayout: ((TextLayoutResult) -> Unit)? = null,
-  style: TextStyle = LocalTextStyle.current,
+  style: TextStyle = LocalTextStyle.current
 ) {
   Text(
     text = if (!LocalInspectionMode.current) {
@@ -76,7 +76,7 @@ fun PokedexText(
     maxLines = maxLines,
     minLines = minLines,
     onTextLayout = onTextLayout,
-    style = style,
+    style = style
   )
 }
 
@@ -87,6 +87,6 @@ private fun PokedexTextPreview() {
     text = "pokemon",
     previewText = "preview text",
     fontSize = 30.sp,
-    color = Color.White,
+    color = Color.White
   )
 }

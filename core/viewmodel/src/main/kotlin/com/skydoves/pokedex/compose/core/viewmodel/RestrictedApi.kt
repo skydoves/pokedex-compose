@@ -21,11 +21,11 @@ package com.skydoves.pokedex.compose.core.viewmodel
   AnnotationTarget.PROPERTY,
   AnnotationTarget.CONSTRUCTOR,
   AnnotationTarget.FUNCTION,
-  AnnotationTarget.TYPEALIAS,
+  AnnotationTarget.TYPEALIAS
 )
 @Retention(AnnotationRetention.BINARY)
 @RequiresOptIn(
   message = "This is API has been restricted. Do not depend on this API for working properly",
-  level = RequiresOptIn.Level.ERROR,
+  level = RequiresOptIn.Level.ERROR
 )
 public annotation class RestrictedApi

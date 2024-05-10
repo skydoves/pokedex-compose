@@ -55,7 +55,7 @@ public data class PokedexColors(
   val ground: Color,
   val orange: Color,
   val green: Color,
-  val blue: Color,
+  val blue: Color
 ) {
 
   public companion object {
@@ -97,7 +97,7 @@ public data class PokedexColors(
       ground = colorResource(id = R.color.ground),
       orange = colorResource(id = R.color.orange),
       green = colorResource(id = R.color.green),
-      blue = colorResource(id = R.color.blue),
+      blue = colorResource(id = R.color.blue)
     )
 
     /**
@@ -138,7 +138,7 @@ public data class PokedexColors(
       ground = colorResource(id = R.color.ground),
       orange = colorResource(id = R.color.orange),
       green = colorResource(id = R.color.green),
-      blue = colorResource(id = R.color.blue),
+      blue = colorResource(id = R.color.blue)
     )
   }
 }

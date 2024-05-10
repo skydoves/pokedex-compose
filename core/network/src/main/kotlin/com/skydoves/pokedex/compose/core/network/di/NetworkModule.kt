@@ -43,7 +43,7 @@ internal object NetworkModule {
           this.addNetworkInterceptor(
             HttpLoggingInterceptor().apply {
               level = HttpLoggingInterceptor.Level.BODY
-            },
+            }
           )
         }
       }

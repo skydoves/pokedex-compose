@@ -29,5 +29,5 @@ data class PokemonInfoEntity(
   val experience: Int,
   val types: List<PokemonInfo.TypeResponse>,
   val exp: Int,
-  val stats: List<PokemonInfo.StatsResponse>,
+  val stats: List<PokemonInfo.StatsResponse>
 )

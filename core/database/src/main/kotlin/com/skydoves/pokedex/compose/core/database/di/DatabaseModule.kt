@@ -46,7 +46,7 @@ internal object DatabaseModule {
   fun provideAppDatabase(
     application: Application,
     typeResponseConverter: TypeResponseConverter,
-    statsResponseConverter: StatsResponseConverter,
+    statsResponseConverter: StatsResponseConverter
   ): PokedexDatabase {
     return Room
       .databaseBuilder(application, PokedexDatabase::class.java, "Pokedex.db")

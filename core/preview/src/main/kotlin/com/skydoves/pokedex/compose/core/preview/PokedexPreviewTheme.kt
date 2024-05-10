@@ -27,10 +27,10 @@ import com.skydoves.pokedex.compose.core.navigation.PokedexComposeNavigator
 
 @Composable
 fun PokedexPreviewTheme(
-  content: @Composable SharedTransitionScope.(AnimatedVisibilityScope) -> Unit,
+  content: @Composable SharedTransitionScope.(AnimatedVisibilityScope) -> Unit
 ) {
   CompositionLocalProvider(
-    LocalComposeNavigator provides PokedexComposeNavigator(),
+    LocalComposeNavigator provides PokedexComposeNavigator()
   ) {
     PokedexTheme {
       SharedTransitionScope {

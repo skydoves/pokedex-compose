@@ -32,7 +32,7 @@ data class PokemonInfo(
   @field:Json(name = "base_experience") val experience: Int,
   @field:Json(name = "types") val types: List<TypeResponse>,
   @field:Json(name = "stats") val stats: List<StatsResponse>,
-  val exp: Int = Random.nextInt(MAX_EXP),
+  val exp: Int = Random.nextInt(MAX_EXP)
 ) {
   val hp: Int by lazy {
     stats.firstOrNull { it.stat.name == "hp" }?.baseStat ?: Random.nextInt(MAX_HP)
@@ -59,24 +59,24 @@ data class PokemonInfo(
   @JsonClass(generateAdapter = true)
   data class TypeResponse(
     @field:Json(name = "slot") val slot: Int,
-    @field:Json(name = "type") val type: Type,
+    @field:Json(name = "type") val type: Type
   )
 
   @JsonClass(generateAdapter = true)
   data class StatsResponse(
     @field:Json(name = "base_stat") val baseStat: Int,
     @field:Json(name = "effort") val effort: Int,
-    @field:Json(name = "stat") val stat: Stat,
+    @field:Json(name = "stat") val stat: Stat
   )
 
   @JsonClass(generateAdapter = true)
   data class Stat(
-    @field:Json(name = "name") val name: String,
+    @field:Json(name = "name") val name: String
   )
 
   @JsonClass(generateAdapter = true)
   data class Type(
-    @field:Json(name = "name") val name: String,
+    @field:Json(name = "name") val name: String
   )
 
   companion object {

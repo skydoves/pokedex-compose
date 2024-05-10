@@ -29,7 +29,7 @@ import com.skydoves.pokedex.compose.designsystem.R
 @Immutable
 public data class PokdexBackground(
   val color: Color = Color.Unspecified,
-  val tonalElevation: Dp = Dp.Unspecified,
+  val tonalElevation: Dp = Dp.Unspecified
 ) {
   public companion object {
     @Composable
@@ -37,12 +37,12 @@ public data class PokdexBackground(
       return if (darkTheme) {
         PokdexBackground(
           color = colorResource(id = R.color.background_dark),
-          tonalElevation = 0.dp,
+          tonalElevation = 0.dp
         )
       } else {
         PokdexBackground(
           color = colorResource(id = R.color.background),
-          tonalElevation = 0.dp,
+          tonalElevation = 0.dp
         )
       }
     }

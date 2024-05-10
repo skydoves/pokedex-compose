@@ -35,12 +35,12 @@ fun PokedexAppBar() {
         text = stringResource(id = R.string.app_name),
         color = PokedexTheme.colors.absoluteWhite,
         fontSize = 18.sp,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Bold
       )
     },
     colors = TopAppBarDefaults.topAppBarColors().copy(
-      containerColor = PokedexTheme.colors.primary,
-    ),
+      containerColor = PokedexTheme.colors.primary
+    )
   )
 }
 

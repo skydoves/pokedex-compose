@@ -79,7 +79,7 @@ class StartupBenchmarks {
         startActivityAndWait()
 
         pokedexScenarios()
-      },
+      }
     )
   }
 }

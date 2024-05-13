@@ -24,8 +24,7 @@ import kotlin.random.Random
 @Immutable
 @JsonClass(generateAdapter = true)
 data class PokemonInfo(
-  @field:Json(name = "id")
-  val id: Int,
+  @field:Json(name = "id") val id: Int,
   @field:Json(name = "name") val name: String,
   @field:Json(name = "height") val height: Int,
   @field:Json(name = "weight") val weight: Int,

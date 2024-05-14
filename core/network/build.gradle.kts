@@ -18,7 +18,7 @@ plugins {
   id("skydoves.pokedex.android.library")
   id("skydoves.pokedex.android.hilt")
   id("skydoves.pokedex.spotless")
-  id("org.jetbrains.kotlin.plugin.serialization")
+  id("kotlinx-serialization")
 }
 
 android {
@@ -40,13 +40,9 @@ dependencies {
 
   // network
   implementation(libs.sandwich)
-  implementation(libs.retrofit)
-  implementation(libs.retrofit.moshi)
-  implementation(libs.okhttp.interceptor)
-  testImplementation(libs.okhttp.mockserver)
+  implementation(libs.bundles.retrofitBundle)
   testImplementation(libs.androidx.arch.core)
 
   // json parsing
-  implementation(libs.moshi)
-  ksp(libs.moshi.codegen)
+  implementation(libs.kotlinx.serialization.json)
 }

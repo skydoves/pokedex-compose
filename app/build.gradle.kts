@@ -129,5 +129,5 @@ dependencies {
   androidTestImplementation(libs.truth)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso)
-  androidTestImplementation(libs.android.test.runner)
+//  androidTestImplementation(libs.android.test.runner)
 }

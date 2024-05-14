@@ -34,12 +34,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object DatabaseModule {
 
-//  @Singleton
-//  @Provides
-//  fun provideJson() = Json {
-//    ignoreUnknownKeys = true
-//  }
-
   @Provides
   @Singleton
   fun provideAppDatabase(

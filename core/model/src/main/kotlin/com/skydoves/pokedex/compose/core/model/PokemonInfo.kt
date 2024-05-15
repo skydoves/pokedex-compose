@@ -17,20 +17,20 @@
 package com.skydoves.pokedex.compose.core.model
 
 import androidx.compose.runtime.Immutable
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlin.random.Random
 
 @Immutable
-@JsonClass(generateAdapter = true)
+@Serializable
 data class PokemonInfo(
-  @field:Json(name = "id") val id: Int,
-  @field:Json(name = "name") val name: String,
-  @field:Json(name = "height") val height: Int,
-  @field:Json(name = "weight") val weight: Int,
-  @field:Json(name = "base_experience") val experience: Int,
-  @field:Json(name = "types") val types: List<TypeResponse>,
-  @field:Json(name = "stats") val stats: List<StatsResponse>,
+  @SerialName(value= "id") val id: Int,
+  @SerialName(value = "name") val name: String,
+  @SerialName(value = "height") val height: Int,
+  @SerialName(value  = "weight") val weight: Int,
+  @SerialName(value  = "base_experience") val experience: Int,
+  @SerialName(value  = "types") val types: List<TypeResponse>,
+  @SerialName(value  = "stats") val stats: List<StatsResponse>,
   val exp: Int = Random.nextInt(MAX_EXP)
 ) {
   val hp: Int by lazy {
@@ -55,27 +55,28 @@ data class PokemonInfo(
   fun getSpeedString(): String = " $speed/$MAX_SPEED"
   fun getExpString(): String = " $exp/$MAX_EXP"
 
-  @JsonClass(generateAdapter = true)
+ @Serializable
   data class TypeResponse(
-    @field:Json(name = "slot") val slot: Int,
-    @field:Json(name = "type") val type: Type
+   @SerialName(value  = "slot") val slot: Int,
+   @SerialName(value  = "type") val type: Type
   )
 
-  @JsonClass(generateAdapter = true)
+
+  @Serializable
   data class StatsResponse(
-    @field:Json(name = "base_stat") val baseStat: Int,
-    @field:Json(name = "effort") val effort: Int,
-    @field:Json(name = "stat") val stat: Stat
+    @SerialName(value  = "base_stat") val baseStat: Int,
+    @SerialName(value = "effort") val effort: Int,
+    @SerialName(value = "stat") val stat: Stat
   )
 
-  @JsonClass(generateAdapter = true)
+  @Serializable
   data class Stat(
-    @field:Json(name = "name") val name: String
+    @SerialName(value  = "name") val name: String
   )
 
-  @JsonClass(generateAdapter = true)
+  @Serializable
   data class Type(
-    @field:Json(name = "name") val name: String
+    @SerialName(value = "name") val name: String
   )
 
   companion object {

@@ -31,8 +31,7 @@ dependencies {
   compileOnly(libs.compose.stable.marker)
 
   // moshi
-  implementation(libs.moshi)
-  ksp(libs.moshi.codegen)
+  implementation(libs.kotlinx.serialization.json)
 
   // kotlinx
   api(libs.kotlinx.immutable.collection)

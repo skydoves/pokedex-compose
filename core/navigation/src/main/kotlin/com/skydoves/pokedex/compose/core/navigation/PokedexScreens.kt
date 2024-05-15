@@ -22,7 +22,7 @@ import com.skydoves.pokedex.compose.core.model.Pokemon
 
 sealed class PokedexScreens(
   val route: String,
-  val navArguments: List<NamedNavArgument> = emptyList()
+  val navArguments: List<NamedNavArgument> = emptyList(),
 ) {
   val name: String = route.appendArguments(navArguments)
 
@@ -34,8 +34,8 @@ sealed class PokedexScreens(
       navArgument("pokemon") {
         type = PokemonType()
         nullable = false
-      }
-    )
+      },
+    ),
   ) {
     fun createRoute(pokemon: Pokemon) =
       name.replace("{${navArguments.first().name}}", PokemonType.encodeToString(pokemon))

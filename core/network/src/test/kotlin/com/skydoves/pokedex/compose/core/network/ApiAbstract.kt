@@ -77,8 +77,8 @@ abstract class ApiAbstract<T> {
       .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
       .addCallAdapterFactory(
         ApiResponseCallAdapterFactory.create(
-          coroutineScope = coroutinesRule.testScope
-        )
+          coroutineScope = coroutinesRule.testScope,
+        ),
       )
       .build()
       .create(clazz)

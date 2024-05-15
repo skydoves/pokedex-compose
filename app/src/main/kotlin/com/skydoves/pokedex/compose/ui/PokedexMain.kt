@@ -24,9 +24,7 @@ import com.skydoves.pokedex.compose.core.navigation.AppComposeNavigator
 import com.skydoves.pokedex.compose.navigation.PokedexNavHost
 
 @Composable
-fun PokedexMain(
-  composeNavigator: AppComposeNavigator
-) {
+fun PokedexMain(composeNavigator: AppComposeNavigator) {
   PokedexTheme {
     val navHostController = rememberNavController()
 

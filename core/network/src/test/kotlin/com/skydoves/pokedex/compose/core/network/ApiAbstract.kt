@@ -17,7 +17,6 @@
 package com.skydoves.pokedex.compose.core.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.pokedex.compose.core.test.MainCoroutinesRule
 import com.skydoves.sandwich.retrofit.adapters.ApiResponseCallAdapterFactory
 import kotlinx.serialization.json.Json
@@ -32,6 +31,7 @@ import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.nio.charset.StandardCharsets
 
 @RunWith(JUnit4::class)

@@ -41,7 +41,7 @@ Go to the [Releases](https://github.com/skydoves/pokedex-compose/releases) to do
   - Repository Pattern: Acts as a mediator between different data sources and the application's business logic.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): Constructs REST APIs and facilitates paging network data retrieval.
 - [Sandwich](https://github.com/skydoves/Sandwich): Adaptable and lightweight sealed API library designed for handling API responses and exceptions in Kotlin for Retrofit, Ktor, and Kotlin Multiplatform.
-- [Moshi](https://github.com/square/moshi/): A modern JSON library compatible with Kotlin and Java.
+- [Kotlin Serialization](https://github.com/Kotlin/kotlinx.serialization): Kotlin multiplatform / multi-format reflectionless serialization.
 - [ksp](https://github.com/google/ksp): Kotlin Symbol Processing API for code generation and analysis.
 - [Turbine](https://github.com/cashapp/turbine): A small testing library for kotlinx.coroutines Flow.
 - [Landscapist Glide](https://github.com/skydoves/landscapist#glide), [animation](https://github.com/skydoves/landscapist#animation), [placeholder](https://github.com/skydoves/landscapist#placeholder): A pluggable, highly optimized Jetpack Compose and Kotlin Multiplatform image loading library that fetches and displays network images with Glide, Coil, and Fresco.

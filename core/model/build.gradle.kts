@@ -30,7 +30,7 @@ dependencies {
   // compose stable marker
   compileOnly(libs.compose.stable.marker)
 
-  // moshi
+  // Kotlin Serialization for Json
   implementation(libs.kotlinx.serialization.json)
 
   // kotlinx

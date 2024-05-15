@@ -19,13 +19,13 @@ package com.skydoves.pokedex.compose.core.database
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.skydoves.pokedex.compose.core.model.PokemonInfo
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 @ProvidedTypeConverter
 class TypeResponseConverter @Inject constructor(
-  private val json: Json
+  private val json: Json,
 ) {
   @TypeConverter
   fun fromString(value: String): List<PokemonInfo.TypeResponse>? {

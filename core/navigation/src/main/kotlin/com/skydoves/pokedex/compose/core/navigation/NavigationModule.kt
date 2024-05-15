@@ -29,6 +29,6 @@ internal abstract class NavigationModule {
   @Binds
   @Singleton
   abstract fun provideComposeNavigator(
-    pokedexComposeNavigator: PokedexComposeNavigator
+    pokedexComposeNavigator: PokedexComposeNavigator,
   ): AppComposeNavigator
 }

@@ -66,16 +66,16 @@ class HomeRepositoryImplTest {
     whenever(service.fetchPokemonList()).thenReturn(
       ApiResponse.responseOf {
         Response.success(
-          mockData
+          mockData,
         )
-      }
+      },
     )
 
     repository.fetchPokemonList(
       page = 0,
       onStart = {},
       onComplete = {},
-      onError = {}
+      onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val actualItem = awaitItem()[0]
       assertEquals(0, actualItem.page)
@@ -102,7 +102,7 @@ class HomeRepositoryImplTest {
       page = 0,
       onStart = {},
       onComplete = {},
-      onError = {}
+      onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val actualItem = awaitItem()[0]
       assertEquals(0, actualItem.page)

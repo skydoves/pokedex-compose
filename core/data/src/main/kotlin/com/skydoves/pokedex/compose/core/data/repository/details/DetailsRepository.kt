@@ -26,6 +26,6 @@ interface DetailsRepository {
   fun fetchPokemonInfo(
     name: String,
     onComplete: () -> Unit,
-    onError: (String?) -> Unit
+    onError: (String?) -> Unit,
   ): Flow<PokemonInfo>
 }

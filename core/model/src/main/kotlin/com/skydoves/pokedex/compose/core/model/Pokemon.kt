@@ -29,7 +29,7 @@ data class Pokemon(
   var page: Int = 0,
   @SerialName(value = "name")
   val nameField: String,
-  @SerialName(value = "url") val url: String
+  @SerialName(value = "url") val url: String,
 ) : Parcelable {
 
   val name: String

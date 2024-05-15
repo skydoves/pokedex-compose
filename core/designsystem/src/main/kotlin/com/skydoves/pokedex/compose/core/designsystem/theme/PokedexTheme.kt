@@ -46,16 +46,16 @@ public fun PokedexTheme(
     PokedexColors.defaultLightColors()
   },
   background: PokdexBackground = PokdexBackground.defaultBackground(darkTheme),
-  content: @Composable () -> Unit
+  content: @Composable () -> Unit,
 ) {
   CompositionLocalProvider(
     LocalColors provides colors,
-    LocalBackgroundTheme provides background
+    LocalBackgroundTheme provides background,
   ) {
     Box(
       modifier = Modifier
         .background(background.color)
-        .semantics { testTagsAsResourceId = true }
+        .semantics { testTagsAsResourceId = true },
     ) {
       content()
     }

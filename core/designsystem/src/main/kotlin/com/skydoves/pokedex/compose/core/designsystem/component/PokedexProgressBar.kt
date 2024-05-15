@@ -54,7 +54,7 @@ fun PokedexProgressBar(
   modifier: Modifier = Modifier,
   @FloatRange(0.0, 1.0) progress: Float,
   color: Color,
-  label: String
+  label: String,
 ) {
   val screenWidth = LocalConfiguration.current.screenWidthDp.dp.value
   val isLocalInspectionMode = LocalInspectionMode.current
@@ -64,7 +64,7 @@ fun PokedexProgressBar(
         screenWidth
       } else {
         0f
-      }
+      },
     )
   }
 
@@ -75,22 +75,22 @@ fun PokedexProgressBar(
       .onSizeChanged { progressWidth = it.width * progress }
       .background(
         color = PokedexTheme.colors.absoluteWhite,
-        shape = RoundedCornerShape(64.dp)
+        shape = RoundedCornerShape(64.dp),
       )
-      .clip(RoundedCornerShape(64.dp))
+      .clip(RoundedCornerShape(64.dp)),
   ) {
     var textWidth by remember { mutableIntStateOf(0) }
     val threshold = 16
     val isInner by remember(
       progressWidth,
-      textWidth
+      textWidth,
     ) { mutableStateOf(progressWidth > (textWidth + threshold * 2)) }
 
     val animation: Float by animateFloatAsState(
       targetValue = if (progressWidth == 0f) 0f else 1f,
       // Configure the animation duration and easing.
       animationSpec = tween(durationMillis = 950, easing = LinearOutSlowInEasing),
-      label = ""
+      label = "",
     )
 
     Box(
@@ -99,13 +99,13 @@ fun PokedexProgressBar(
         .width(
           progressWidth
             .toInt()
-            .pxToDp() * animation
+            .pxToDp() * animation,
         )
         .height(18.dp)
         .background(
           color = color,
-          shape = RoundedCornerShape(64.dp)
-        )
+          shape = RoundedCornerShape(64.dp),
+        ),
     ) {
       if (isInner) {
         Text(
@@ -115,7 +115,7 @@ fun PokedexProgressBar(
             .padding(end = (threshold * 2).pxToDp()),
           text = label,
           fontSize = 12.sp,
-          color = PokedexTheme.colors.absoluteWhite
+          color = PokedexTheme.colors.absoluteWhite,
         )
       }
     }
@@ -128,11 +128,11 @@ fun PokedexProgressBar(
           .padding(
             start = progressWidth
               .toInt()
-              .pxToDp() + threshold.pxToDp()
+              .pxToDp() + threshold.pxToDp(),
           ),
         text = label,
         fontSize = 12.sp,
-        color = PokedexTheme.colors.absoluteBlack
+        color = PokedexTheme.colors.absoluteBlack,
       )
     }
   }
@@ -147,13 +147,13 @@ private fun PokedexProgressBarPreview1() {
       modifier = Modifier
         .fillMaxWidth()
         .height(120.dp)
-        .background(PokedexTheme.colors.background)
+        .background(PokedexTheme.colors.background),
     ) {
       PokedexProgressBar(
         modifier = Modifier.align(Alignment.Center),
         progress = 0.1f,
         color = PokedexTheme.colors.primary,
-        label = "150/300"
+        label = "150/300",
       )
     }
   }
@@ -168,7 +168,7 @@ private fun PokedexProgressBarPreview2() {
       modifier = Modifier
         .fillMaxWidth()
         .height(120.dp)
-        .background(PokedexTheme.colors.background)
+        .background(PokedexTheme.colors.background),
     ) {
       PokedexProgressBar(
         modifier = Modifier
@@ -176,7 +176,7 @@ private fun PokedexProgressBarPreview2() {
           .align(Alignment.Center),
         progress = 0.5f,
         color = PokedexTheme.colors.primary,
-        label = "150/300"
+        label = "150/300",
       )
     }
   }

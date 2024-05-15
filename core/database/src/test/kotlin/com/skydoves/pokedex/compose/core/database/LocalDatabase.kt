@@ -18,7 +18,7 @@ package com.skydoves.pokedex.compose.core.database
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import com.squareup.moshi.Moshi
+import kotlinx.serialization.json.Json
 import org.junit.After
 import org.junit.Before
 import org.junit.runner.RunWith
@@ -32,10 +32,10 @@ abstract class LocalDatabase {
 
   @Before
   fun initDB() {
-    val moshi = Moshi.Builder().build()
+    val json = Json { ignoreUnknownKeys = true }
     db = Room.inMemoryDatabaseBuilder(getApplicationContext(), PokedexDatabase::class.java)
       .allowMainThreadQueries()
-      .addTypeConverter(TypeResponseConverter(moshi))
+      .addTypeConverter(TypeResponseConverter(json))
       .build()
   }
 

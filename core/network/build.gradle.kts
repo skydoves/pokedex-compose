@@ -34,14 +34,14 @@ dependencies {
   testImplementation(projects.core.test)
 
   // coroutines
-  implementation(libs.kotlinx.coroutines)
-  testImplementation(libs.kotlinx.coroutines)
+  implementation(libs.kotlinx.coroutines.android)
   testImplementation(libs.kotlinx.coroutines.test)
 
   // network
   implementation(libs.sandwich)
-  implementation(libs.bundles.retrofitBundle)
-  testImplementation(libs.androidx.arch.core)
+  implementation(libs.bundles.retrofit)
+  testImplementation(libs.okhttp.mockserver)
+  testImplementation(libs.androidx.arch.core.testing)
 
   // json parsing
   implementation(libs.kotlinx.serialization.json)

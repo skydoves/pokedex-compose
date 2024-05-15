@@ -43,15 +43,14 @@ dependencies {
   testImplementation(projects.core.test)
 
   // coroutines
-  implementation(libs.kotlinx.coroutines)
-  testImplementation(libs.kotlinx.coroutines)
+  implementation(libs.kotlinx.coroutines.android)
   testImplementation(libs.kotlinx.coroutines.test)
 
   // database
   implementation(libs.androidx.room.runtime)
   implementation(libs.androidx.room.ktx)
   ksp(libs.androidx.room.compiler)
-  testImplementation(libs.androidx.arch.core)
+  testImplementation(libs.androidx.arch.core.testing)
 
   // json parsing
   implementation(libs.kotlinx.serialization.json)

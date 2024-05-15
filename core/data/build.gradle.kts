@@ -35,8 +35,7 @@ dependencies {
   api(libs.kotlinx.immutable.collection)
 
   // coroutines
-  implementation(libs.kotlinx.coroutines)
-  testImplementation(libs.kotlinx.coroutines)
+  implementation(libs.kotlinx.coroutines.android)
   testImplementation(libs.kotlinx.coroutines.test)
 
   // network

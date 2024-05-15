@@ -26,10 +26,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import okhttp3.MediaType.Companion.toMediaType
 import javax.inject.Singleton
 
 @Module
@@ -51,7 +51,7 @@ internal object NetworkModule {
           this.addNetworkInterceptor(
             HttpLoggingInterceptor().apply {
               level = HttpLoggingInterceptor.Level.BODY
-            }
+            },
           )
         }
       }
@@ -60,10 +60,7 @@ internal object NetworkModule {
 
   @Provides
   @Singleton
-  fun provideRetrofit(
-    json: Json,
-    okHttpClient: OkHttpClient
-  ): Retrofit {
+  fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
       .client(okHttpClient)
       .baseUrl("https://pokeapi.co/api/v2/")

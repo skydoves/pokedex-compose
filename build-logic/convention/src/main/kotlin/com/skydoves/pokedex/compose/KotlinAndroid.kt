@@ -3,11 +3,10 @@ package com.skydoves.pokedex.compose
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.plugins.ExtensionAware
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /**
  * Configure base Kotlin with Android options
@@ -22,20 +21,28 @@ internal fun Project.configureKotlinAndroid(
       minSdk = 21
     }
 
-    compileOptions {
+    compileOptions{
       sourceCompatibility = JavaVersion.VERSION_17
       targetCompatibility = JavaVersion.VERSION_17
     }
 
-    lint {
-      abortOnError = false
+    packaging {
+      resources {
+        excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        excludes += "/META-INF/LICENSE.md"
+        excludes += "/META-INF/LICENSE-notice.md"
+      }
     }
+  }
+  configureKotlinAndroid()
+}
 
+private fun Project.configureKotlinAndroid() {
+  tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-      // Treat all Kotlin warnings as errors (disabled by default)
-      allWarningsAsErrors = properties["warningsAsErrors"] as? Boolean ?: false
+      jvmTarget = "17"
 
-      freeCompilerArgs = freeCompilerArgs + listOf(
+      freeCompilerArgs += listOf(
         "-Xcontext-receivers",
         "-opt-in=kotlin.RequiresOptIn",
         // Enable experimental coroutines APIs, including Flow
@@ -45,13 +52,12 @@ internal fun Project.configureKotlinAndroid(
         "-opt-in=androidx.lifecycle.compose.ExperimentalLifecycleComposeApi",
         "-opt-in=androidx.compose.animation.ExperimentalSharedTransitionApi",
       )
-
-      // Set JVM target to 17
-      jvmTarget = JavaVersion.VERSION_17.toString()
     }
+  }
+
+  extensions.configure<KotlinProjectExtension> {
+    jvmToolchain(17)
   }
 }
 
-fun CommonExtension<*, *, *, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
-  (this as ExtensionAware).extensions.configure("kotlinOptions", block)
-}
+

@@ -22,10 +22,6 @@ internal fun Project.configureAndroidCompose(
     composeOptions {
       kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
     }
-
-    kotlinOptions {
-      freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
-    }
   }
 }
 

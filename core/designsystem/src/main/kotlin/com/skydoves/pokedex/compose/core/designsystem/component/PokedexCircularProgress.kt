@@ -30,7 +30,7 @@ import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 fun BoxScope.PokedexCircularProgress() {
   CircularProgressIndicator(
     modifier = Modifier.align(Alignment.Center),
-    color = PokedexTheme.colors.primary
+    color = PokedexTheme.colors.primary,
   )
 }
 

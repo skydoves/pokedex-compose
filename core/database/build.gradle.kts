@@ -54,8 +54,7 @@ dependencies {
   testImplementation(libs.androidx.arch.core)
 
   // json parsing
-  implementation(libs.moshi)
-  ksp(libs.moshi.codegen)
+  implementation(libs.kotlinx.serialization.json)
 
   // unit test
   testImplementation(libs.junit)

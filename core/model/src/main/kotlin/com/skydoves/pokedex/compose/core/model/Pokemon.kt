@@ -29,7 +29,7 @@ data class Pokemon(
   var page: Int = 0,
   @field:Json(name = "name")
   val nameField: String,
-  @field:Json(name = "url") val url: String
+  @field:Json(name = "url") val url: String,
 ) : Parcelable {
 
   val name: String

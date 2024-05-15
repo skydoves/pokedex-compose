@@ -33,8 +33,8 @@ class PokedexComposeNavigator @Inject constructor() : AppComposeNavigator() {
         route,
         navOptions {
           popUpTo(0)
-        }
-      )
+        },
+      ),
     )
   }
 
@@ -47,8 +47,8 @@ class PokedexComposeNavigator @Inject constructor() : AppComposeNavigator() {
       ComposeNavigationCommand.NavigateUpWithResult(
         key = key,
         result = result,
-        route = route
-      )
+        route = route,
+      ),
     )
   }
 }

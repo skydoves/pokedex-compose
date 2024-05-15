@@ -38,7 +38,7 @@ fun Modifier.pokedexSharedElement(
     SharedTransitionScope.PlaceHolderSize.contentSize,
   renderInOverlayDuringTransition: Boolean = true,
   zIndexInOverlay: Float = 0f,
-  clipInOverlayDuringTransition: SharedTransitionScope.OverlayClip = ParentClip
+  clipInOverlayDuringTransition: SharedTransitionScope.OverlayClip = ParentClip,
 ): Modifier {
   return if (isLocalInspectionMode) {
     this
@@ -50,7 +50,7 @@ fun Modifier.pokedexSharedElement(
       placeHolderSize = placeHolderSize,
       renderInOverlayDuringTransition = renderInOverlayDuringTransition,
       zIndexInOverlay = zIndexInOverlay,
-      clipInOverlayDuringTransition = clipInOverlayDuringTransition
+      clipInOverlayDuringTransition = clipInOverlayDuringTransition,
     )
   }
 }
@@ -61,7 +61,7 @@ private val ParentClip: SharedTransitionScope.OverlayClip =
       state: SharedTransitionScope.SharedContentState,
       bounds: Rect,
       layoutDirection: LayoutDirection,
-      density: Density
+      density: Density,
     ): Path? {
       return state.parentSharedContentState?.clipPathInOverlay
     }
@@ -69,7 +69,7 @@ private val ParentClip: SharedTransitionScope.OverlayClip =
 
 private val DefaultSpring = spring(
   stiffness = Spring.StiffnessMediumLow,
-  visibilityThreshold = Rect.VisibilityThreshold
+  visibilityThreshold = Rect.VisibilityThreshold,
 )
 
 private val DefaultBoundsTransform =

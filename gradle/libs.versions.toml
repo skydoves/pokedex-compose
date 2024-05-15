@@ -68,7 +68,7 @@ hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hil
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 sandwich = { module = "com.github.skydoves:sandwich-retrofit", version.ref = "sandwich" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-retrofit-kotlin-serialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
+retrofit-kotlinSerialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
 okhttp-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okHttp" }
 okhttp-mockserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okHttp" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -106,4 +106,4 @@ hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 
 [bundles]
-retrofitBundle = ["retrofit", "retrofit-kotlin-serialization", "okhttp-interceptor", "okhttp-mockserver"]
+retrofitBundle = ["retrofit", "retrofit-kotlinSerialization", "okhttp-interceptor", "okhttp-mockserver"]

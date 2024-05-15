@@ -39,8 +39,8 @@ dependencies {
 
   // network
   implementation(libs.sandwich)
-  implementation(libs.bundles.retrofit)
-  testImplementation(libs.okhttp.mockserver)
+  implementation(libs.bundles.retrofitBundle)
+  testImplementation(libs.okhttp.mockwebserver)
   testImplementation(libs.androidx.arch.core.testing)
 
   // json parsing

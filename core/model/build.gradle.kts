@@ -16,9 +16,9 @@
 
 plugins {
   id("skydoves.pokedex.android.library")
-  id("org.jetbrains.kotlin.plugin.serialization")
-  id("kotlin-parcelize")
-  id("com.google.devtools.ksp")
+  alias(libs.plugins.kotlinx.serialization)
+  alias(libs.plugins.kotlin.parcelize)
+  alias(libs.plugins.ksp)
   id("skydoves.pokedex.spotless")
 }
 

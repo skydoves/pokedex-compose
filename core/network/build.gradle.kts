@@ -18,7 +18,7 @@ plugins {
   id("skydoves.pokedex.android.library")
   id("skydoves.pokedex.android.hilt")
   id("skydoves.pokedex.spotless")
-  id("kotlinx-serialization")
+  alias(libs.plugins.kotlinx.serialization)
 }
 
 android {

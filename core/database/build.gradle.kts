@@ -18,7 +18,7 @@ plugins {
   id("skydoves.pokedex.android.library")
   id("skydoves.pokedex.android.hilt")
   id("skydoves.pokedex.spotless")
-  id("com.google.devtools.ksp")
+  alias(libs.plugins.ksp)
 }
 
 android {

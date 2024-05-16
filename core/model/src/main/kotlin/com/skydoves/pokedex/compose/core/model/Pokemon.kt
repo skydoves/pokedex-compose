@@ -18,17 +18,18 @@ package com.skydoves.pokedex.compose.core.model
 
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Immutable
 @Parcelize
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Pokemon(
   var page: Int = 0,
-  @field:Json(name = "name") val nameField: String,
-  @field:Json(name = "url") val url: String
+  @SerialName(value = "name")
+  val nameField: String,
+  @SerialName(value = "url") val url: String,
 ) : Parcelable {
 
   val name: String

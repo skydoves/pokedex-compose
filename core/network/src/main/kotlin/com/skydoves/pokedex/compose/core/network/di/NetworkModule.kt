@@ -16,6 +16,7 @@
 
 package com.skydoves.pokedex.compose.core.network.di
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.pokedex.compose.core.network.service.PokedexClient
 import com.skydoves.pokedex.compose.core.network.service.PokedexService
 import com.skydoves.pokedex.core.network.BuildConfig
@@ -24,15 +25,22 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+
+  @Singleton
+  @Provides
+  fun provideJson() = Json {
+    ignoreUnknownKeys = true
+  }
 
   @Provides
   @Singleton
@@ -43,7 +51,7 @@ internal object NetworkModule {
           this.addNetworkInterceptor(
             HttpLoggingInterceptor().apply {
               level = HttpLoggingInterceptor.Level.BODY
-            }
+            },
           )
         }
       }
@@ -52,11 +60,11 @@ internal object NetworkModule {
 
   @Provides
   @Singleton
-  fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+  fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
       .client(okHttpClient)
       .baseUrl("https://pokeapi.co/api/v2/")
-      .addConverterFactory(MoshiConverterFactory.create())
+      .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
       .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
       .build()
   }

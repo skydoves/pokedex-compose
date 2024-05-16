@@ -23,11 +23,11 @@ import com.skydoves.pokedex.compose.core.database.PokemonDao
 import com.skydoves.pokedex.compose.core.database.PokemonInfoDao
 import com.skydoves.pokedex.compose.core.database.StatsResponseConverter
 import com.skydoves.pokedex.compose.core.database.TypeResponseConverter
-import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 @Module
@@ -36,17 +36,10 @@ internal object DatabaseModule {
 
   @Provides
   @Singleton
-  fun provideMoshi(): Moshi {
-    return Moshi.Builder()
-      .build()
-  }
-
-  @Provides
-  @Singleton
   fun provideAppDatabase(
     application: Application,
     typeResponseConverter: TypeResponseConverter,
-    statsResponseConverter: StatsResponseConverter
+    statsResponseConverter: StatsResponseConverter,
   ): PokedexDatabase {
     return Room
       .databaseBuilder(application, PokedexDatabase::class.java, "Pokedex.db")
@@ -70,7 +63,7 @@ internal object DatabaseModule {
 
   @Provides
   @Singleton
-  fun provideTypeResponseConverter(moshi: Moshi): TypeResponseConverter {
-    return TypeResponseConverter(moshi)
+  fun provideTypeResponseConverter(json: Json): TypeResponseConverter {
+    return TypeResponseConverter(json)
   }
 }

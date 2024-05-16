@@ -66,7 +66,7 @@ class BaselineProfileGenerator {
       // See: https://d.android.com/topic/performance/baselineprofiles/dex-layout-optimizations
       includeInStartupProfile = true,
       stableIterations = 2,
-      maxIterations = 8
+      maxIterations = 8,
     ) {
       // This block defines the app's critical user journey. Here we are interested in
       // optimizing for app startup. But you can also navigate and scroll through your most important UI.

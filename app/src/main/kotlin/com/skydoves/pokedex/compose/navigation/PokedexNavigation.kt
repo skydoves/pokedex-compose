@@ -31,7 +31,7 @@ fun NavGraphBuilder.pokedexNavigation() {
 
   composable(
     route = PokedexScreens.Details.name,
-    arguments = PokedexScreens.Details.navArguments
+    arguments = PokedexScreens.Details.navArguments,
   ) {
     PokedexDetails(this)
   }

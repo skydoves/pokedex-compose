@@ -13,7 +13,7 @@ android {
 dependencies {
   implementation(projects.core.model)
 
-  implementation(libs.kotlinx.coroutines)
+  implementation(libs.kotlinx.coroutines.android)
 
   implementation(libs.androidx.compose.ui)
   implementation(libs.androidx.compose.animation)

@@ -16,7 +16,6 @@
 
 package com.skydoves.pokedex.compose.core.network.di
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.pokedex.compose.core.network.service.PokedexClient
 import com.skydoves.pokedex.compose.core.network.service.PokedexService
 import com.skydoves.pokedex.core.network.BuildConfig
@@ -30,6 +29,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -38,7 +38,7 @@ internal object NetworkModule {
 
   @Singleton
   @Provides
-  fun provideJson() = Json {
+  fun provideJson(): Json = Json {
     ignoreUnknownKeys = true
   }
 

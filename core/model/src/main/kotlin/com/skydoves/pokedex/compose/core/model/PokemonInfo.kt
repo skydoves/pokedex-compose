@@ -24,15 +24,14 @@ import kotlin.random.Random
 @Immutable
 @Serializable
 data class PokemonInfo(
-  @SerialName(value = "id")
-  val id: Int,
+  @SerialName(value = "id") val id: Int,
   @SerialName(value = "name") val name: String,
   @SerialName(value = "height") val height: Int,
   @SerialName(value = "weight") val weight: Int,
   @SerialName(value = "base_experience") val experience: Int,
   @SerialName(value = "types") val types: List<TypeResponse>,
   @SerialName(value = "stats") val stats: List<StatsResponse>,
-  val exp: Int = Random.nextInt(MAX_EXP),
+  val exp: Int = Random.nextInt(MAX_EXP)
 ) {
   val hp: Int by lazy {
     stats.firstOrNull { it.stat.name == "hp" }?.baseStat ?: Random.nextInt(MAX_HP)

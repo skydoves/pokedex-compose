@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 @ProvidedTypeConverter
 class StatsResponseConverter @Inject constructor(
-  private val json: Json
+  private val json: Json,
 ) {
 
   @TypeConverter

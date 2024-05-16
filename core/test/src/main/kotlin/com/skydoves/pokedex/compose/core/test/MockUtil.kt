@@ -24,7 +24,7 @@ object MockUtil {
   fun mockPokemon() = Pokemon(
     page = 0,
     nameField = "bulbasaur",
-    url = "https://pokeapi.co/api/v2/pokemon/1/"
+    url = "https://pokeapi.co/api/v2/pokemon/1/",
   )
 
   fun mockPokemonList() = listOf(mockPokemon())
@@ -36,6 +36,6 @@ object MockUtil {
     weight = 69,
     experience = 60,
     types = emptyList(),
-    stats = emptyList()
+    stats = emptyList(),
   )
 }

@@ -23,13 +23,11 @@ import androidx.navigation.compose.NavHost
 import com.skydoves.pokedex.compose.core.navigation.PokedexScreens
 
 @Composable
-fun PokedexNavHost(
-  navHostController: NavHostController
-) {
+fun PokedexNavHost(navHostController: NavHostController) {
   SharedTransitionLayout {
     NavHost(
       navController = navHostController,
-      startDestination = PokedexScreens.Home.route
+      startDestination = PokedexScreens.Home.route,
     ) {
       pokedexNavigation()
     }

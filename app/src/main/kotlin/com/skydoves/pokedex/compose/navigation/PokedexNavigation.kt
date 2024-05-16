@@ -30,7 +30,7 @@ fun NavGraphBuilder.pokedexNavigation() {
   }
 
   composable<PokedexScreen.Details>(
-    typeMap = PokedexScreen.Details.typeMap
+    typeMap = PokedexScreen.Details.typeMap,
   ) {
     PokedexDetails(this)
   }

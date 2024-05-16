@@ -32,5 +32,6 @@ sealed class ComposeNavigationCommand : NavigationCommand() {
     val route: V? = null,
   ) : ComposeNavigationCommand()
 
-  data class PopUpToRoute<T : Any>(val route: T, val inclusive: Boolean) : ComposeNavigationCommand()
+  data class PopUpToRoute<T : Any>(val route: T, val inclusive: Boolean) :
+    ComposeNavigationCommand()
 }

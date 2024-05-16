@@ -37,6 +37,5 @@ object PokemonType : NavType<Pokemon>(isNullableAllowed = false) {
     return Json.decodeFromString(Uri.decode(value))
   }
 
-  override fun serializeAsValue(value: Pokemon): String =
-    Uri.encode(Json.encodeToString(value))
+  override fun serializeAsValue(value: Pokemon): String = Uri.encode(Json.encodeToString(value))
 }

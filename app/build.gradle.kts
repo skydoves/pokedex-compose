@@ -7,7 +7,7 @@ plugins {
   id("skydoves.pokedex.android.application.compose")
   id("skydoves.pokedex.android.hilt")
   id("skydoves.pokedex.spotless")
-  id("kotlin-parcelize")
+  alias(libs.plugins.kotlin.parcelize)
   alias(libs.plugins.baselineprofile)
 }
 

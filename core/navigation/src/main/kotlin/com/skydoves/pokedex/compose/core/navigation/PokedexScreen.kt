@@ -16,14 +16,18 @@
 
 package com.skydoves.pokedex.compose.core.navigation
 
-import android.os.Build
-import android.os.Bundle
-import android.os.Parcelable
+import com.skydoves.pokedex.compose.core.model.Pokemon
+import kotlinx.serialization.Serializable
+import kotlin.reflect.typeOf
 
-inline fun <reified T : Parcelable> Bundle.parcelable(key: String): T? = when {
-  Build.VERSION.SDK_INT >= 33 -> getParcelable(key, T::class.java)
-  else ->
-    @Suppress("DEPRECATION")
-    getParcelable(key)
-      as? T
+sealed interface PokedexScreen {
+  @Serializable
+  data object Home : PokedexScreen
+
+  @Serializable
+  data class Details(val pokemon: Pokemon) : PokedexScreen {
+    companion object {
+      val typeMap = mapOf(typeOf<Pokemon>() to PokemonType)
+    }
+  }
 }

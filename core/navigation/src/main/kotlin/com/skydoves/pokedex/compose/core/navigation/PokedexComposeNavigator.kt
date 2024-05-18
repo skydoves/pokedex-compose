@@ -20,14 +20,14 @@ import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.navOptions
 import javax.inject.Inject
 
-class PokedexComposeNavigator @Inject constructor() : AppComposeNavigator() {
+class PokedexComposeNavigator @Inject constructor() : AppComposeNavigator<PokedexScreen>() {
 
-  override fun navigate(route: String, optionsBuilder: (NavOptionsBuilder.() -> Unit)?) {
+  override fun navigate(route: PokedexScreen, optionsBuilder: (NavOptionsBuilder.() -> Unit)?) {
     val options = optionsBuilder?.let { navOptions(it) }
     navigationCommands.tryEmit(ComposeNavigationCommand.NavigateToRoute(route, options))
   }
 
-  override fun navigateAndClearBackStack(route: String) {
+  override fun navigateAndClearBackStack(route: PokedexScreen) {
     navigationCommands.tryEmit(
       ComposeNavigationCommand.NavigateToRoute(
         route,
@@ -38,11 +38,11 @@ class PokedexComposeNavigator @Inject constructor() : AppComposeNavigator() {
     )
   }
 
-  override fun popUpTo(route: String, inclusive: Boolean) {
+  override fun popUpTo(route: PokedexScreen, inclusive: Boolean) {
     navigationCommands.tryEmit(ComposeNavigationCommand.PopUpToRoute(route, inclusive))
   }
 
-  override fun <T> navigateBackWithResult(key: String, result: T, route: String?) {
+  override fun <R> navigateBackWithResult(key: String, result: R, route: PokedexScreen?) {
     navigationCommands.tryEmit(
       ComposeNavigationCommand.NavigateUpWithResult(
         key = key,

@@ -35,12 +35,12 @@ abstract class Navigator {
   }
 }
 
-abstract class AppComposeNavigator : Navigator() {
-  abstract fun navigate(route: String, optionsBuilder: (NavOptionsBuilder.() -> Unit)? = null)
-  abstract fun <T> navigateBackWithResult(key: String, result: T, route: String?)
+abstract class AppComposeNavigator<T : Any> : Navigator() {
+  abstract fun navigate(route: T, optionsBuilder: (NavOptionsBuilder.() -> Unit)? = null)
+  abstract fun <R> navigateBackWithResult(key: String, result: R, route: T?)
 
-  abstract fun popUpTo(route: String, inclusive: Boolean)
-  abstract fun navigateAndClearBackStack(route: String)
+  abstract fun popUpTo(route: T, inclusive: Boolean)
+  abstract fun navigateAndClearBackStack(route: T)
 
   suspend fun handleNavigationCommands(navController: NavController) {
     navigationCommands
@@ -51,24 +51,24 @@ abstract class AppComposeNavigator : Navigator() {
 
   private fun NavController.handleComposeNavigationCommand(navigationCommand: NavigationCommand) {
     when (navigationCommand) {
-      is ComposeNavigationCommand.NavigateToRoute -> {
+      is ComposeNavigationCommand.NavigateToRoute<*> -> {
         navigate(navigationCommand.route, navigationCommand.options)
       }
 
       NavigationCommand.NavigateUp -> navigateUp()
-      is ComposeNavigationCommand.PopUpToRoute -> popBackStack(
+      is ComposeNavigationCommand.PopUpToRoute<*> -> popBackStack(
         navigationCommand.route,
         navigationCommand.inclusive,
       )
 
-      is ComposeNavigationCommand.NavigateUpWithResult<*> -> {
+      is ComposeNavigationCommand.NavigateUpWithResult<*, *> -> {
         navUpWithResult(navigationCommand)
       }
     }
   }
 
   private fun NavController.navUpWithResult(
-    navigationCommand: ComposeNavigationCommand.NavigateUpWithResult<*>,
+    navigationCommand: ComposeNavigationCommand.NavigateUpWithResult<*, *>,
   ) {
     val backStackEntry =
       navigationCommand.route?.let { getBackStackEntry(it) }
@@ -80,8 +80,6 @@ abstract class AppComposeNavigator : Navigator() {
 
     navigationCommand.route?.let {
       popBackStack(it, false)
-    } ?: run {
-      navigateUp()
-    }
+    } ?: navigateUp()
   }
 }

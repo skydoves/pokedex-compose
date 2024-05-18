@@ -69,7 +69,7 @@ import com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularP
 import com.skydoves.pokedex.compose.core.designsystem.component.pokedexSharedElement
 import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.core.model.Pokemon
-import com.skydoves.pokedex.compose.core.navigation.PokedexScreens
+import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
 import com.skydoves.pokedex.compose.core.navigation.boundsTransform
 import com.skydoves.pokedex.compose.core.navigation.currentComposeNavigator
 import com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme
@@ -145,7 +145,7 @@ private fun SharedTransitionScope.PokemonCard(
       .fillMaxWidth()
       .testTag("Pokemon")
       .clickable {
-        composeNavigator.navigate(PokedexScreens.Details.createRoute(pokemon = pokemon))
+        composeNavigator.navigate(PokedexScreen.Details(pokemon = pokemon))
       },
     shape = RoundedCornerShape(14.dp),
     colors = CardColors(

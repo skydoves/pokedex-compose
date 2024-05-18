@@ -23,6 +23,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
 import com.skydoves.pokedex.compose.core.navigation.AppComposeNavigator
 import com.skydoves.pokedex.compose.core.navigation.LocalComposeNavigator
+import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
 import com.skydoves.pokedex.compose.ui.PokedexMain
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -31,7 +32,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
   @Inject
-  internal lateinit var composeNavigator: AppComposeNavigator
+  internal lateinit var composeNavigator: AppComposeNavigator<PokedexScreen>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()

@@ -18,27 +18,24 @@ package com.skydoves.pokedex.compose.core.navigation
 
 import android.net.Uri
 import android.os.Bundle
+import androidx.core.os.BundleCompat
 import androidx.navigation.NavType
 import com.skydoves.pokedex.compose.core.model.Pokemon
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-class PokemonType : NavType<Pokemon?>(isNullableAllowed = false) {
+object PokemonType : NavType<Pokemon>(isNullableAllowed = false) {
 
-  override fun get(bundle: Bundle, key: String): Pokemon? = bundle.parcelable(key)
-
-  override fun put(bundle: Bundle, key: String, value: Pokemon?) {
+  override fun put(bundle: Bundle, key: String, value: Pokemon) {
     bundle.putParcelable(key, value)
   }
 
+  override fun get(bundle: Bundle, key: String): Pokemon? =
+    BundleCompat.getParcelable(bundle, key, Pokemon::class.java)
+
   override fun parseValue(value: String): Pokemon {
-    val decoded = Uri.decode(value)
-    return Json.decodeFromString(decoded)!!
+    return Json.decodeFromString(Uri.decode(value))
   }
 
-  companion object {
-    fun encodeToString(pokemon: Pokemon): String {
-      return Uri.encode(Json.encodeToString(pokemon))
-    }
-  }
+  override fun serializeAsValue(value: Pokemon): String = Uri.encode(Json.encodeToString(value))
 }

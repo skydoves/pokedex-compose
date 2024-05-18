@@ -18,19 +18,20 @@ package com.skydoves.pokedex.compose.core.navigation
 
 import androidx.navigation.NavOptions
 
-sealed class NavigationCommand {
-  data object NavigateUp : NavigationCommand()
+sealed interface NavigationCommand {
+  data object NavigateUp : NavigationCommand
 }
 
-sealed class ComposeNavigationCommand : NavigationCommand() {
-  data class NavigateToRoute(val route: String, val options: NavOptions? = null) :
-    ComposeNavigationCommand()
+sealed interface ComposeNavigationCommand : NavigationCommand {
+  data class NavigateToRoute<T : Any>(val route: T, val options: NavOptions? = null) :
+    ComposeNavigationCommand
 
-  data class NavigateUpWithResult<T>(
+  data class NavigateUpWithResult<R, T : Any>(
     val key: String,
-    val result: T,
-    val route: String? = null,
-  ) : ComposeNavigationCommand()
+    val result: R,
+    val route: T? = null,
+  ) : ComposeNavigationCommand
 
-  data class PopUpToRoute(val route: String, val inclusive: Boolean) : ComposeNavigationCommand()
+  data class PopUpToRoute<T : Any>(val route: T, val inclusive: Boolean) :
+    ComposeNavigationCommand
 }

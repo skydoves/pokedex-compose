@@ -21,10 +21,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.rememberNavController
 import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.core.navigation.AppComposeNavigator
+import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
 import com.skydoves.pokedex.compose.navigation.PokedexNavHost
 
 @Composable
-fun PokedexMain(composeNavigator: AppComposeNavigator) {
+fun PokedexMain(composeNavigator: AppComposeNavigator<PokedexScreen>) {
   PokedexTheme {
     val navHostController = rememberNavController()
 

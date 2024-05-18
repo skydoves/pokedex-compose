@@ -24,11 +24,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal abstract class NavigationModule {
+internal interface NavigationModule {
 
   @Binds
   @Singleton
-  abstract fun provideComposeNavigator(
+  fun provideComposeNavigator(
     pokedexComposeNavigator: PokedexComposeNavigator,
-  ): AppComposeNavigator
+  ): AppComposeNavigator<PokedexScreen>
 }

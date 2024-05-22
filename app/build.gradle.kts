@@ -68,8 +68,9 @@ android {
     buildConfig = true
   }
 
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
+  composeCompiler {
+    enableStrongSkippingMode = true
+    reportsDestination = layout.buildDirectory.dir("compose_compiler")
   }
 
   hilt {

@@ -64,13 +64,7 @@ android {
   }
 
   buildFeatures {
-    compose = true
     buildConfig = true
-  }
-
-  composeCompiler {
-    enableStrongSkippingMode = true
-    reportsDestination = layout.buildDirectory.dir("compose_compiler")
   }
 
   hilt {

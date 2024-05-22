@@ -64,3 +64,6 @@ freeline_project_description.json
 .project
 .settings
 .classpath
+
+# Kotlin
+.kotlin

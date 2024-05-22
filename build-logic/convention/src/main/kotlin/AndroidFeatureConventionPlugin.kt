@@ -15,6 +15,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
       pluginManager.apply {
         apply("com.android.library")
         apply("org.jetbrains.kotlin.android")
+        apply("org.jetbrains.kotlin.plugin.compose")
       }
 
       dependencies {

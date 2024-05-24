@@ -22,6 +22,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
       extensions.getByType<KotlinAndroidProjectExtension>().apply {
         compilerOptions {
+          // Treat all Kotlin warnings as errors (disabled by default)
           allWarningsAsErrors.set(
             properties["warningsAsErrors"] as? Boolean ?: false
           )
@@ -39,6 +40,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             )
           )
 
+          // Set JVM target to 17
           jvmTarget.set(JvmTarget.JVM_17)
         }
       }

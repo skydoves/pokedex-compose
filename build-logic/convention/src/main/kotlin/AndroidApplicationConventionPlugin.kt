@@ -21,28 +21,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
       }
 
       extensions.getByType<KotlinAndroidProjectExtension>().apply {
-        compilerOptions {
-          // Treat all Kotlin warnings as errors (disabled by default)
-          allWarningsAsErrors.set(
-            properties["warningsAsErrors"] as? Boolean ?: false
-          )
-
-          freeCompilerArgs.set(
-            freeCompilerArgs.getOrElse(emptyList()) + listOf(
-              "-Xcontext-receivers",
-              "-Xopt-in=kotlin.RequiresOptIn",
-              // Enable experimental coroutines APIs, including Flow
-              "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-              // Enable experimental compose APIs
-              "-Xopt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-              "-Xopt-in=androidx.lifecycle.compose.ExperimentalLifecycleComposeApi",
-              "-Xopt-in=androidx.compose.animation.ExperimentalSharedTransitionApi",
-            )
-          )
-
-          // Set JVM target to 17
-          jvmTarget.set(JvmTarget.JVM_17)
-        }
+        configureKotlinAndroid(this)
       }
     }
   }

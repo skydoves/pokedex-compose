@@ -5,6 +5,8 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 class AndroidFeatureConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) {
@@ -26,6 +28,10 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         configureKotlinAndroid(this)
         configureAndroidCompose(this)
         defaultConfig.targetSdk = 34
+      }
+
+      extensions.getByType<KotlinAndroidProjectExtension>().apply {
+        configureKotlinAndroid(this)
       }
     }
   }

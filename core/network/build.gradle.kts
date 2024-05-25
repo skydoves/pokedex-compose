@@ -39,6 +39,8 @@ dependencies {
 
   // network
   implementation(libs.sandwich)
+  implementation(platform(libs.retrofit.bom))
+  implementation(platform(libs.okhttp.bom))
   implementation(libs.bundles.retrofitBundle)
   testImplementation(libs.okhttp.mockwebserver)
   testImplementation(libs.androidx.arch.core.testing)

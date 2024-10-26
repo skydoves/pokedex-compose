@@ -30,23 +30,17 @@ internal fun Palette?.paletteBackgroundBrush(): State<Brush> {
   val defaultBackground = PokedexTheme.colors.background
   return remember(this) {
     derivedStateOf {
-      val light = this?.lightVibrantSwatch?.rgb
-      val domain = this?.dominantSwatch?.rgb
-      if (domain != null) {
+      this?.dominantSwatch?.rgb?.let { domain ->
         val domainColor = Color(domain)
-        if (light != null) {
+        this.lightVibrantSwatch?.rgb?.let { light->
           val lightColor = Color(light)
           val gradient = arrayOf(
             0.0f to domainColor,
             1f to lightColor,
           )
           Brush.verticalGradient(colorStops = gradient)
-        } else {
-          Brush.linearGradient(colors = listOf(domainColor, domainColor))
-        }
-      } else {
-        Brush.linearGradient(colors = listOf(defaultBackground, defaultBackground))
-      }
+        } ?: Brush.linearGradient(colors = listOf(domainColor, domainColor))
+      } ?: Brush.linearGradient(colors = listOf(defaultBackground, defaultBackground))
     }
   }
 }

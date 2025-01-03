@@ -17,6 +17,7 @@
 package com.skydoves.pokedex.compose.feature.details
 
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
@@ -44,6 +45,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
@@ -63,6 +66,7 @@ import com.skydoves.landscapist.animation.crossfade.CrossfadePlugin
 import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.palette.PalettePlugin
+import com.skydoves.landscapist.palette.rememberPaletteState
 import com.skydoves.pokedex.compose.core.data.repository.details.FakeDetailsRepository
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularProgress
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexText
@@ -92,10 +96,16 @@ fun SharedTransitionScope.PokedexDetails(
       .verticalScroll(rememberScrollState())
       .testTag("PokedexDetails"),
   ) {
+
+    var palette by rememberPaletteState()
+    val backgroundBrush by palette.paletteBackgroundBrush()
+
     DetailsHeader(
       animatedVisibilityScope = animatedVisibilityScope,
       pokemon = pokemon,
       pokemonInfo = pokemonInfo,
+      onPaletteLoaded = { palette = it },
+      backgroundBrush = backgroundBrush
     )
 
     if (uiState == DetailsUiState.Idle && pokemonInfo != null) {
@@ -115,17 +125,16 @@ private fun SharedTransitionScope.DetailsHeader(
   animatedVisibilityScope: AnimatedVisibilityScope,
   pokemon: Pokemon?,
   pokemonInfo: PokemonInfo?,
+  onPaletteLoaded: (Palette) -> Unit,
+  backgroundBrush: Brush,
 ) {
   val composeNavigator = currentComposeNavigator
-  var palette by remember { mutableStateOf<Palette?>(null) }
   val shape = RoundedCornerShape(
     topStart = 0.dp,
     topEnd = 0.dp,
     bottomStart = 64.dp,
     bottomEnd = 64.dp,
   )
-
-  val backgroundBrush by palette.paletteBackgroundBrush()
 
   Box(
     modifier = Modifier
@@ -135,7 +144,9 @@ private fun SharedTransitionScope.DetailsHeader(
       .background(brush = backgroundBrush, shape = shape),
   ) {
     Row(
-      modifier = Modifier.padding(12.dp).statusBarsPadding(),
+      modifier = Modifier
+        .padding(12.dp)
+        .statusBarsPadding(),
       verticalAlignment = Alignment.CenterVertically,
     ) {
       Icon(
@@ -188,7 +199,7 @@ private fun SharedTransitionScope.DetailsHeader(
           +PalettePlugin(
             imageModel = pokemon?.imageUrl,
             useCache = true,
-            paletteLoadedListener = { palette = it },
+            paletteLoadedListener = { onPaletteLoaded.invoke(it) },
           )
         }
       },

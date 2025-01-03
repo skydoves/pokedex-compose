@@ -61,6 +61,7 @@ import com.skydoves.landscapist.animation.crossfade.CrossfadePlugin
 import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.palette.PalettePlugin
+import com.skydoves.landscapist.palette.rememberPaletteState
 import com.skydoves.landscapist.placeholder.shimmer.Shimmer
 import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 import com.skydoves.pokedex.compose.core.data.repository.home.FakeHomeRepository
@@ -117,9 +118,14 @@ private fun SharedTransitionScope.HomeContent(
           fetchNextPokemonList()
         }
 
+        var palette by rememberPaletteState()
+        val backgroundColor by palette.paletteBackgroundColor()
+
         PokemonCard(
           animatedVisibilityScope = animatedVisibilityScope,
           pokemon = pokemon,
+          onPaletteLoaded = { palette = it },
+          backgroundColor = backgroundColor,
         )
       }
     }
@@ -133,11 +139,11 @@ private fun SharedTransitionScope.HomeContent(
 @Composable
 private fun SharedTransitionScope.PokemonCard(
   animatedVisibilityScope: AnimatedVisibilityScope,
+  onPaletteLoaded: (Palette) -> Unit,
+  backgroundColor: Color,
   pokemon: Pokemon,
 ) {
   val composeNavigator = currentComposeNavigator
-  var palette by remember { mutableStateOf<Palette?>(null) }
-  val backgroundColor by palette.paletteBackgroundColor()
 
   Card(
     modifier = Modifier
@@ -182,7 +188,7 @@ private fun SharedTransitionScope.PokemonCard(
           +PalettePlugin(
             imageModel = pokemon.imageUrl,
             useCache = true,
-            paletteLoadedListener = { palette = it },
+            paletteLoadedListener = { onPaletteLoaded.invoke(it) },
           )
         }
       },

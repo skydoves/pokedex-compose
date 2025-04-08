@@ -193,8 +193,6 @@ private fun SharedTransitionScope.DetailsHeader(
       imageModel = { pokemon?.imageUrl },
       imageOptions = ImageOptions(contentScale = ContentScale.Inside),
       component = rememberImageComponent {
-        +CrossfadePlugin()
-
         if (!LocalInspectionMode.current) {
           +PalettePlugin(
             imageModel = pokemon?.imageUrl,

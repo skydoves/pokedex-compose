@@ -177,13 +177,6 @@ private fun SharedTransitionScope.PokemonCard(
       imageModel = { pokemon.imageUrl },
       imageOptions = ImageOptions(contentScale = ContentScale.Inside),
       component = rememberImageComponent {
-        +CrossfadePlugin()
-        +ShimmerPlugin(
-          Shimmer.Resonate(
-            baseColor = Color.Transparent,
-            highlightColor = Color.LightGray,
-          ),
-        )
 
         if (!LocalInspectionMode.current) {
           +PalettePlugin(

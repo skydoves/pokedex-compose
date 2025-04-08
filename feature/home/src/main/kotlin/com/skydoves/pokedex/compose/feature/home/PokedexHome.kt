@@ -17,7 +17,6 @@
 package com.skydoves.pokedex.compose.feature.home
 
 import android.content.res.Configuration
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.SharedTransitionScope
@@ -39,8 +38,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,13 +55,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kmpalette.palette.graphics.Palette
 import com.skydoves.landscapist.ImageOptions
-import com.skydoves.landscapist.animation.crossfade.CrossfadePlugin
 import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.palette.PalettePlugin
 import com.skydoves.landscapist.palette.rememberPaletteState
-import com.skydoves.landscapist.placeholder.shimmer.Shimmer
-import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 import com.skydoves.pokedex.compose.core.data.repository.home.FakeHomeRepository
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexAppBar
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularProgress

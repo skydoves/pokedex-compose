@@ -29,12 +29,9 @@ internal fun Palette?.paletteBackgroundColor(): State<Color> {
   val defaultBackground = PokedexTheme.colors.background
   return remember(this) {
     derivedStateOf {
-      val rgb = this?.dominantSwatch?.rgb
-      if (rgb != null) {
+      this?.dominantSwatch?.rgb?.let { rgb ->
         Color(rgb)
-      } else {
-        defaultBackground
-      }
+      } ?: defaultBackground
     }
   }
 }

@@ -45,7 +45,7 @@ public fun PokedexTheme(
   } else {
     PokedexColors.defaultLightColors()
   },
-  background: PokdexBackground = PokdexBackground.defaultBackground(darkTheme),
+  background: PokedexBackground = PokedexBackground.defaultBackground(darkTheme),
   content: @Composable () -> Unit,
 ) {
   CompositionLocalProvider(
@@ -76,9 +76,9 @@ public object PokedexTheme {
     get() = LocalColors.current
 
   /**
-   * Retrieves the current [PokdexBackground] at the call site's position in the hierarchy.
+   * Retrieves the current [PokedexBackground] at the call site's position in the hierarchy.
    */
-  public val background: PokdexBackground
+  public val background: PokedexBackground
     @Composable
     @ReadOnlyComposable
     get() = LocalBackgroundTheme.current

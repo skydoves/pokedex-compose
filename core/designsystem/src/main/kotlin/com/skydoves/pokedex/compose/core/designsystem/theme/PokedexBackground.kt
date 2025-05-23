@@ -27,20 +27,20 @@ import androidx.compose.ui.unit.dp
 import com.skydoves.pokedex.compose.designsystem.R
 
 @Immutable
-public data class PokdexBackground(
+public data class PokedexBackground(
   val color: Color = Color.Unspecified,
   val tonalElevation: Dp = Dp.Unspecified,
 ) {
   public companion object {
     @Composable
-    public fun defaultBackground(darkTheme: Boolean): PokdexBackground {
+    public fun defaultBackground(darkTheme: Boolean): PokedexBackground {
       return if (darkTheme) {
-        PokdexBackground(
+        PokedexBackground(
           color = colorResource(id = R.color.background_dark),
           tonalElevation = 0.dp,
         )
       } else {
-        PokdexBackground(
+        PokedexBackground(
           color = colorResource(id = R.color.background),
           tonalElevation = 0.dp,
         )
@@ -49,5 +49,5 @@ public data class PokdexBackground(
   }
 }
 
-public val LocalBackgroundTheme: ProvidableCompositionLocal<PokdexBackground> =
-  staticCompositionLocalOf { PokdexBackground() }
+public val LocalBackgroundTheme: ProvidableCompositionLocal<PokedexBackground> =
+  staticCompositionLocalOf { PokedexBackground() }

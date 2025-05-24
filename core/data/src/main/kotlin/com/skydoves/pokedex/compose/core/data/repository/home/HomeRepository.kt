@@ -27,6 +27,7 @@ interface HomeRepository {
     page: Int,
     onStart: () -> Unit,
     onComplete: () -> Unit,
+    onLastPageReached: () -> Unit,
     onError: (String?) -> Unit,
   ): Flow<List<Pokemon>>
 }

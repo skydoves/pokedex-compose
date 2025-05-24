@@ -37,12 +37,19 @@ class HomeViewModel @Inject constructor(
 
   internal val uiState: ViewModelStateFlow<HomeUiState> = viewModelStateFlow(HomeUiState.Loading)
 
+  private var isLastPageReached = false
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
+
   val pokemonList: StateFlow<List<Pokemon>> = pokemonFetchingIndex.flatMapLatest { page ->
     homeRepository.fetchPokemonList(
       page = page,
-      onStart = { uiState.tryEmit(key, HomeUiState.Loading) },
-      onComplete = { uiState.tryEmit(key, HomeUiState.Idle) },
+      onStart = {
+        uiState.tryEmit(key, HomeUiState.Loading)
+      },
+      onComplete = {
+        uiState.tryEmit(key, HomeUiState.Idle)
+      },
+      onLastPageReached = { isLastPageReached = true },
       onError = { uiState.tryEmit(key, HomeUiState.Error(it)) },
     )
   }.stateIn(
@@ -52,7 +59,7 @@ class HomeViewModel @Inject constructor(
   )
 
   fun fetchNextPokemonList() {
-    if (uiState.value != HomeUiState.Loading) {
+    if (uiState.value != HomeUiState.Loading && !isLastPageReached) {
       pokemonFetchingIndex.value++
     }
   }

@@ -48,6 +48,7 @@ class HomeRepositoryImpl @Inject constructor(
     page: Int,
     onStart: () -> Unit,
     onComplete: () -> Unit,
+    onLastPageReached: () -> Unit,
     onError: (String?) -> Unit,
   ) = flow {
     var pokemons = pokemonDao.getPokemonList(page).asDomain()
@@ -58,6 +59,10 @@ class HomeRepositoryImpl @Inject constructor(
        */
       val response = pokedexClient.fetchPokemonList(page = page)
       response.suspendOnSuccess {
+        if (data.next == null) {
+          onLastPageReached()
+        }
+
         pokemons = data.results
         pokemons.forEach { pokemon -> pokemon.page = page }
         pokemonDao.insertPokemonList(pokemons.asEntity())

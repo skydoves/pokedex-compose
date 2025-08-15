@@ -27,7 +27,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
       extensions.configure<LibraryExtension> {
         configureKotlinAndroid(this)
         configureAndroidCompose(this)
-        defaultConfig.targetSdk = 35
+        defaultConfig.targetSdk = 36
       }
 
       extensions.getByType<KotlinAndroidProjectExtension>().apply {

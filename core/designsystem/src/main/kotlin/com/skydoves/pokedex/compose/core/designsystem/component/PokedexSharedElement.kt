@@ -44,7 +44,7 @@ fun Modifier.pokedexSharedElement(
     this
   } else {
     this.sharedElement(
-      state = state,
+      sharedContentState = state,
       animatedVisibilityScope = animatedVisibilityScope,
       boundsTransform = boundsTransform,
       placeHolderSize = placeHolderSize,

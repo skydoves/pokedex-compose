@@ -8,7 +8,7 @@ plugins {
 
 android {
   namespace = "com.skydoves.pokedex.compose.baselineprofile"
-  compileSdk = 35
+  compileSdk = 36
 
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -17,7 +17,7 @@ android {
 
   defaultConfig {
     minSdk = 24
-    targetSdk = 35
+    targetSdk = 36
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 

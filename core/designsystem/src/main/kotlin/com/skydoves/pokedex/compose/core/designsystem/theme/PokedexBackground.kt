@@ -41,7 +41,7 @@ public data class PokedexBackground(
         )
       } else {
         PokedexBackground(
-          color = colorResource(id = R.color.background),
+          color = colorResource(id = R.color.background_light),
           tonalElevation = 0.dp,
         )
       }

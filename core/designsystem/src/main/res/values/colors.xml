@@ -53,13 +53,13 @@
   <color name="black_dark">#ffffff</color>
 
   <!-- light colors-->
-  <color name="background">#F4EBF4</color>
-  <color name="background800">#D0C7C7</color>
-  <color name="background900">#FFFFFF</color>
-  <color name="white_12">#1F000000</color>
-  <color name="white_56">#8F000000</color>
-  <color name="white_70">#B3000000</color>
-  <color name="white_93">#ED000000</color>
-  <color name="white">#ffffff</color>
-  <color name="black">#000000</color>
+  <color name="background_light">#F4EBF4</color>
+  <color name="background800_light">#D0C7C7</color>
+  <color name="background900_light">#FFFFFF</color>
+  <color name="white_12_light">#1F000000</color>
+  <color name="white_56_light">#8F000000</color>
+  <color name="white_70_light">#B3000000</color>
+  <color name="white_93_light">#ED000000</color>
+  <color name="white_light">#ffffff</color>
+  <color name="black_light">#000000</color>
 </resources>

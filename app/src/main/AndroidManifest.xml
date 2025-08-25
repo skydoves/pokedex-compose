@@ -26,7 +26,7 @@ xmlns:tools="http://schemas.android.com/tools">
   android:icon="@mipmap/ic_launcher"
   android:label="@string/app_name"
   android:supportsRtl="true"
-  android:theme="@style/Theme.PokedexCompose"
+  android:theme="@style/Theme.PokedexCompose.Splash"
   tools:ignore="AllowBackup">
 
   <activity

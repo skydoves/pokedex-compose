@@ -21,6 +21,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.skydoves.pokedex.compose.core.navigation.AppComposeNavigator
 import com.skydoves.pokedex.compose.core.navigation.LocalComposeNavigator
 import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
@@ -35,6 +36,7 @@ class MainActivity : ComponentActivity() {
   internal lateinit var composeNavigator: AppComposeNavigator<PokedexScreen>
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    installSplashScreen()
     enableEdgeToEdge()
     super.onCreate(savedInstanceState)
 

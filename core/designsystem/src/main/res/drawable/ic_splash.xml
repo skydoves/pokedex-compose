@@ -14,17 +14,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<resources>
-
-  <style name="Theme.PokedexCompose" parent="android:Theme.Material.Light.NoActionBar">
-    <item name="android:statusBarColor">@android:color/transparent</item>
-    <item name="android:navigationBarColor">@android:color/transparent</item>
-  </style>
-
-  <style name="Theme.PokedexCompose.Splash" parent="Theme.SplashScreen">
-    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
-    <item name="windowSplashScreenBackground">@color/colorPrimary</item>
-    <item name="postSplashScreenTheme">@style/Theme.PokedexCompose</item>
-  </style>
-
-</resources>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+  android:drawable="@drawable/ic_logo"
+  android:inset="32dp"
+  />

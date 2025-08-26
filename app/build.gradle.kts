@@ -103,9 +103,6 @@ dependencies {
   implementation(libs.androidx.compose.runtime)
   implementation(libs.androidx.compose.foundation)
 
-  // splash screen
-  implementation(libs.androidx.core.splashscreen)
-
   // di
   implementation(libs.hilt.android)
   ksp(libs.hilt.compiler)

@@ -25,6 +25,7 @@ xmlns:tools="http://schemas.android.com/tools">
   android:fullBackupContent="false"
   android:dataExtractionRules="@xml/no_backup"
   android:enableOnBackInvokedCallback="true"
+  tools:targetApi="33"
   android:icon="@mipmap/ic_launcher"
   android:label="@string/app_name"
   android:supportsRtl="true"

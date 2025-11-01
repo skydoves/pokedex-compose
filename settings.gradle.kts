@@ -26,11 +26,12 @@ pluginManagement {
       }
     }
 
-    // fetch dagger plugin only
+    // fetch plugins
     mavenCentral() {
       content {
         includeGroup("com.google.dagger")
         includeGroup("com.google.dagger.hilt.android")
+        includeGroup("com.github.skydoves.compose.stability.analyzer")
       }
       mavenContent {
         releasesOnly()

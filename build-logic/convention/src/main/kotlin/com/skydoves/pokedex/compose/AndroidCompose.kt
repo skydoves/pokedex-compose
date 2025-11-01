@@ -21,7 +21,6 @@ internal fun Project.configureAndroidCompose(
   }
 
   extensions.configure<ComposeCompilerGradlePluginExtension> {
-    enableStrongSkippingMode = true
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
   }
 }

@@ -42,14 +42,6 @@ android {
       proguardFiles("proguard-rules.pro",)
       signingConfig = signingConfigs.getByName("release")
 
-      kotlinOptions {
-        freeCompilerArgs += listOf(
-          "-Xno-param-assertions",
-          "-Xno-call-assertions",
-          "-Xno-receiver-assertions"
-        )
-      }
-
       packaging {
         resources {
           excludes += listOf(
@@ -70,21 +62,23 @@ android {
     enableAggregatingTask = true
   }
 
-  kotlin {
-    sourceSets.configureEach {
-      kotlin.srcDir(layout.buildDirectory.files("generated/ksp/$name/kotlin/"))
-    }
-    sourceSets.all {
-      languageSettings {
-        languageVersion = "2.0"
-      }
-    }
-  }
-
   testOptions.unitTests {
     isIncludeAndroidResources = true
     isReturnDefaultValues = true
   }
+
+  kotlinOptions {
+    freeCompilerArgs += listOf(
+      "-Xno-param-assertions",
+      "-Xno-call-assertions",
+      "-Xno-receiver-assertions"
+    )
+  }
+}
+
+// Configure stability analyzer
+composeStabilityAnalyzer {
+  enabled.set(true)
 }
 
 dependencies {

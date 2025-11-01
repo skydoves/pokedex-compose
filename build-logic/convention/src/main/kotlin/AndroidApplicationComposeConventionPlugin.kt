@@ -8,6 +8,7 @@ class AndroidApplicationComposeConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) {
     with(target) {
       pluginManager.apply("com.android.application")
+      pluginManager.apply("com.github.skydoves.compose.stability.analyzer")
       val extension = extensions.getByType<BaseAppModuleExtension>()
       configureAndroidCompose(extension)
     }

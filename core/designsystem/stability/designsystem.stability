@@ -11,19 +11,7 @@ public fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexAppBa
   params:
 
 @Composable
-private fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexAppBarPreview(): kotlin.Unit
-  skippable: true
-  restartable: true
-  params:
-
-@Composable
 public fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularProgress(): kotlin.Unit
-  skippable: true
-  restartable: true
-  params:
-
-@Composable
-private fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularProgressPreview(): kotlin.Unit
   skippable: true
   restartable: true
   params:
@@ -37,18 +25,6 @@ public fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexProgr
     - progress: STABLE (primitive type)
     - color: STABLE (marked @Stable or @Immutable)
     - label: STABLE (String is immutable)
-
-@Composable
-private fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexProgressBarPreview1(): kotlin.Unit
-  skippable: true
-  restartable: true
-  params:
-
-@Composable
-private fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexProgressBarPreview2(): kotlin.Unit
-  skippable: true
-  restartable: true
-  params:
 
 @Composable
 public fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexText(text: kotlin.String, previewText: kotlin.String, modifier: androidx.compose.ui.Modifier, color: androidx.compose.ui.graphics.Color, fontSize: androidx.compose.ui.unit.TextUnit, fontStyle: androidx.compose.ui.text.font.FontStyle?, fontWeight: androidx.compose.ui.text.font.FontWeight?, fontFamily: androidx.compose.ui.text.font.FontFamily?, letterSpacing: androidx.compose.ui.unit.TextUnit, textDecoration: androidx.compose.ui.text.style.TextDecoration?, textAlign: androidx.compose.ui.text.style.TextAlign?, lineHeight: androidx.compose.ui.unit.TextUnit, overflow: androidx.compose.ui.text.style.TextOverflow, softWrap: kotlin.Boolean, maxLines: kotlin.Int, minLines: kotlin.Int, onTextLayout: kotlin.Function1<androidx.compose.ui.text.TextLayoutResult, kotlin.Unit>?, style: androidx.compose.ui.text.TextStyle): kotlin.Unit
@@ -73,12 +49,6 @@ public fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexText(
     - minLines: STABLE (primitive type)
     - onTextLayout: STABLE (function type)
     - style: STABLE (marked @Stable or @Immutable)
-
-@Composable
-private fun com.skydoves.pokedex.compose.core.designsystem.component.PokedexTextPreview(): kotlin.Unit
-  skippable: true
-  restartable: true
-  params:
 
 @Composable
 public fun com.skydoves.pokedex.compose.core.designsystem.theme.PokedexBackground.Companion.defaultBackground(darkTheme: kotlin.Boolean): com.skydoves.pokedex.compose.core.designsystem.theme.PokedexBackground

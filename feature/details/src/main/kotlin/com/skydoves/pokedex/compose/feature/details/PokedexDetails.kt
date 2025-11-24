@@ -38,7 +38,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -75,20 +74,20 @@ import com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme
 import com.skydoves.pokedex.compose.core.preview.PreviewUtils
 import com.skydoves.pokedex.compose.designsystem.R
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun PokedexDetails(
   sharedTransitionScope: SharedTransitionScope,
   animatedContentScope: AnimatedContentScope,
   pokemon: Pokemon,
-  detailsViewModel: DetailsViewModel = hiltViewModel(),
+  detailsViewModel: DetailsViewModel = hiltViewModel(
+    key = pokemon.name,
+    creationCallback = { factory: DetailsViewModel.Factory ->
+      factory.create(pokemon)
+    },
+  ),
 ) {
   val uiState by detailsViewModel.uiState.collectAsStateWithLifecycle()
   val pokemonInfo by detailsViewModel.pokemonInfo.collectAsStateWithLifecycle()
-
-  LaunchedEffect(pokemon) {
-    detailsViewModel.fetchPokemonInfo(pokemon)
-  }
 
   with(sharedTransitionScope) {
     Column(
@@ -293,12 +292,14 @@ private fun DetailsStatus(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PokedexDetailsPreview() {
+  val pokemon = PreviewUtils.mockPokemon()
   PokedexPreviewTheme { animatedContentScope ->
     PokedexDetails(
       sharedTransitionScope = this@PokedexPreviewTheme,
       animatedContentScope = animatedContentScope,
-      pokemon = PreviewUtils.mockPokemon(),
+      pokemon = pokemon,
       detailsViewModel = DetailsViewModel(
+        pokemon = pokemon,
         detailsRepository = FakeDetailsRepository(),
       ),
     )

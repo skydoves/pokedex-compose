@@ -29,6 +29,7 @@ dependencies {
   api(projects.core.model)
   implementation(projects.core.network)
   implementation(projects.core.database)
+  implementation(projects.core.datastore)
   testImplementation(projects.core.test)
 
   // kotlinx

@@ -18,7 +18,6 @@ package com.skydoves.pokedex.compose.feature.home
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedContentScope
-import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -51,7 +50,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kmpalette.palette.graphics.Palette
 import com.skydoves.landscapist.ImageOptions
@@ -72,7 +71,6 @@ import com.skydoves.pokedex.compose.designsystem.R
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun PokedexHome(
   sharedTransitionScope: SharedTransitionScope,
@@ -95,7 +93,6 @@ fun PokedexHome(
   }
 }
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 private fun HomeContent(
   sharedTransitionScope: SharedTransitionScope,
@@ -135,7 +132,6 @@ private fun HomeContent(
   }
 }
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 private fun PokemonCard(
   sharedTransitionScope: SharedTransitionScope,
@@ -204,7 +200,6 @@ private fun PokemonCard(
   }
 }
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -218,7 +213,6 @@ private fun PokedexHomePreview() {
   }
 }
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable

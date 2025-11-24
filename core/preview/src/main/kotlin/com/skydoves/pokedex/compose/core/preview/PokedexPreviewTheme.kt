@@ -16,25 +16,37 @@
 
 package com.skydoves.pokedex.compose.core.preview
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.core.navigation.LocalComposeNavigator
-import com.skydoves.pokedex.compose.core.navigation.PokedexComposeNavigator
+import com.skydoves.pokedex.compose.core.navigation.PokedexNavigator
+import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
 
+/**
+ * A preview-only navigator implementation that does nothing.
+ */
+private object PreviewNavigator : PokedexNavigator {
+  override fun navigate(screen: PokedexScreen) = Unit
+  override fun navigateUp(): Boolean = false
+}
+
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun PokedexPreviewTheme(
-  content: @Composable SharedTransitionScope.(AnimatedVisibilityScope) -> Unit,
+  content: @Composable SharedTransitionScope.(AnimatedContentScope) -> Unit,
 ) {
   CompositionLocalProvider(
-    LocalComposeNavigator provides PokedexComposeNavigator(),
+    LocalComposeNavigator provides PreviewNavigator,
   ) {
     PokedexTheme {
-      SharedTransitionScope {
-        AnimatedVisibility(visible = true, label = "") {
+      SharedTransitionLayout {
+        AnimatedContent(targetState = Unit, label = "") {
           content(this)
         }
       }

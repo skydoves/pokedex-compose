@@ -16,7 +16,9 @@ dependencies {
   implementation(libs.androidx.core)
   implementation(libs.kotlinx.coroutines.android)
 
-  api(libs.androidx.navigation.compose)
+  // Navigation3
+  api(libs.androidx.navigation3.runtime)
+  api(libs.androidx.navigation3.ui)
 
   // json parsing
   implementation(libs.kotlinx.serialization.json)

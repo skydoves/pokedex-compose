@@ -17,8 +17,8 @@
 package com.skydoves.pokedex.compose.feature.home
 
 import android.content.res.Configuration
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -62,11 +62,9 @@ import com.skydoves.landscapist.palette.rememberPaletteState
 import com.skydoves.pokedex.compose.core.data.repository.home.FakeHomeRepository
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexAppBar
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularProgress
-import com.skydoves.pokedex.compose.core.designsystem.component.pokedexSharedElement
 import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.core.model.Pokemon
 import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
-import com.skydoves.pokedex.compose.core.navigation.boundsTransform
 import com.skydoves.pokedex.compose.core.navigation.currentComposeNavigator
 import com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme
 import com.skydoves.pokedex.compose.core.preview.PreviewUtils
@@ -74,9 +72,11 @@ import com.skydoves.pokedex.compose.designsystem.R
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun SharedTransitionScope.PokedexHome(
-  animatedVisibilityScope: AnimatedVisibilityScope,
+fun PokedexHome(
+  sharedTransitionScope: SharedTransitionScope,
+  animatedContentScope: AnimatedContentScope,
   homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
   val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
@@ -86,7 +86,8 @@ fun SharedTransitionScope.PokedexHome(
     PokedexAppBar()
 
     HomeContent(
-      animatedVisibilityScope = animatedVisibilityScope,
+      sharedTransitionScope = sharedTransitionScope,
+      animatedContentScope = animatedContentScope,
       uiState = uiState,
       pokemonList = pokemonList.toImmutableList(),
       fetchNextPokemonList = homeViewModel::fetchNextPokemonList,
@@ -94,9 +95,11 @@ fun SharedTransitionScope.PokedexHome(
   }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-private fun SharedTransitionScope.HomeContent(
-  animatedVisibilityScope: AnimatedVisibilityScope,
+private fun HomeContent(
+  sharedTransitionScope: SharedTransitionScope,
+  animatedContentScope: AnimatedContentScope,
   uiState: HomeUiState,
   pokemonList: ImmutableList<Pokemon>,
   fetchNextPokemonList: () -> Unit,
@@ -117,7 +120,8 @@ private fun SharedTransitionScope.HomeContent(
         val backgroundColor by palette.paletteBackgroundColor()
 
         PokemonCard(
-          animatedVisibilityScope = animatedVisibilityScope,
+          sharedTransitionScope = sharedTransitionScope,
+          animatedContentScope = animatedContentScope,
           pokemon = pokemon,
           onPaletteLoaded = { palette = it },
           backgroundColor = backgroundColor,
@@ -131,106 +135,101 @@ private fun SharedTransitionScope.HomeContent(
   }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-private fun SharedTransitionScope.PokemonCard(
-  animatedVisibilityScope: AnimatedVisibilityScope,
+private fun PokemonCard(
+  sharedTransitionScope: SharedTransitionScope,
+  animatedContentScope: AnimatedContentScope,
   onPaletteLoaded: (Palette) -> Unit,
   backgroundColor: Color,
   pokemon: Pokemon,
 ) {
   val composeNavigator = currentComposeNavigator
 
-  Card(
-    modifier = Modifier
-      .padding(6.dp)
-      .fillMaxWidth()
-      .testTag("Pokemon")
-      .clickable {
-        composeNavigator.navigate(PokedexScreen.Details(pokemon = pokemon))
-      },
-    shape = RoundedCornerShape(14.dp),
-    colors = CardColors(
-      containerColor = backgroundColor,
-      contentColor = backgroundColor,
-      disabledContainerColor = backgroundColor,
-      disabledContentColor = backgroundColor,
-    ),
-    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-  ) {
-    GlideImage(
+  with(sharedTransitionScope) {
+    Card(
       modifier = Modifier
-        .align(Alignment.CenterHorizontally)
-        .padding(top = 20.dp)
-        .size(120.dp)
-        .pokedexSharedElement(
-          isLocalInspectionMode = LocalInspectionMode.current,
-          state = rememberSharedContentState(key = "image-${pokemon.name}"),
-          animatedVisibilityScope = animatedVisibilityScope,
-          boundsTransform = boundsTransform,
-        ),
-      imageModel = { pokemon.imageUrl },
-      imageOptions = ImageOptions(contentScale = ContentScale.Inside),
-      component = rememberImageComponent {
-
-        if (!LocalInspectionMode.current) {
-          +PalettePlugin(
-            imageModel = pokemon.imageUrl,
-            useCache = true,
-            paletteLoadedListener = { onPaletteLoaded.invoke(it) },
-          )
-        }
-      },
-      previewPlaceholder = painterResource(
-        id = R.drawable.pokemon_preview,
-      ),
-    )
-
-    Text(
-      modifier = Modifier
-        .align(Alignment.CenterHorizontally)
+        .padding(6.dp)
         .fillMaxWidth()
-        .pokedexSharedElement(
-          isLocalInspectionMode = LocalInspectionMode.current,
-          state = rememberSharedContentState(key = "name-${pokemon.name}"),
-          animatedVisibilityScope = animatedVisibilityScope,
-          boundsTransform = boundsTransform,
+        .testTag("Pokemon")
+        .sharedBounds(
+          sharedContentState = rememberSharedContentState(key = "pokemon-${pokemon.name}"),
+          animatedVisibilityScope = animatedContentScope,
         )
-        .padding(12.dp),
-      text = pokemon.name,
-      color = PokedexTheme.colors.black,
-      textAlign = TextAlign.Center,
-      fontSize = 16.sp,
-      fontWeight = FontWeight.Bold,
-    )
-  }
-}
+        .clickable {
+          composeNavigator.navigate(PokedexScreen.Details(pokemon = pokemon))
+        },
+      shape = RoundedCornerShape(14.dp),
+      colors = CardColors(
+        containerColor = backgroundColor,
+        contentColor = backgroundColor,
+        disabledContainerColor = backgroundColor,
+        disabledContentColor = backgroundColor,
+      ),
+      elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+    ) {
+      GlideImage(
+        modifier = Modifier
+          .align(Alignment.CenterHorizontally)
+          .padding(top = 20.dp)
+          .size(120.dp),
+        imageModel = { pokemon.imageUrl },
+        imageOptions = ImageOptions(contentScale = ContentScale.Inside),
+        component = rememberImageComponent {
+          if (!LocalInspectionMode.current) {
+            +PalettePlugin(
+              imageModel = pokemon.imageUrl,
+              useCache = true,
+              paletteLoadedListener = { onPaletteLoaded.invoke(it) },
+            )
+          }
+        },
+        previewPlaceholder = painterResource(
+          id = R.drawable.pokemon_preview,
+        ),
+      )
 
-@Preview
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun PokedexHomePreview() {
-  PokedexTheme {
-    SharedTransitionScope {
-      AnimatedVisibility(visible = true, label = "") {
-        PokedexHome(
-          animatedVisibilityScope = this,
-          homeViewModel = HomeViewModel(homeRepository = FakeHomeRepository()),
-        )
-      }
+      Text(
+        modifier = Modifier
+          .align(Alignment.CenterHorizontally)
+          .fillMaxWidth()
+          .padding(12.dp),
+        text = pokemon.name,
+        color = PokedexTheme.colors.black,
+        textAlign = TextAlign.Center,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Bold,
+      )
     }
   }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
+@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun PokedexHomePreview() {
+  PokedexPreviewTheme { animatedContentScope ->
+    PokedexHome(
+      sharedTransitionScope = this@PokedexPreviewTheme,
+      animatedContentScope = animatedContentScope,
+      homeViewModel = HomeViewModel(homeRepository = FakeHomeRepository()),
+    )
+  }
+}
+
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun HomeContentPreview() {
-  PokedexPreviewTheme { scope ->
+  PokedexPreviewTheme { animatedContentScope ->
     HomeContent(
-      animatedVisibilityScope = scope,
+      sharedTransitionScope = this@PokedexPreviewTheme,
+      animatedContentScope = animatedContentScope,
       uiState = HomeUiState.Idle,
       pokemonList = PreviewUtils.mockPokemonList().toImmutableList(),
-      fetchNextPokemonList = { HomeViewModel(homeRepository = FakeHomeRepository()) },
+      fetchNextPokemonList = { },
     )
   }
 }

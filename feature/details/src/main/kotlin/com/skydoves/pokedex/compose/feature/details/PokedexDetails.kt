@@ -17,8 +17,8 @@
 package com.skydoves.pokedex.compose.feature.details
 
 import android.content.res.Configuration
-import android.util.Log
-import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,15 +38,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
@@ -58,11 +56,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kmpalette.palette.graphics.Palette
 import com.skydoves.landscapist.ImageOptions
-import com.skydoves.landscapist.animation.crossfade.CrossfadePlugin
 import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.palette.PalettePlugin
@@ -70,60 +66,69 @@ import com.skydoves.landscapist.palette.rememberPaletteState
 import com.skydoves.pokedex.compose.core.data.repository.details.FakeDetailsRepository
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularProgress
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexText
-import com.skydoves.pokedex.compose.core.designsystem.component.pokedexSharedElement
 import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.core.designsystem.utils.getPokemonTypeColor
 import com.skydoves.pokedex.compose.core.model.Pokemon
 import com.skydoves.pokedex.compose.core.model.PokemonInfo
-import com.skydoves.pokedex.compose.core.navigation.boundsTransform
 import com.skydoves.pokedex.compose.core.navigation.currentComposeNavigator
 import com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme
 import com.skydoves.pokedex.compose.core.preview.PreviewUtils
 import com.skydoves.pokedex.compose.designsystem.R
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun SharedTransitionScope.PokedexDetails(
-  animatedVisibilityScope: AnimatedVisibilityScope,
+fun PokedexDetails(
+  sharedTransitionScope: SharedTransitionScope,
+  animatedContentScope: AnimatedContentScope,
+  pokemon: Pokemon,
   detailsViewModel: DetailsViewModel = hiltViewModel(),
 ) {
   val uiState by detailsViewModel.uiState.collectAsStateWithLifecycle()
-  val pokemon by detailsViewModel.pokemon.collectAsStateWithLifecycle()
   val pokemonInfo by detailsViewModel.pokemonInfo.collectAsStateWithLifecycle()
 
-  Column(
-    modifier = Modifier
-      .fillMaxSize()
-      .verticalScroll(rememberScrollState())
-      .testTag("PokedexDetails"),
-  ) {
+  LaunchedEffect(pokemon) {
+    detailsViewModel.fetchPokemonInfo(pokemon)
+  }
 
-    var palette by rememberPaletteState()
-    val backgroundBrush by palette.paletteBackgroundBrush()
+  with(sharedTransitionScope) {
+    Column(
+      modifier = Modifier
+        .fillMaxSize()
+        .sharedBounds(
+          sharedContentState = rememberSharedContentState(key = "pokemon-${pokemon.name}"),
+          animatedVisibilityScope = animatedContentScope,
+        )
+        .background(PokedexTheme.colors.background)
+        .verticalScroll(rememberScrollState())
+        .testTag("PokedexDetails"),
+    ) {
 
-    DetailsHeader(
-      animatedVisibilityScope = animatedVisibilityScope,
-      pokemon = pokemon,
-      pokemonInfo = pokemonInfo,
-      onPaletteLoaded = { palette = it },
-      backgroundBrush = backgroundBrush
-    )
+      var palette by rememberPaletteState()
+      val backgroundBrush by palette.paletteBackgroundBrush()
 
-    if (uiState == DetailsUiState.Idle && pokemonInfo != null) {
-      DetailsInfo(pokemonInfo = pokemonInfo!!)
+      DetailsHeader(
+        pokemon = pokemon,
+        pokemonInfo = pokemonInfo,
+        onPaletteLoaded = { palette = it },
+        backgroundBrush = backgroundBrush
+      )
 
-      DetailsStatus(pokemonInfo = pokemonInfo!!)
-    } else {
-      Box(modifier = Modifier.fillMaxSize()) {
-        PokedexCircularProgress()
+      if (uiState == DetailsUiState.Idle && pokemonInfo != null) {
+        DetailsInfo(pokemonInfo = pokemonInfo!!)
+
+        DetailsStatus(pokemonInfo = pokemonInfo!!)
+      } else {
+        Box(modifier = Modifier.fillMaxSize()) {
+          PokedexCircularProgress()
+        }
       }
     }
   }
 }
 
 @Composable
-private fun SharedTransitionScope.DetailsHeader(
-  animatedVisibilityScope: AnimatedVisibilityScope,
-  pokemon: Pokemon?,
+private fun DetailsHeader(
+  pokemon: Pokemon,
   pokemonInfo: PokemonInfo?,
   onPaletteLoaded: (Palette) -> Unit,
   backgroundBrush: Brush,
@@ -160,7 +165,7 @@ private fun SharedTransitionScope.DetailsHeader(
 
       Text(
         modifier = Modifier.padding(horizontal = 10.dp),
-        text = pokemon?.name.orEmpty(),
+        text = pokemon.name,
         color = PokedexTheme.colors.absoluteWhite,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,
@@ -183,19 +188,13 @@ private fun SharedTransitionScope.DetailsHeader(
       modifier = Modifier
         .align(Alignment.BottomCenter)
         .padding(bottom = 20.dp)
-        .size(190.dp)
-        .pokedexSharedElement(
-          isLocalInspectionMode = LocalInspectionMode.current,
-          state = rememberSharedContentState(key = "image-${pokemon?.name}"),
-          animatedVisibilityScope = animatedVisibilityScope,
-          boundsTransform = boundsTransform,
-        ),
-      imageModel = { pokemon?.imageUrl },
+        .size(190.dp),
+      imageModel = { pokemon.imageUrl },
       imageOptions = ImageOptions(contentScale = ContentScale.Inside),
       component = rememberImageComponent {
         if (!LocalInspectionMode.current) {
           +PalettePlugin(
-            imageModel = pokemon?.imageUrl,
+            imageModel = pokemon.imageUrl,
             useCache = true,
             paletteLoadedListener = { onPaletteLoaded.invoke(it) },
           )
@@ -210,14 +209,8 @@ private fun SharedTransitionScope.DetailsHeader(
   PokedexText(
     modifier = Modifier
       .padding(top = 24.dp)
-      .fillMaxWidth()
-      .pokedexSharedElement(
-        isLocalInspectionMode = LocalInspectionMode.current,
-        state = rememberSharedContentState(key = "name-${pokemon?.name}"),
-        animatedVisibilityScope = animatedVisibilityScope,
-        boundsTransform = boundsTransform,
-      ),
-    text = pokemon?.name.orEmpty(),
+      .fillMaxWidth(),
+    text = pokemon.name,
     previewText = "skydoves",
     color = PokedexTheme.colors.black,
     fontWeight = FontWeight.Bold,
@@ -295,16 +288,18 @@ private fun DetailsStatus(
   }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PokedexDetailsPreview() {
-  PokedexPreviewTheme {
+  PokedexPreviewTheme { animatedContentScope ->
     PokedexDetails(
-      animatedVisibilityScope = it,
+      sharedTransitionScope = this@PokedexPreviewTheme,
+      animatedContentScope = animatedContentScope,
+      pokemon = PreviewUtils.mockPokemon(),
       detailsViewModel = DetailsViewModel(
         detailsRepository = FakeDetailsRepository(),
-        savedStateHandle = SavedStateHandle(),
       ),
     )
   }
@@ -314,7 +309,7 @@ private fun PokedexDetailsPreview() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PokedexDetailsInfoPreview() {
-  PokedexPreviewTheme {
+  PokedexTheme {
     DetailsInfo(pokemonInfo = PreviewUtils.mockPokemonInfo())
   }
 }
@@ -323,7 +318,7 @@ private fun PokedexDetailsInfoPreview() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PokedexDetailsStatusPreview() {
-  PokedexPreviewTheme {
+  PokedexTheme {
     DetailsStatus(
       pokemonInfo = PreviewUtils.mockPokemonInfo(),
     )

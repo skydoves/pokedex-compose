@@ -2,13 +2,11 @@ plugins {
   id("skydoves.pokedex.android.library")
   id("skydoves.pokedex.android.hilt")
   id("skydoves.pokedex.spotless")
+  alias(libs.plugins.protobuf.plugin)
 }
 
 android {
     namespace = "com.skydoves.pokedex.compose.core.datastore"
-    compileSdk {
-        version = release(36)
-    }
 
     defaultConfig {
         consumerProguardFiles("consumer-rules.pro")
@@ -16,5 +14,26 @@ android {
 }
 
 dependencies {
+  api(libs.androidx.dataStore)
+  implementation(libs.protobuf.kotlin.lite)
+}
 
+protobuf {
+
+  protoc {
+    artifact = libs.protobuf.protoc.get().toString()
+  }
+
+  generateProtoTasks {
+    all().forEach { task ->
+      task.builtins {
+        register("java") {
+          option("lite")
+        }
+        register("kotlin") {
+          option("lite")
+        }
+      }
+    }
+  }
 }

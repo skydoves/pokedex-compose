@@ -9,5 +9,5 @@ message UserPreferences {
 
   UiThemeConfigProto ui_theme_config = 1;
 
-  bool use_dynamic_ui_theme = 2;
+  bool use_dynamic_colors = 2;
 }

@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+  api(projects.core.common)
   implementation(projects.core.model)
   testImplementation(projects.core.test)
 

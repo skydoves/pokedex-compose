@@ -14,6 +14,9 @@ android {
 }
 
 dependencies {
+  implementation(projects.core.common)
+  implementation(projects.core.model)
+
   api(libs.androidx.dataStore)
   implementation(libs.protobuf.kotlin.lite)
 }

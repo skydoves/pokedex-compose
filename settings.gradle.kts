@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":core:common")
+
+
 include(":baselineprofile")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

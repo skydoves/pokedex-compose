@@ -17,24 +17,14 @@
 package com.skydoves.pokedex.compose.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.navigation.compose.rememberNavController
 import com.skydoves.compose.stability.runtime.TraceRecomposition
 import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
-import com.skydoves.pokedex.compose.core.navigation.AppComposeNavigator
-import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
 import com.skydoves.pokedex.compose.navigation.PokedexNavHost
 
 @Composable
 @TraceRecomposition
-fun PokedexMain(composeNavigator: AppComposeNavigator<PokedexScreen>) {
+fun PokedexMain() {
   PokedexTheme {
-    val navHostController = rememberNavController()
-
-    LaunchedEffect(Unit) {
-      composeNavigator.handleNavigationCommands(navHostController)
-    }
-
-    PokedexNavHost(navHostController = navHostController)
+    PokedexNavHost()
   }
 }

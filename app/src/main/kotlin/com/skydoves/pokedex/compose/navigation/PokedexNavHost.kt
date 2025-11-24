@@ -16,22 +16,56 @@
 
 package com.skydoves.pokedex.compose.navigation
 
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.ui.LocalNavAnimatedContentScope
+import androidx.navigation3.ui.NavDisplay
 import com.skydoves.compose.stability.runtime.TraceRecomposition
+import com.skydoves.pokedex.compose.core.navigation.LocalComposeNavigator
+import com.skydoves.pokedex.compose.core.navigation.PokedexNavigatorImpl
 import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
+import com.skydoves.pokedex.compose.feature.details.PokedexDetails
+import com.skydoves.pokedex.compose.feature.home.PokedexHome
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 @TraceRecomposition
-fun PokedexNavHost(navHostController: NavHostController) {
-  SharedTransitionLayout {
-    NavHost(
-      navController = navHostController,
-      startDestination = PokedexScreen.Home,
-    ) {
-      pokedexNavigation()
+fun PokedexNavHost() {
+  val backStack = rememberNavBackStack(PokedexScreen.Home)
+  val navigator = remember(backStack) { PokedexNavigatorImpl(backStack) }
+
+  CompositionLocalProvider(
+    LocalComposeNavigator provides navigator,
+  ) {
+    SharedTransitionLayout {
+      NavDisplay(
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() },
+        entryDecorators = listOf(rememberSaveableStateHolderNavEntryDecorator()),
+        entryProvider = entryProvider<NavKey> {
+          entry<PokedexScreen.Home> {
+            PokedexHome(
+              sharedTransitionScope = this@SharedTransitionLayout,
+              animatedContentScope = LocalNavAnimatedContentScope.current,
+            )
+          }
+
+          entry<PokedexScreen.Details> { screen ->
+            PokedexDetails(
+              sharedTransitionScope = this@SharedTransitionLayout,
+              animatedContentScope = LocalNavAnimatedContentScope.current,
+              pokemon = screen.pokemon,
+            )
+          }
+        },
+      )
     }
   }
 }

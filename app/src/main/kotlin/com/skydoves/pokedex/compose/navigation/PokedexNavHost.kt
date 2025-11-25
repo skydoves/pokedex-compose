@@ -25,6 +25,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.scene.DialogSceneStrategy
 import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import androidx.navigation3.ui.NavDisplay
 import com.skydoves.compose.stability.runtime.TraceRecomposition
@@ -33,6 +34,7 @@ import com.skydoves.pokedex.compose.core.navigation.PokedexNavigatorImpl
 import com.skydoves.pokedex.compose.core.navigation.PokedexScreen
 import com.skydoves.pokedex.compose.feature.details.PokedexDetails
 import com.skydoves.pokedex.compose.feature.home.PokedexHome
+import com.skydoves.pokedex.compose.feature.settings.PokedexSettings
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -63,6 +65,10 @@ fun PokedexNavHost() {
               animatedContentScope = LocalNavAnimatedContentScope.current,
               pokemon = screen.pokemon,
             )
+          }
+
+          entry<PokedexScreen.Settings>(metadata = DialogSceneStrategy.dialog()) {
+            PokedexSettings()
           }
         },
       )

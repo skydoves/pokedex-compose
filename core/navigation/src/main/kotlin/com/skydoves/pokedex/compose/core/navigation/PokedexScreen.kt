@@ -26,4 +26,7 @@ sealed interface PokedexScreen : NavKey {
 
   @Serializable
   data class Details(val pokemon: Pokemon) : PokedexScreen
+
+  @Serializable
+  data object Settings : PokedexScreen
 }

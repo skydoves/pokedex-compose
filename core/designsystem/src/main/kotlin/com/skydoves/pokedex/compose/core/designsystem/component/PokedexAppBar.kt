@@ -16,6 +16,10 @@
 
 package com.skydoves.pokedex.compose.core.designsystem.component
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -29,7 +33,9 @@ import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.designsystem.R
 
 @Composable
-fun PokedexAppBar() {
+fun PokedexAppBar(
+  onActionClick: () -> Unit
+) {
   TopAppBar(
     title = {
       Text(
@@ -42,6 +48,15 @@ fun PokedexAppBar() {
     colors = TopAppBarDefaults.topAppBarColors().copy(
       containerColor = PokedexTheme.colors.primary,
     ),
+    actions = {
+      IconButton(onClick = onActionClick) {
+        Icon(
+          imageVector = Icons.Default.Settings,
+          contentDescription = null,
+          tint = PokedexTheme.colors.absoluteWhite,
+        )
+      }
+    }
   )
 }
 
@@ -49,6 +64,6 @@ fun PokedexAppBar() {
 @Composable
 private fun PokedexAppBarPreview() {
   PokedexTheme {
-    PokedexAppBar()
+    PokedexAppBar(onActionClick = {})
   }
 }

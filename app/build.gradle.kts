@@ -85,6 +85,7 @@ dependencies {
   // features
   implementation(projects.feature.home)
   implementation(projects.feature.details)
+  implementation(projects.feature.settings)
 
   // cores
   implementation(projects.core.model)

@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":feature:settings")
+
+
 include(":core:common")
 
 

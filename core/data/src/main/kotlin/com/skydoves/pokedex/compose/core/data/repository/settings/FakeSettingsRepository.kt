@@ -9,7 +9,12 @@ class FakeSettingsRepository : SettingsRepository {
   override fun fetchUserData(
     onComplete: () -> Unit,
     onError: (String?) -> Unit
-  ): Flow<UserData> = flowOf()
+  ): Flow<UserData> = flowOf(
+    UserData(
+      uiTheme = UiTheme.FOLLOW_SYSTEM,
+      useDynamicColors = true
+    )
+  )
 
   override suspend fun setUiTheme(uiTheme: UiTheme) {
 

@@ -75,6 +75,7 @@ class HomeRepositoryImplTest {
       page = 0,
       onStart = {},
       onComplete = {},
+      onLastPageReached = {},
       onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val actualItem = awaitItem()[0]
@@ -102,6 +103,7 @@ class HomeRepositoryImplTest {
       page = 0,
       onStart = {},
       onComplete = {},
+      onLastPageReached = {},
       onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val actualItem = awaitItem()[0]

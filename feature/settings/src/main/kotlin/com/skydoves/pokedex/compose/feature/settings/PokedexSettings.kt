@@ -1,9 +1,6 @@
 package com.skydoves.pokedex.compose.feature.settings
 
 import android.content.res.Configuration
-import android.os.Build
-import androidx.annotation.ChecksSdkIntAtLeast
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,35 +11,34 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Switch
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.skydoves.landscapist.palette.rememberPaletteState
+import com.skydoves.pokedex.compose.core.data.repository.userdata.FakeUserDataRepository
 import com.skydoves.pokedex.compose.core.designsystem.component.PokedexCircularProgress
+import com.skydoves.pokedex.compose.core.designsystem.component.PokedexText
+import com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme
 import com.skydoves.pokedex.compose.core.model.UiTheme
-import com.skydoves.pokedex.compose.core.model.UserData
 import com.skydoves.pokedex.compose.core.navigation.currentComposeNavigator
 import com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme
 
@@ -51,47 +47,40 @@ fun PokedexSettings(
   settingsViewModel: SettingsViewModel = hiltViewModel()
 ) {
   val uiState by settingsViewModel.uiState.collectAsStateWithLifecycle()
-  val userData by settingsViewModel.userData.collectAsStateWithLifecycle()
 
-  SettingsDialog(
-    settingsUiState = uiState,
-    userData = userData,
-    supportDynamicColor = supportsDynamicTheming(),
-    onDynamicColorsPreferenceChange = settingsViewModel::setDynamicColors,
-    onChangeUiTheme = settingsViewModel::setUiTheme
-  )
-}
-
-@Composable
-fun SettingsDialog(
-  settingsUiState: SettingsUiState,
-  userData: UserData?,
-  supportDynamicColor: Boolean = supportsDynamicTheming(),
-  onDynamicColorsPreferenceChange: (useDynamicColor: Boolean) -> Unit,
-  onChangeUiTheme: (uiTheme: UiTheme) -> Unit,
-) {
   val windowInfo = LocalWindowInfo.current
-
-  var palette by rememberPaletteState()
-  val backgroundColor by palette.paletteBackgroundColor()
-
-  val composeNavigator = currentComposeNavigator
 
   Box(
     modifier = Modifier
       .widthIn(max = (windowInfo.containerSize.width - 80).dp)
       .background(
-        color = backgroundColor,
-        shape = RoundedCornerShape(size = 30.dp)
-      ),
+        color = PokedexTheme.colors.background,
+        shape = RoundedCornerShape(size = 32.dp)
+      )
+  ) {
+    SettingsDialog(
+      settingsUiState = uiState,
+      onChangeUiTheme = settingsViewModel::setUiTheme
+    )
+  }
+}
+
+@Composable
+fun SettingsDialog(
+  settingsUiState: SettingsUiState,
+  onChangeUiTheme: (uiTheme: UiTheme) -> Unit,
+) {
+
+  val composeNavigator = currentComposeNavigator
+
+  Box(
     contentAlignment = Alignment.Center,
     content = {
 
       Column(
         modifier = Modifier
-          .wrapContentSize(align = Alignment.TopCenter)
-          .padding(all = 32.dp)
-          .verticalScroll(state = rememberScrollState()),
+            .wrapContentSize(align = Alignment.Center)
+            .padding(all = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(
           space = 24.dp,
@@ -99,25 +88,25 @@ fun SettingsDialog(
         ),
         content = {
 
-          Text(
+          PokedexText(
+            modifier = Modifier.fillMaxWidth(),
             text = stringResource(R.string.feature_settings_title),
+            color = PokedexTheme.colors.black,
+            fontWeight = FontWeight.Normal,
             textAlign = TextAlign.Start,
-            style = MaterialTheme.typography.titleLarge,
-            color = LocalContentColor.current,
-            modifier = Modifier.fillMaxWidth()
+            fontSize = 22.sp,
           )
 
           HorizontalDivider()
 
-          if (settingsUiState == SettingsUiState.Idle && userData != null) {
+          if (settingsUiState is SettingsUiState.Success) {
             SettingsDialogContent(
-              uiTheme = userData.uiTheme,
-              onChangeUiTheme = onChangeUiTheme,
-              useDynamicColors = userData.useDynamicColors,
-              onChangeDynamicColors = onDynamicColorsPreferenceChange,
-              supportDynamicTheme = supportDynamicColor
+              uiTheme = settingsUiState.userData.uiTheme,
+              onChangeUiTheme = onChangeUiTheme
             )
-          } else {
+          }
+
+          if (settingsUiState is SettingsUiState.Loading) {
             Box(modifier = Modifier.fillMaxSize()) {
               PokedexCircularProgress()
             }
@@ -125,15 +114,12 @@ fun SettingsDialog(
 
           HorizontalDivider()
 
-          Button(
+          TextButton(
             onClick = composeNavigator::navigateUp,
             content = {
-              Text(
-                text = stringResource(id = R.string.feature_settings_dismiss_dialog_button_text),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.primary
-              )
+              Text(text = stringResource(id = R.string.feature_settings_dismiss_dialog_button_text))
             },
+            colors = ButtonDefaults.textButtonColors(contentColor = PokedexTheme.colors.primary),
             modifier = Modifier.align(alignment = Alignment.End)
           )
         }
@@ -145,10 +131,7 @@ fun SettingsDialog(
 @Composable
 private fun SettingsDialogContent(
   uiTheme: UiTheme,
-  onChangeUiTheme: (UiTheme) -> Unit,
-  useDynamicColors: Boolean,
-  onChangeDynamicColors: (Boolean) -> Unit,
-  supportDynamicTheme: Boolean,
+  onChangeUiTheme: (UiTheme) -> Unit
 ) {
   Column(
     modifier = Modifier.fillMaxWidth(),
@@ -163,13 +146,6 @@ private fun SettingsDialogContent(
         uiTheme = uiTheme,
         onChangeUiTheme = onChangeUiTheme
       )
-
-      AnimatedVisibility(visible = supportDynamicTheme) {
-        SettingsDialogThemeSection(
-          useDynamicUiTheme = useDynamicColors,
-          onChangeDynamicUiTheme = onChangeDynamicColors
-        )
-      }
     }
   )
 }
@@ -190,18 +166,20 @@ private fun SettingsDialogThemeSection(
     ),
     content = {
 
-      Text(
+      PokedexText(
+        modifier = Modifier.fillMaxWidth(),
         text = stringResource(id = R.string.feature_settings_theme),
+        color = PokedexTheme.colors.black,
+        fontWeight = FontWeight.Medium,
         textAlign = TextAlign.Start,
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier.fillMaxWidth()
+        fontSize = 16.sp,
       )
 
       Column(
         modifier = Modifier
-          .fillMaxWidth()
-          .padding(horizontal = 16.dp)
-          .selectableGroup(),
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .selectableGroup(),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(
           space = 16.dp,
@@ -209,15 +187,14 @@ private fun SettingsDialogThemeSection(
         ),
         content = {
 
-          UiTheme.entries.forEach { theme ->
+          UiTheme.entries.forEach {
             Row(
               Modifier
-                .fillMaxWidth()
-                .selectable(
-                  selected = uiTheme == UiTheme.FOLLOW_SYSTEM,
-                  role = Role.RadioButton,
-                  onClick = { onChangeUiTheme(UiTheme.FOLLOW_SYSTEM) },
-                ),
+                  .selectable(
+                      selected = uiTheme == it,
+                      role = Role.RadioButton,
+                      onClick = { onChangeUiTheme(it) },
+                  ),
               horizontalArrangement = Arrangement.spacedBy(
                 space = 8.dp,
                 alignment = Alignment.Start
@@ -225,68 +202,40 @@ private fun SettingsDialogThemeSection(
               verticalAlignment = Alignment.CenterVertically,
               content = {
                 RadioButton(
-                  selected = uiTheme == UiTheme.FOLLOW_SYSTEM,
-                  onClick = null
+                  selected = uiTheme == it,
+                  onClick = null,
+                  colors = RadioButtonDefaults.colors(selectedColor = PokedexTheme.colors.primary)
                 )
-                Text(text = stringResource(id = R.string.feature_settings_theme_follow_system))
+
+                PokedexText(
+                  text = stringResource(
+                    id = when (it) {
+                      UiTheme.FOLLOW_SYSTEM -> R.string.feature_settings_theme_follow_system
+                      UiTheme.LIGHT -> R.string.feature_settings_theme_light
+                      UiTheme.DARK -> R.string.feature_settings_theme_dark
+                    }
+                  ),
+                  color = PokedexTheme.colors.black,
+                  fontWeight = FontWeight.Normal,
+                  textAlign = TextAlign.Start,
+                  fontSize = 14.sp,
+                )
               }
             )
           }
-
-
         }
       )
     }
   )
 }
-
-@Composable
-private fun SettingsDialogThemeSection(
-  useDynamicUiTheme: Boolean,
-  onChangeDynamicUiTheme: (Boolean) -> Unit,
-) {
-
-  Row(
-    modifier = Modifier
-      .fillMaxWidth()
-      .selectable(
-        selected = useDynamicUiTheme,
-        role = Role.Switch,
-        onClick = {
-          onChangeDynamicUiTheme(!useDynamicUiTheme)
-        }
-      ),
-    verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.SpaceBetween,
-    content = {
-      Text(
-        text = stringResource(id = R.string.feature_settings_dynamic_theme),
-        style = MaterialTheme.typography.titleMedium,
-        color = LocalContentColor.current
-      )
-
-      Switch(
-        checked = useDynamicUiTheme,
-        onCheckedChange = null
-      )
-    }
-  )
-}
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
-fun supportsDynamicTheming() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun SettingsDialogPreview() {
-  PokedexPreviewTheme { animatedContentScope ->
-    SettingsDialog(
-      settingsUiState = SettingsUiState.Idle,
-      userData = null,
-      supportDynamicColor = true,
-      onDynamicColorsPreferenceChange = {},
-      onChangeUiTheme = {}
+  PokedexPreviewTheme {
+    PokedexSettings(
+      settingsViewModel = SettingsViewModel(userDataRepository = FakeUserDataRepository())
     )
   }
 }

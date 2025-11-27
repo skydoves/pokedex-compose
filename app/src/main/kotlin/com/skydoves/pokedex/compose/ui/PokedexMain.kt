@@ -23,8 +23,8 @@ import com.skydoves.pokedex.compose.navigation.PokedexNavHost
 
 @Composable
 @TraceRecomposition
-fun PokedexMain() {
-  PokedexTheme {
+fun PokedexMain(darkTheme: Boolean) {
+  PokedexTheme(darkTheme = darkTheme) {
     PokedexNavHost()
   }
 }

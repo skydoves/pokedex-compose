@@ -21,6 +21,7 @@ import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -41,6 +42,7 @@ import com.skydoves.pokedex.compose.feature.settings.PokedexSettings
 @TraceRecomposition
 fun PokedexNavHost() {
   val backStack = rememberNavBackStack(PokedexScreen.Home)
+  val dialogStrategy = remember { DialogSceneStrategy<NavKey>() }
   val navigator = remember(backStack) { PokedexNavigatorImpl(backStack) }
 
   CompositionLocalProvider(
@@ -50,6 +52,7 @@ fun PokedexNavHost() {
       NavDisplay(
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
+        sceneStrategy = dialogStrategy,
         entryDecorators = listOf(rememberSaveableStateHolderNavEntryDecorator()),
         entryProvider = entryProvider<NavKey> {
           entry<PokedexScreen.Home> {
@@ -67,10 +70,12 @@ fun PokedexNavHost() {
             )
           }
 
-          entry<PokedexScreen.Settings>(metadata = DialogSceneStrategy.dialog()) {
-            PokedexSettings()
+          entry<PokedexScreen.Settings>(
+            metadata = DialogSceneStrategy.dialog(DialogProperties(usePlatformDefaultWidth = false))
+          ) {
+              PokedexSettings()
           }
-        },
+        }
       )
     }
   }

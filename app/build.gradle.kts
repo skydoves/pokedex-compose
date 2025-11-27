@@ -88,6 +88,7 @@ dependencies {
   implementation(projects.feature.settings)
 
   // cores
+  implementation(projects.core.data)
   implementation(projects.core.model)
   implementation(projects.core.designsystem)
   implementation(projects.core.navigation)

@@ -20,8 +20,8 @@ import com.skydoves.pokedex.compose.core.data.repository.details.DetailsReposito
 import com.skydoves.pokedex.compose.core.data.repository.details.DetailsRepositoryImpl
 import com.skydoves.pokedex.compose.core.data.repository.home.HomeRepository
 import com.skydoves.pokedex.compose.core.data.repository.home.HomeRepositoryImpl
-import com.skydoves.pokedex.compose.core.data.repository.settings.SettingsRepository
-import com.skydoves.pokedex.compose.core.data.repository.settings.SettingsRepositoryImpl
+import com.skydoves.pokedex.compose.core.data.repository.userdata.UserDataRepository
+import com.skydoves.pokedex.compose.core.data.repository.userdata.UserDataRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -38,5 +38,5 @@ internal interface DataModule {
   fun bindsDetailRepository(detailsRepositoryImpl: DetailsRepositoryImpl): DetailsRepository
 
   @Binds
-  fun bindsSettingsRepository(settingsRepositoryImpl: SettingsRepositoryImpl): SettingsRepository
+  fun bindsSettingsRepository(settingsRepositoryImpl: UserDataRepositoryImpl): UserDataRepository
 }

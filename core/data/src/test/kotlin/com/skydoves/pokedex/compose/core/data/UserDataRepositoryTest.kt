@@ -1,7 +1,7 @@
 package com.skydoves.pokedex.compose.core.data
 
 import androidx.datastore.core.DataStore
-import com.skydoves.pokedex.compose.core.data.repository.settings.SettingsRepositoryImpl
+import com.skydoves.pokedex.compose.core.data.repository.userdata.UserDataRepositoryImpl
 import com.skydoves.pokedex.compose.core.datastore.PreferencesDataSource
 import com.skydoves.pokedex.compose.core.datastore.UserPreferences
 import com.skydoves.pokedex.compose.core.model.UiTheme
@@ -17,9 +17,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class SettingsRepositoryTest {
+class UserDataRepositoryTest {
 
-  private lateinit var repository: SettingsRepositoryImpl
+  private lateinit var repository: UserDataRepositoryImpl
   private lateinit var preferencesDataSource: PreferencesDataSource
 
   @get:Rule
@@ -30,36 +30,14 @@ class SettingsRepositoryTest {
     preferencesDataSource = PreferencesDataSource(
       userPreferences = InMemoryDataStore(UserPreferences.getDefaultInstance())
     )
-    repository = SettingsRepositoryImpl(preferencesDataSource, coroutinesRule.testDispatcher)
+    repository = UserDataRepositoryImpl(preferencesDataSource, coroutinesRule.testDispatcher)
   }
 
   @Test
   fun default_user_data_is_correct() = runTest {
       assertEquals(
-        UserData(
-          uiTheme = UiTheme.FOLLOW_SYSTEM,
-          useDynamicColors = false
-        ),
+        UserData(uiTheme = UiTheme.FOLLOW_SYSTEM),
         repository.userData.first(),
-      )
-    }
-
-  @Test
-  fun set_dynamic_colors_to_preferences() =
-    runTest {
-      repository.setDynamicColors(true)
-
-      assertEquals(
-        true,
-        repository.userData
-          .map { it.useDynamicColors }
-          .first(),
-      )
-      assertEquals(
-        true,
-        preferencesDataSource.userData
-          .map { it.useDynamicColors }
-          .first(),
       )
     }
 

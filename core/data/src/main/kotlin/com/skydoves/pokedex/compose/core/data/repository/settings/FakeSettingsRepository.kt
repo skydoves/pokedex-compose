@@ -6,10 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class FakeSettingsRepository : SettingsRepository {
-  override fun fetchUserData(
-    onComplete: () -> Unit,
-    onError: (String?) -> Unit
-  ): Flow<UserData> = flowOf(
+  override val userData: Flow<UserData> = flowOf(
     UserData(
       uiTheme = UiTheme.FOLLOW_SYSTEM,
       useDynamicColors = true

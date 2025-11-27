@@ -38,5 +38,5 @@ internal interface DataModule {
   fun bindsDetailRepository(detailsRepositoryImpl: DetailsRepositoryImpl): DetailsRepository
 
   @Binds
-  fun bindsSettingsRepository(settingsRepositoryImpl: UserDataRepositoryImpl): UserDataRepository
+  fun bindsUserDataRepository(userDataRepositoryImpl: UserDataRepositoryImpl): UserDataRepository
 }

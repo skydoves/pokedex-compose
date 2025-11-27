@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-  private val userDataRepository: UserDataRepository
+  userDataRepository: UserDataRepository
 ) : ViewModel() {
 
   val userData = userDataRepository.userData
@@ -22,7 +22,7 @@ class MainActivityViewModel @Inject constructor(
     .stateIn(
       scope = viewModelScope,
       started = SharingStarted.WhileSubscribed(5_000),
-      initialValue = MainActivityUiState.Loading
+      initialValue = Loading
     )
 }
 

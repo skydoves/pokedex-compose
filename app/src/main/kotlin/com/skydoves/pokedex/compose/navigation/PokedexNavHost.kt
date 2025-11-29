@@ -21,7 +21,6 @@ import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.ui.window.DialogProperties
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -71,11 +70,11 @@ fun PokedexNavHost() {
           }
 
           entry<PokedexScreen.Settings>(
-            metadata = DialogSceneStrategy.dialog(DialogProperties(usePlatformDefaultWidth = false))
+            metadata = DialogSceneStrategy.dialog(),
           ) {
-              PokedexSettings()
+            PokedexSettings()
           }
-        }
+        },
       )
     }
   }

@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       PokedexMain(
-        darkTheme = (uiState.shouldUseDarkTheme(isSystemDarkTheme = isSystemInDarkTheme()))
+        darkTheme = (uiState.shouldUseDarkTheme(isSystemDarkTheme = isSystemInDarkTheme())),
       )
     }
   }

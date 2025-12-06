@@ -76,6 +76,7 @@ class HomeRepositoryImplTest {
       onStart = {},
       onComplete = {},
       onError = {},
+      onLastPageReached = {}
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val actualItem = awaitItem()[0]
       assertEquals(0, actualItem.page)
@@ -103,6 +104,7 @@ class HomeRepositoryImplTest {
       onStart = {},
       onComplete = {},
       onError = {},
+      onLastPageReached = {}
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val actualItem = awaitItem()[0]
       assertEquals(0, actualItem.page)

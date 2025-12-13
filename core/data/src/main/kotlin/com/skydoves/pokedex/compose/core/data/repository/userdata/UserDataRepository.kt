@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.compose.core.network
+package com.skydoves.pokedex.compose.core.data.repository.userdata
 
-import javax.inject.Qualifier
-import kotlin.annotation.AnnotationRetention.RUNTIME
+import com.skydoves.pokedex.compose.core.model.UiTheme
+import com.skydoves.pokedex.compose.core.model.UserData
+import kotlinx.coroutines.flow.Flow
 
-@Qualifier
-@Retention(RUNTIME)
-annotation class Dispatcher(val pokedexAppDispatchers: PokedexAppDispatchers)
+interface UserDataRepository {
 
-enum class PokedexAppDispatchers {
-  IO,
+  val userData: Flow<UserData>
+
+  suspend fun setUiTheme(uiTheme: UiTheme)
 }

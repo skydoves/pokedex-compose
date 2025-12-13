@@ -18,12 +18,12 @@ package com.skydoves.pokedex.compose.core.data.repository.details
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
+import com.skydoves.pokedex.compose.core.common.network.Dispatcher
+import com.skydoves.pokedex.compose.core.common.network.PokedexAppDispatchers
 import com.skydoves.pokedex.compose.core.database.PokemonInfoDao
 import com.skydoves.pokedex.compose.core.database.entitiy.mapper.asDomain
 import com.skydoves.pokedex.compose.core.database.entitiy.mapper.asEntity
 import com.skydoves.pokedex.compose.core.model.PokemonInfo
-import com.skydoves.pokedex.compose.core.network.Dispatcher
-import com.skydoves.pokedex.compose.core.network.PokedexAppDispatchers
 import com.skydoves.pokedex.compose.core.network.model.PokemonErrorResponse
 import com.skydoves.pokedex.compose.core.network.model.mapper.ErrorResponseMapper
 import com.skydoves.pokedex.compose.core.network.service.PokedexClient

@@ -5,7 +5,7 @@
 //   ./gradlew :navigation:stabilityDump
 
 @Composable
-public fun com.skydoves.pokedex.compose.core.navigation.<get-currentComposeNavigator>(): com.skydoves.pokedex.compose.core.navigation.AppComposeNavigator<com.skydoves.pokedex.compose.core.navigation.PokedexScreen>
+public fun com.skydoves.pokedex.compose.core.navigation.currentComposeNavigator(): com.skydoves.pokedex.compose.core.navigation.PokedexNavigator
   skippable: true
   restartable: true
   params:

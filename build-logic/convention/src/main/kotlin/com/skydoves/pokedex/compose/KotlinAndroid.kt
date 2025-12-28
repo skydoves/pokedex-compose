@@ -42,6 +42,7 @@ internal fun Project.configureKotlinAndroid(
 
       freeCompilerArgs.set(
         freeCompilerArgs.getOrElse(emptyList()) + listOf(
+          "-Xexplicit-backing-fields",
           "-Xcontext-receivers",
           "-Xopt-in=kotlin.RequiresOptIn",
           // Enable experimental coroutines APIs, including Flow

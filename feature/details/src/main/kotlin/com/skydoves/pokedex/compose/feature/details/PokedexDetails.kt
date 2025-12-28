@@ -59,7 +59,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kmpalette.palette.graphics.Palette
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.components.rememberImageComponent
-import com.skydoves.landscapist.glide.GlideImage
+import com.skydoves.landscapist.image.LandscapistImage
 import com.skydoves.landscapist.palette.PalettePlugin
 import com.skydoves.landscapist.palette.rememberPaletteState
 import com.skydoves.pokedex.compose.core.data.repository.details.FakeDetailsRepository
@@ -183,7 +183,7 @@ private fun DetailsHeader(
       fontSize = 18.sp,
     )
 
-    GlideImage(
+    LandscapistImage(
       modifier = Modifier
         .align(Alignment.BottomCenter)
         .padding(bottom = 20.dp)
@@ -199,9 +199,6 @@ private fun DetailsHeader(
           )
         }
       },
-      previewPlaceholder = painterResource(
-        id = R.drawable.pokemon_preview,
-      ),
     )
   }
 

@@ -29,6 +29,7 @@ dependencies {
   api(projects.core.model)
   implementation(projects.core.network)
   implementation(projects.core.database)
+  implementation(projects.core.datastore)
   testImplementation(projects.core.test)
 
   // kotlinx
@@ -47,4 +48,5 @@ dependencies {
   testImplementation(libs.androidx.test.core)
   testImplementation(libs.mockito.core)
   testImplementation(libs.mockito.kotlin)
+  testImplementation(libs.protobuf.kotlin.lite)
 }

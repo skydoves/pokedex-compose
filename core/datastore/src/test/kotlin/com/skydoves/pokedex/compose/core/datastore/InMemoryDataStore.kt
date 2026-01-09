@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.compose.core.network.di
+package com.skydoves.pokedex.compose.core.datastore
 
-import com.skydoves.pokedex.compose.core.network.Dispatcher
-import com.skydoves.pokedex.compose.core.network.PokedexAppDispatchers
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import androidx.datastore.core.DataStore
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.updateAndGet
 
-@Module
-@InstallIn(SingletonComponent::class)
-internal object DispatchersModule {
-
-  @Provides
-  @Dispatcher(PokedexAppDispatchers.IO)
-  fun providesIODispatcher(): CoroutineDispatcher = Dispatchers.IO
+class InMemoryDataStore<T>(initialValue: T) : DataStore<T> {
+  override val data = MutableStateFlow(initialValue)
+  override suspend fun updateData(transform: suspend (T) -> T): T =
+    data.updateAndGet { transform(it) }
 }

@@ -80,8 +80,12 @@ fun PokedexHome(
   val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
   val pokemonList by homeViewModel.pokemonList.collectAsStateWithLifecycle()
 
+  val composeNavigator = currentComposeNavigator
+
   Column(modifier = Modifier.fillMaxSize()) {
-    PokedexAppBar()
+    PokedexAppBar(
+      onActionClick = { composeNavigator.navigate(PokedexScreen.Settings) }
+    )
 
     HomeContent(
       sharedTransitionScope = sharedTransitionScope,
@@ -89,6 +93,7 @@ fun PokedexHome(
       uiState = uiState,
       pokemonList = pokemonList.toImmutableList(),
       fetchNextPokemonList = homeViewModel::fetchNextPokemonList,
+      navigateToDetails = { composeNavigator.navigate(PokedexScreen.Details(pokemon = it)) }
     )
   }
 }
@@ -100,6 +105,7 @@ private fun HomeContent(
   uiState: HomeUiState,
   pokemonList: ImmutableList<Pokemon>,
   fetchNextPokemonList: () -> Unit,
+  navigateToDetails: (Pokemon) -> Unit
 ) {
   Box(modifier = Modifier.fillMaxSize()) {
     val threadHold = 8
@@ -122,6 +128,7 @@ private fun HomeContent(
           pokemon = pokemon,
           onPaletteLoaded = { palette = it },
           backgroundColor = backgroundColor,
+          onCardClick = { navigateToDetails(pokemon) }
         )
       }
     }
@@ -139,8 +146,8 @@ private fun PokemonCard(
   onPaletteLoaded: (Palette) -> Unit,
   backgroundColor: Color,
   pokemon: Pokemon,
+  onCardClick: () -> Unit,
 ) {
-  val composeNavigator = currentComposeNavigator
 
   with(sharedTransitionScope) {
     Card(
@@ -152,9 +159,7 @@ private fun PokemonCard(
           sharedContentState = rememberSharedContentState(key = "pokemon-${pokemon.name}"),
           animatedVisibilityScope = animatedContentScope,
         )
-        .clickable {
-          composeNavigator.navigate(PokedexScreen.Details(pokemon = pokemon))
-        },
+        .clickable { onCardClick() },
       shape = RoundedCornerShape(14.dp),
       colors = CardColors(
         containerColor = backgroundColor,
@@ -221,6 +226,7 @@ private fun HomeContentPreview() {
       uiState = HomeUiState.Idle,
       pokemonList = PreviewUtils.mockPokemonList().toImmutableList(),
       fetchNextPokemonList = { },
+      navigateToDetails = { }
     )
   }
 }

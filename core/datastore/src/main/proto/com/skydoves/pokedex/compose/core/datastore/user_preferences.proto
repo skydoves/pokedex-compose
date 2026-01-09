@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "com/skydoves/pokedex/compose/core/datastore/ui_theme_config.proto";
+
+option java_package = "com.skydoves.pokedex.compose.core.datastore";
+option java_multiple_files = true;
+
+message UserPreferences {
+
+  UiThemeConfigProto ui_theme_config = 1;
+}

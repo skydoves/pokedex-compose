@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="feature_settings_title" translatable="false">Settings</string>
+  <string name="feature_settings_dismiss_dialog_button_text" translatable="false">OK</string>
+  <string name="feature_settings_theme" translatable="false">Theme</string>
+  <string name="feature_settings_theme_follow_system" translatable="false">Follow system</string>
+  <string name="feature_settings_theme_dark" translatable="false">Dark</string>
+  <string name="feature_settings_theme_light" translatable="false">Light</string>
+  <string name="feature_settings_dynamic_theme" translatable="false">Use Dynamic Color</string>
+</resources>

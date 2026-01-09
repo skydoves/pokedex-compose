@@ -1,5 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":feature:settings")
+
+
+include(":core:common")
+
+
 include(":baselineprofile")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
@@ -92,6 +98,7 @@ include(":core:model")
 include(":core:network")
 include(":core:viewmodel")
 include(":core:database")
+include(":core:datastore")
 include(":core:data")
 include(":core:test")
 include(":core:navigation")

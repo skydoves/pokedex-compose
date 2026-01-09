@@ -75,6 +75,7 @@ class HomeRepositoryImplTest {
       page = 0,
       onStart = {},
       onComplete = {},
+      onLastPageReached = {},
       onError = {},
       onLastPageReached = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
@@ -103,6 +104,7 @@ class HomeRepositoryImplTest {
       page = 0,
       onStart = {},
       onComplete = {},
+      onLastPageReached = {},
       onError = {},
       onLastPageReached = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {

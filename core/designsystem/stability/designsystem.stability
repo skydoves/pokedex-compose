@@ -80,13 +80,13 @@ public fun com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme(dar
     - content: STABLE (composable function type)
 
 @Composable
-public fun com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme.<get-background>(): com.skydoves.pokedex.compose.core.designsystem.theme.PokedexBackground
+public fun com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme.background(): com.skydoves.pokedex.compose.core.designsystem.theme.PokedexBackground
   skippable: true
   restartable: true
   params:
 
 @Composable
-public fun com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme.<get-colors>(): com.skydoves.pokedex.compose.core.designsystem.theme.PokedexColors
+public fun com.skydoves.pokedex.compose.core.designsystem.theme.PokedexTheme.colors(): com.skydoves.pokedex.compose.core.designsystem.theme.PokedexColors
   skippable: true
   restartable: true
   params:

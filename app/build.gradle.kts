@@ -66,9 +66,11 @@ android {
     isIncludeAndroidResources = true
     isReturnDefaultValues = true
   }
+}
 
-  kotlinOptions {
-    freeCompilerArgs += listOf(
+kotlin {
+  compilerOptions {
+    freeCompilerArgs.addAll(
       "-Xno-param-assertions",
       "-Xno-call-assertions",
       "-Xno-receiver-assertions"

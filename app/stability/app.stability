@@ -5,16 +5,8 @@
 //   ./gradlew :app:stabilityDump
 
 @Composable
-public fun com.skydoves.pokedex.compose.navigation.PokedexNavHost(navHostController: androidx.navigation.NavHostController): kotlin.Unit
-  skippable: false
+public fun com.skydoves.pokedex.compose.navigation.PokedexNavHost(): kotlin.Unit
+  skippable: true
   restartable: true
   params:
-    - navHostController: UNSTABLE (has mutable properties or unstable members)
-
-@Composable
-public fun com.skydoves.pokedex.compose.ui.PokedexMain(composeNavigator: com.skydoves.pokedex.compose.core.navigation.AppComposeNavigator<com.skydoves.pokedex.compose.core.navigation.PokedexScreen>): kotlin.Unit
-  skippable: false
-  restartable: true
-  params:
-    - composeNavigator: RUNTIME (requires runtime check)
 

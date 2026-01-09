@@ -5,7 +5,7 @@
 //   ./gradlew :preview:stabilityDump
 
 @Composable
-public fun com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme(content: @[Composable] @[ExtensionFunctionType] androidx.compose.runtime.internal.ComposableFunction2<androidx.compose.animation.SharedTransitionScope, androidx.compose.animation.AnimatedVisibilityScope, kotlin.Unit>): kotlin.Unit
+public fun com.skydoves.pokedex.compose.core.preview.PokedexPreviewTheme(content: @[Composable] @[ExtensionFunctionType] androidx.compose.runtime.internal.ComposableFunction2<androidx.compose.animation.SharedTransitionScope, androidx.compose.animation.AnimatedContentScope, kotlin.Unit>): kotlin.Unit
   skippable: true
   restartable: true
   params:

@@ -55,7 +55,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kmpalette.palette.graphics.Palette
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.components.rememberImageComponent
-import com.skydoves.landscapist.glide.GlideImage
+import com.skydoves.landscapist.image.LandscapistImage
 import com.skydoves.landscapist.palette.PalettePlugin
 import com.skydoves.landscapist.palette.rememberPaletteState
 import com.skydoves.pokedex.compose.core.data.repository.home.FakeHomeRepository
@@ -169,7 +169,7 @@ private fun PokemonCard(
       ),
       elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
-      GlideImage(
+      LandscapistImage(
         modifier = Modifier
           .align(Alignment.CenterHorizontally)
           .padding(top = 20.dp)
@@ -185,9 +185,6 @@ private fun PokemonCard(
             )
           }
         },
-        previewPlaceholder = painterResource(
-          id = R.drawable.pokemon_preview,
-        ),
       )
 
       Text(

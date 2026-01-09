@@ -1,7 +1,7 @@
 [versions]
 agp = "8.13.0"
 kotlin = "2.2.21"
-ksp = "2.3.0"
+ksp = "2.2.21-2.0.4"
 coreSplashscreen = "1.0.1"
 kotlinxImmutable = "0.4.0"
 androidxActivity = "1.11.0"
@@ -17,13 +17,13 @@ androidxNavigation = "2.9.5"
 androidxNavigation3 = "1.0.0"
 androidxHiltNavigationCompose = "1.3.0"
 composeStableMarker = "1.0.7"
-composeStabilityAnalyzer = "0.5.3"
+composeStabilityAnalyzer = "0.6.4"
 kotlinxSerializationJson = "1.9.0"
 hilt = "2.57.2"
 retrofit = "3.0.0"
 okHttp = "5.1.0"
 sandwich = "2.1.3"
-landscapist = "2.5.1"
+landscapist = "2.8.0"
 coroutines = "1.10.2"
 profileInstaller = "1.4.1"
 macroBenchmark = "1.4.0"
@@ -70,7 +70,7 @@ androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTes
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestJunit" }
 androidx-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 compose-stable-marker = { group = "com.github.skydoves", name = "compose-stable-marker", version.ref = "composeStableMarker" }
-landscapist-glide = { group = "com.github.skydoves", name = "landscapist-glide", version.ref = "landscapist" }
+landscapist-image = { group = "com.github.skydoves", name = "landscapist-image", version.ref = "landscapist" }
 landscapist-animation = { group = "com.github.skydoves", name = "landscapist-animation", version.ref = "landscapist" }
 landscapist-placeholder = { group = "com.github.skydoves", name = "landscapist-placeholder", version.ref = "landscapist" }
 landscapist-palette = { group = "com.github.skydoves", name = "landscapist-palette", version.ref = "landscapist" }

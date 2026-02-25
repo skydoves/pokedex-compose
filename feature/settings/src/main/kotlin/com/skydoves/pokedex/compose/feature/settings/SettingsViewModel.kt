@@ -1,11 +1,11 @@
 package com.skydoves.pokedex.compose.feature.settings
 
 import androidx.compose.runtime.Stable
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydoves.pokedex.compose.core.data.repository.userdata.UserDataRepository
 import com.skydoves.pokedex.compose.core.model.UiTheme
 import com.skydoves.pokedex.compose.core.model.UserData
-import com.skydoves.pokedex.compose.core.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
   private val userDataRepository: UserDataRepository
-) : BaseViewModel() {
+) : ViewModel() {
 
   val uiState: StateFlow<SettingsUiState> = userDataRepository.userData
     .map(SettingsUiState::Success)

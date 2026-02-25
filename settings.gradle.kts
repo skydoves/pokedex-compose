@@ -87,7 +87,6 @@ rootProject.name = "pokedex-compose"
 include(":app")
 include(":core:model")
 include(":core:network")
-include(":core:viewmodel")
 include(":core:database")
 include(":core:datastore")
 include(":core:data")

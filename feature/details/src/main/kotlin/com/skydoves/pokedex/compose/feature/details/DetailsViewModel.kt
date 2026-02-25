@@ -17,16 +17,16 @@
 package com.skydoves.pokedex.compose.feature.details
 
 import androidx.compose.runtime.Stable
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydoves.pokedex.compose.core.data.repository.details.DetailsRepository
 import com.skydoves.pokedex.compose.core.model.Pokemon
 import com.skydoves.pokedex.compose.core.model.PokemonInfo
-import com.skydoves.pokedex.compose.core.viewmodel.BaseViewModel
-import com.skydoves.pokedex.compose.core.viewmodel.ViewModelStateFlow
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
@@ -36,21 +36,21 @@ import kotlinx.coroutines.flow.stateIn
 class DetailsViewModel @AssistedInject constructor(
   @Assisted private val pokemon: Pokemon,
   private val detailsRepository: DetailsRepository,
-) : BaseViewModel() {
+) : ViewModel() {
 
   @AssistedFactory
   interface Factory {
     fun create(pokemon: Pokemon): DetailsViewModel
   }
 
-  internal val uiState: ViewModelStateFlow<DetailsUiState> =
-    viewModelStateFlow(DetailsUiState.Loading)
+  internal val uiState: StateFlow<DetailsUiState>
+    field = MutableStateFlow<DetailsUiState>(DetailsUiState.Loading)
 
   val pokemonInfo: StateFlow<PokemonInfo?> = flow {
     detailsRepository.fetchPokemonInfo(
       name = pokemon.nameField.replaceFirstChar { it.lowercase() },
-      onComplete = { uiState.tryEmit(key, DetailsUiState.Idle) },
-      onError = { uiState.tryEmit(key, DetailsUiState.Error(it)) },
+      onComplete = { uiState.tryEmit(DetailsUiState.Idle) },
+      onError = { uiState.tryEmit(DetailsUiState.Error(it)) },
     ).collect { emit(it) }
   }.stateIn(
     scope = viewModelScope,

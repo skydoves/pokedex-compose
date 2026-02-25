@@ -17,11 +17,10 @@
 package com.skydoves.pokedex.compose.feature.home
 
 import androidx.compose.runtime.Stable
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydoves.pokedex.compose.core.data.repository.home.HomeRepository
 import com.skydoves.pokedex.compose.core.model.Pokemon
-import com.skydoves.pokedex.compose.core.viewmodel.BaseViewModel
-import com.skydoves.pokedex.compose.core.viewmodel.ViewModelStateFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -33,19 +32,20 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
   private val homeRepository: HomeRepository,
-) : BaseViewModel() {
+) : ViewModel() {
 
-  internal val uiState: ViewModelStateFlow<HomeUiState> = viewModelStateFlow(HomeUiState.Loading)
+  internal val uiState: StateFlow<HomeUiState>
+    field = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
   private var isLastPageReached = false
 
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
   val pokemonList: StateFlow<List<Pokemon>> = pokemonFetchingIndex.flatMapLatest { page ->
     homeRepository.fetchPokemonList(
       page = page,
-      onStart = { uiState.tryEmit(key, HomeUiState.Loading) },
-      onComplete = { uiState.tryEmit(key, HomeUiState.Idle) },
+      onStart = { uiState.tryEmit(HomeUiState.Loading) },
+      onComplete = { uiState.tryEmit(HomeUiState.Idle) },
       onLastPageReached = { isLastPageReached = true },
-      onError = { uiState.tryEmit(key, HomeUiState.Error(it)) },
+      onError = { uiState.tryEmit(HomeUiState.Error(it)) },
     )
   }.stateIn(
     scope = viewModelScope,

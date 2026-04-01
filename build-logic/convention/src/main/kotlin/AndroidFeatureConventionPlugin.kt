@@ -23,7 +23,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         add("implementation", project(":core:navigation"))
         add("implementation", project(":core:data"))
         add("api", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
-        add("compileOnly", project(":core:preview"))
+        add("implementation", project(":core:preview"))
       }
 
       extensions.configure<LibraryExtension> {

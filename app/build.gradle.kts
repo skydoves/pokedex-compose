@@ -9,6 +9,7 @@ plugins {
   id("skydoves.pokedex.spotless")
   alias(libs.plugins.kotlin.parcelize)
   alias(libs.plugins.baselineprofile)
+  alias(libs.plugins.hotswan.compiler)
 }
 
 android {
@@ -84,6 +85,9 @@ composeStabilityAnalyzer {
 }
 
 dependencies {
+  // compose hotswan
+  debugImplementation(libs.hotswan.preview)
+
   // features
   implementation(projects.feature.home)
   implementation(projects.feature.details)

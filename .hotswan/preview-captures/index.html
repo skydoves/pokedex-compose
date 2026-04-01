@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compose HotSwan Preview Catalog — com.skydoves.pokedex.compose</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI1MCAyNTAiPjxwYXRoIGQ9Im0xNzYgODIuOWMtOC43OS0xMi44My00LjEtMjkuNjEgNy43NS0zNC41NCA0LjMgNi42MiA5LjQzIDEwLjggMjYuMTUgMTUuMzZsMjcuMTggMTguNTNjMi43OSAxLjU0IDQuOTcgMS42NyA0LjUzLTAuMjYtMC40My0xLjkyLTExLjYzLTE3LjU4LTE1LjU4LTI4LjY1bDEuODUtOC42M2MtNC42MS0xNi40LTE3LjA1LTI5LjM1LTM4Ljg2LTI5LjcxaC0xLjIyYy0yNS4zNSAwLTQxLjkzIDIxLjcyLTQxLjkzIDQ0Ljk3IDAgMTEuODQgMy44OCAyMi45MSA4LjI4IDMyLjc0bDMyLjggNzIuMDUtNTQuNjgtNTEuODMtMTE5LjMtNTAuNjIgMjQuOTQgNTIuNjYtMjYuODYtOC4wOCAzNy4zOCA0Ny4zMmgtNDAuMDhsNTQuNDMgNzkuMDhoMTI3LjFjMjMuMzIgMCA0Ni44LTIxLjE3IDQ2LjgtNDguNTIgMC0xMS4xNi00LjIzLTIzLjk0LTkuOTgtMzIuNjJsLTUwLjY3LTY5LjI1eiIgZmlsbD0idXJsKCNwMCkiLz48cGF0aCBkPSJtMjI2LjEgNTMuMzQgMS44NS04LjYzYy0wLjM0LTEuMTgtMC43My0yLjM0LTEuMTctMy40OGwtNi41NCAyLjk4LTE3LjE0LTkuMDggNi4xMiAxMi42OHYxNS45MWw1LjktMTAuMzhoMTAuOTh6IiBmaWxsPSIjNzMyNjRBIi8+PHBhdGggZD0ibTIzNy4xIDgyLjI1YzIuNzkgMS41NCA0Ljk3IDEuNjcgNC41My0wLjI2LTAuNDMtMS45Mi0xMS42My0xNy41OC0xNS41OC0yOC42NWgtMTAuOThsMjQgMjkuNjUtMS45Ny0wLjc0eiIgZmlsbD0idXJsKCNwMSkiLz48cGF0aCBkPSJtMTc5LjYgMjkuNzNjLTEuMzkgMi41LTUuOTMgOS4yNS05LjYxIDE0Ljc1LTMuMjYgMTAuMzktMi45NSAyMi43NiA0LjQxIDM2LjUxbDU3LjI3IDEyNC42IDAuNDktMC44OWMyLjk0LTUuOTggNC41Mi0xMi43MSA0LjUyLTE5Ljk1IDAtMTEuMTYtNC4yNC0yMy45NC05Ljk5LTMyLjYybC01MC42Ny02OS4yNWMtNi45Mi05Ljg5LTUuMDUtMjYuNTggNy43NS0zNC41NC00LjUzLTYuMzQtNC4xNy0xMy4xMy00LjE3LTE4LjYzeiIgZmlsbD0idXJsKCNwMikiLz48cGF0aCBkPSJtMTQ3LjkgNzUuMDZjMi40LTEwLjEgNi4zNy0xOS4zNCAxOC45Mi0yOC45MWwxMi44MS0xNi40MmMtMS41OSAyLjc2LTUuNTYgOC42OC05LjYxIDE0Ljc1LTMuMTIgMTAuMDMtMi43IDIyLjc2IDQuNDEgMzYuNTFsNTcuMjcgMTI0LjYtNDQuNy00MC44NS0zMi44LTcyLjA1Yy0zLjI3LTcuMjctNS4xLTEyLjI1LTYuMy0xNy42NXoiIGZpbGw9InVybCgjcDMpIi8+PHBhdGggZD0ibTguMzUgMTU0LjIgNTQuNDMgNzkuMDggNDguNS0zOC4wM2gtOC45NGMtMTIuNzEgMC0yNC4yMi01LjQ5LTMxLjYzLTE0LjJsLTIyLjI4LTI2Ljg1aC00MC4wOHoiIGZpbGw9InVybCgjcDQpIi8+PHBhdGggZD0ibTguMzUgMTU0LjIgNjkuMjcgMzQuMDUtNi45MS03LjItMTEuNTktMTIuNzQtMTAuNjktMTQuMTFoLTQwLjA4eiIgZmlsbD0idXJsKCNwNSkiLz48cGF0aCBkPSJtMTEuMDUgMTA2LjkgNDguMDcgNjEuNDMgMzguOTUtMjguODgtMTAuMDYtOS41MS01MC4xLTE0Ljk2LTI2Ljg2LTguMDh6IiBmaWxsPSJ1cmwoI3A2KSIvPjxwYXRoIGQ9Im0xMi45NyA2Mi4zMSA3NS4wNCA2Ny42Mi01MC4xLTE0Ljk2LTI0Ljk0LTUyLjY2eiIgZmlsbD0idXJsKCNwNykiLz48cGF0aCBkPSJtMTMuMTQgNjIuMzEgMTE5LjIgNTAuNjItMC42NyA1OC4zNS0yLjYzLTIuMjYtMTE1LjktMTA2Ljd6IiBmaWxsPSJ1cmwoI3A4KSIvPjxwYXRoIGQ9Im01OS4xMiAxNjguMyAzOC45NS0yOC44OCA1OS43MiA1NS44MmgtNTUuNDVjLTEyLjcxIDAtMjQuMjItNS40OS0zMS42My0xNC4ybC0xMS41OS0xMi43NHoiIGZpbGw9InVybCgjcDkpIi8+PHBhdGggZD0ibTEzMi4zIDExMi45IDM0LjYgODIuMzNoLTkuMTJsLTI2LjE1LTIzLjk4IDAuNjctNTguMzV6IiBmaWxsPSJ1cmwoI3AxMCkiLz48cGF0aCBkPSJtMTg3IDE2NC44LTQzLjQ1IDY4LjUzaDQ2LjM1YzE4LjAyIDAgMzQuNi0xMi4zMiA0MS44LTI3LjY4bC00NC43LTQwLjg1eiIgZmlsbD0idXJsKCNwMTEpIi8+PHBhdGggZD0ibTYyLjc4IDIzMy4zIDQ4LjUtMzguMDNoNTUuNjNsLTIzLjM3IDM4LjAzaC04MC43NnoiIGZpbGw9InVybCgjcDEyKSIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0icDAiIHgxPSIxMjUiIHgyPSIxMjUiIHkxPSIxNSIgeTI9IjIzMy4zIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0Y2OTA0QSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGNzlBNTMiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwMSIgeDE9IjIyOC41IiB4Mj0iMjI4LjUiIHkxPSI1My4zNCIgeTI9IjgzLjQzIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0YxNjEzMSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGMDU5MkIiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwMiIgeDE9IjE5OS41IiB4Mj0iMTk5LjUiIHkxPSIyOS43MyIgeTI9IjIwNS42IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0Y3OTI5QyIvPjxzdG9wIHN0b3AtY29sb3I9IiNGMDcyOUEiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwMyIgeDE9IjE4OS44IiB4Mj0iMTg5LjgiIHkxPSIyOS43MyIgeTI9IjIwNS42IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0VDNUE4RiIvPjxzdG9wIHN0b3AtY29sb3I9IiNGMDcyOUEiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwNCIgeDE9IjU5LjgxIiB4Mj0iNTkuODEiIHkxPSIxNTQuMiIgeTI9IjIzMy4zIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0YxNUQyQSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGMDU2MkIiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwNSIgeDE9IjQyLjk5IiB4Mj0iNDIuOTkiIHkxPSIxNTQuMiIgeTI9IjE4OC4zIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0Y3OUE1MSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGNzk3NTIiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwNiIgeDE9IjU0LjU2IiB4Mj0iNTQuNTYiIHkxPSIxMDYuOSIgeTI9IjE2OC4zIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0YwNzI5QSIvPjxzdG9wIHN0b3AtY29sb3I9IiNGMzdDOTgiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwNyIgeDE9IjUwLjQ5IiB4Mj0iNTAuNDkiIHkxPSI2Mi4zMSIgeTI9IjEyOS45IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0YwNTQyQiIvPjxzdG9wIHN0b3AtY29sb3I9IiNFODQ4MjgiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwOCIgeDE9IjcyLjcyIiB4Mj0iNzIuNzIiIHkxPSI2Mi4zMSIgeTI9IjE2OSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNGNjhCNDgiLz48c3RvcCBzdG9wLWNvbG9yPSIjRjc5MjUxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0icDkiIHgxPSIxMDguNSIgeDI9IjEwOC41IiB5MT0iMTM5LjQiIHkyPSIxOTUuMyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNFODNFNzQiLz48c3RvcCBzdG9wLWNvbG9yPSIjRTgzRTc2IiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0icDEwIiB4MT0iMTQ0LjgiIHgyPSIxNDQuOCIgeTE9IjExMi45IiB5Mj0iMTk1LjMiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjRjE2MDM0Ii8+PHN0b3Agc3RvcC1jb2xvcj0iI0YwNTgyQyIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9InAxMSIgeDE9IjE4Ny42IiB4Mj0iMTg3LjYiIHkxPSIxNjQuOCIgeTI9IjIzMy4zIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0U4MzU3MiIvPjxzdG9wIHN0b3AtY29sb3I9IiNFODNFNzYiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJwMTIiIHgxPSIxMTQuOCIgeDI9IjExNC44IiB5MT0iMTk1LjMiIHkyPSIyMzMuMyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNGMjc0OEYiLz48c3RvcCBzdG9wLWNvbG9yPSIjRjM3NjkxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4="/>
+  <style>
+    :root { --bg: #ffffff; --card-bg: #f8f8f8; --text: #1a1a1a; --text2: #888; --border: #e0e0e0; --img-bg: #f0f4ff; --shadow: rgba(0,0,0,0.08); --shadow-hover: rgba(0,0,0,0.15); --accent: #4080ff; --accent-light: #e8f0ff; }
+    .dark { --bg: #1e1e1e; --card-bg: #2a2a2a; --text: #e0e0e0; --text2: #888; --border: #444; --img-bg: #252a35; --shadow: rgba(0,0,0,0.3); --shadow-hover: rgba(0,0,0,0.5); --accent: #5090ff; --accent-light: #2a3a50; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; max-width: 1400px; margin: 0 auto; padding: 0 20px 40px; transition: background 0.3s, color 0.3s; }
+
+    /* Hero header */
+    .hero { position: relative; text-align: center; padding: 40px 0 28px; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
+    .hero-logo { display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none; color: var(--text); margin-bottom: 8px; }
+    .hero-logo:hover { opacity: 0.85; }
+    .hero-logo svg { flex-shrink: 0; }
+    .hero-title { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+    .hero-title .accent { color: inherit; }
+    .hero-meta { color: var(--text2); font-size: 13px; margin-top: 4px; }
+    .hero-stats { display: flex; justify-content: center; gap: 24px; margin-top: 16px; }
+    .stat { display: flex; flex-direction: column; align-items: center; }
+    .stat-value { font-size: 24px; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
+    .toggle-btn { position: absolute; top: 16px; right: 0; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: var(--card-bg); color: var(--text); cursor: pointer; transition: all 0.2s; }
+    .toggle-btn:hover { border-color: var(--accent); }
+
+    /* Toolbar */
+    .toolbar { display: flex; justify-content: flex-start; gap: 10px; align-items: center; margin-bottom: 24px; }
+    .search { padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--card-bg); color: var(--text); width: 260px; outline: none; transition: border 0.2s; }
+    .search:focus { border-color: var(--accent); }
+    .group-btn { padding: 7px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: var(--card-bg); color: var(--text); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .group-btn:hover { border-color: var(--accent); }
+    .group-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+    .flat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; display: none; }
+    body.flat-mode .section { display: none !important; }
+    body.flat-mode .flat-grid { display: grid; }
+
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 18px; font-weight: 600; margin-bottom: 14px; color: var(--text); padding-bottom: 6px; border-bottom: 2px solid var(--accent); display: inline-block; }
+    .section-count { font-size: 12px; font-weight: 500; color: var(--text2); margin-left: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px var(--shadow-hover); }
+    .card.hidden { display: none; }
+    .image-container { background: var(--img-bg); display: flex; align-items: center; justify-content: center; min-height: 180px; border-bottom: 1px solid var(--border); cursor: pointer; position: relative; }
+    .image-container::after { content: 'Click to expand'; position: absolute; bottom: 8px; right: 10px; font-size: 10px; color: var(--text2); opacity: 0; transition: opacity 0.2s; }
+    .image-container:hover::after { opacity: 1; }
+    .image-container img { max-width: 100%; max-height: 400px; object-fit: contain; }
+    .card-info { padding: 12px 14px; }
+    .card-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .card-meta { display: flex; justify-content: space-between; align-items: center; }
+    .card-source { color: var(--text2); font-size: 11px; font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; }
+    .card-size { color: var(--text2); font-size: 10px; }
+    .footer { margin-top: 40px; text-align: center; color: var(--text2); font-size: 12px; line-height: 1.6; }
+    .footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .footer a:hover { text-decoration: underline; }
+    /* Modal */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+    .modal.active { display: flex; }
+    .modal img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+    .modal-title { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 16px; font-weight: 600; }
+    .modal-close { position: fixed; top: 20px; right: 24px; color: white; font-size: 24px; cursor: pointer; z-index: 1001; }
+    .no-results { text-align: center; padding: 60px 20px; color: var(--text2); font-size: 15px; display: none; }
+    
+  </style>
+</head>
+<body class="dark">
+
+  <div class="hero">
+    <button class="toggle-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
+    <a href="https://hotswan.dev/" target="_blank" rel="noopener" class="hero-logo">
+      <svg width="44" height="44" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="m176 82.9c-8.79-12.83-4.1-29.61 7.75-34.54 4.3 6.62 9.43 10.8 26.15 15.36l27.18 18.53c2.79 1.54 4.97 1.67 4.53-0.26-0.43-1.92-11.63-17.58-15.58-28.65l1.85-8.63c-4.61-16.4-17.05-29.35-38.86-29.71h-1.22c-25.35 0-41.93 21.72-41.93 44.97 0 11.84 3.88 22.91 8.28 32.74l32.8 72.05-54.68-51.83-119.3-50.62 24.94 52.66-26.86-8.08 37.38 47.32h-40.08l54.43 79.08h127.1c23.32 0 46.8-21.17 46.8-48.52 0-11.16-4.23-23.94-9.98-32.62l-50.67-69.25z" fill="url(#hs0)"/><path d="m226.1 53.34 1.85-8.63c-0.34-1.18-0.73-2.34-1.17-3.48l-6.54 2.98-17.14-9.08 6.12 12.68v15.91l5.9-10.38h10.98z" fill="#73264A"/><path d="m237.1 82.25c2.79 1.54 4.97 1.67 4.53-0.26-0.43-1.92-11.63-17.58-15.58-28.65h-10.98l24 29.65-1.97-0.74z" fill="url(#hs1)"/><path d="m179.6 29.73c-1.39 2.5-5.93 9.25-9.61 14.75-3.26 10.39-2.95 22.76 4.41 36.51l57.27 124.6 0.49-0.89c2.94-5.98 4.52-12.71 4.52-19.95 0-11.16-4.24-23.94-9.99-32.62l-50.67-69.25c-6.92-9.89-5.05-26.58 7.75-34.54-4.53-6.34-4.17-13.13-4.17-18.63z" fill="url(#hs2)"/><path d="m147.9 75.06c2.4-10.1 6.37-19.34 18.92-28.91l12.81-16.42c-1.59 2.76-5.56 8.68-9.61 14.75-3.12 10.03-2.7 22.76 4.41 36.51l57.27 124.6-44.7-40.85-32.8-72.05c-3.27-7.27-5.1-12.25-6.3-17.65z" fill="url(#hs3)"/><path d="m8.35 154.2 54.43 79.08 48.5-38.03h-8.94c-12.71 0-24.22-5.49-31.63-14.2l-22.28-26.85h-40.08z" fill="url(#hs4)"/><path d="m8.35 154.2 69.27 34.05-6.91-7.2-11.59-12.74-10.69-14.11h-40.08z" fill="url(#hs5)"/><path d="m11.05 106.9 48.07 61.43 38.95-28.88-10.06-9.51-50.1-14.96-26.86-8.08z" fill="url(#hs6)"/><path d="m12.97 62.31 75.04 67.62-50.1-14.96-24.94-52.66z" fill="url(#hs7)"/><path d="m13.14 62.31 119.2 50.62-0.67 58.35-2.63-2.26-115.9-106.7z" fill="url(#hs8)"/><path d="m59.12 168.3 38.95-28.88 59.72 55.82h-55.45c-12.71 0-24.22-5.49-31.63-14.2l-11.59-12.74z" fill="url(#hs9)"/><path d="m132.3 112.9 34.6 82.33h-9.12l-26.15-23.98 0.67-58.35z" fill="url(#hs10)"/><path d="m187 164.8-43.45 68.53h46.35c18.02 0 34.6-12.32 41.8-27.68l-44.7-40.85z" fill="url(#hs11)"/><path d="m62.78 233.3 48.5-38.03h55.63l-23.37 38.03h-80.76z" fill="url(#hs12)"/><defs><linearGradient id="hs0" x1="125" x2="125" y1="15" y2="233.3" gradientUnits="userSpaceOnUse"><stop stop-color="#F6904A"/><stop stop-color="#F79A53" offset="1"/></linearGradient><linearGradient id="hs1" x1="228.5" x2="228.5" y1="53.34" y2="83.43" gradientUnits="userSpaceOnUse"><stop stop-color="#F16131"/><stop stop-color="#F0592B" offset="1"/></linearGradient><linearGradient id="hs2" x1="199.5" x2="199.5" y1="29.73" y2="205.6" gradientUnits="userSpaceOnUse"><stop stop-color="#F7929C"/><stop stop-color="#F0729A" offset="1"/></linearGradient><linearGradient id="hs3" x1="189.8" x2="189.8" y1="29.73" y2="205.6" gradientUnits="userSpaceOnUse"><stop stop-color="#EC5A8F"/><stop stop-color="#F0729A" offset="1"/></linearGradient><linearGradient id="hs4" x1="59.81" x2="59.81" y1="154.2" y2="233.3" gradientUnits="userSpaceOnUse"><stop stop-color="#F15D2A"/><stop stop-color="#F0562B" offset="1"/></linearGradient><linearGradient id="hs5" x1="42.99" x2="42.99" y1="154.2" y2="188.3" gradientUnits="userSpaceOnUse"><stop stop-color="#F79A51"/><stop stop-color="#F79752" offset="1"/></linearGradient><linearGradient id="hs6" x1="54.56" x2="54.56" y1="106.9" y2="168.3" gradientUnits="userSpaceOnUse"><stop stop-color="#F0729A"/><stop stop-color="#F37C98" offset="1"/></linearGradient><linearGradient id="hs7" x1="50.49" x2="50.49" y1="62.31" y2="129.9" gradientUnits="userSpaceOnUse"><stop stop-color="#F0542B"/><stop stop-color="#E84828" offset="1"/></linearGradient><linearGradient id="hs8" x1="72.72" x2="72.72" y1="62.31" y2="169" gradientUnits="userSpaceOnUse"><stop stop-color="#F68B48"/><stop stop-color="#F79251" offset="1"/></linearGradient><linearGradient id="hs9" x1="108.5" x2="108.5" y1="139.4" y2="195.3" gradientUnits="userSpaceOnUse"><stop stop-color="#E83E74"/><stop stop-color="#E83E76" offset="1"/></linearGradient><linearGradient id="hs10" x1="144.8" x2="144.8" y1="112.9" y2="195.3" gradientUnits="userSpaceOnUse"><stop stop-color="#F16034"/><stop stop-color="#F0582C" offset="1"/></linearGradient><linearGradient id="hs11" x1="187.6" x2="187.6" y1="164.8" y2="233.3" gradientUnits="userSpaceOnUse"><stop stop-color="#E83572"/><stop stop-color="#E83E76" offset="1"/></linearGradient><linearGradient id="hs12" x1="114.8" x2="114.8" y1="195.3" y2="233.3" gradientUnits="userSpaceOnUse"><stop stop-color="#F2748F"/><stop stop-color="#F37691" offset="1"/></linearGradient></defs></svg>
+      <span class="hero-title">Compose <span class="accent">HotSwan</span> Preview Catalog</span>
+    </a>
+    <p class="hero-meta">com.skydoves.pokedex.compose &middot; sdk_gphone64_arm64 &middot; 2026-03-26T16:49:35</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-value">12</span><span class="stat-label">Previews</span></div>
+      <div class="stat"><span class="stat-value">4</span><span class="stat-label">Modules</span></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" class="search" id="search" placeholder="Search previews..." oninput="filterCards()" />
+    <button class="group-btn active" id="groupBtn" onclick="toggleGrouping()">Group by Module</button>
+  </div>
+
+        <div class="section" data-module="core:designsystem">
+        <h2 class="section-title">:core:designsystem <span class="section-count">5</span></h2>
+        <div class="grid"><div class="card" data-name="pokedexcircularprogresspreview" data-module="core:designsystem">
+  <div class="image-container" onclick="openModal('PokedexCircularProgressPreview.png', 'PokedexCircularProgressPreview')">
+    <img src="PokedexCircularProgressPreview.png" alt="PokedexCircularProgressPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexCircularProgressPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexCircularProgress.kt</span>
+      <span class="card-size">26KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="pokedexprogressbarpreview1" data-module="core:designsystem">
+  <div class="image-container" onclick="openModal('PokedexProgressBarPreview1.png', 'PokedexProgressBarPreview1')">
+    <img src="PokedexProgressBarPreview1.png" alt="PokedexProgressBarPreview1" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexProgressBarPreview1</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexProgressBar.kt</span>
+      <span class="card-size">27KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="pokedexprogressbarpreview2" data-module="core:designsystem">
+  <div class="image-container" onclick="openModal('PokedexProgressBarPreview2.png', 'PokedexProgressBarPreview2')">
+    <img src="PokedexProgressBarPreview2.png" alt="PokedexProgressBarPreview2" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexProgressBarPreview2</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexProgressBar.kt</span>
+      <span class="card-size">27KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="pokedextextpreview" data-module="core:designsystem">
+  <div class="image-container" onclick="openModal('PokedexTextPreview.png', 'PokedexTextPreview')">
+    <img src="PokedexTextPreview.png" alt="PokedexTextPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexTextPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexText.kt</span>
+      <span class="card-size">25KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="pokedexappbarpreview" data-module="core:designsystem">
+  <div class="image-container" onclick="openModal('PokedexAppBarPreview.png', 'PokedexAppBarPreview')">
+    <img src="PokedexAppBarPreview.png" alt="PokedexAppBarPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexAppBarPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexAppBar.kt</span>
+      <span class="card-size">31KB</span>
+    </div>
+    
+  </div>
+</div></div>
+      </div>
+      <div class="section" data-module="feature:details">
+        <h2 class="section-title">:feature:details <span class="section-count">4</span></h2>
+        <div class="grid"><div class="card" data-name="pokedexdetailspreview" data-module="feature:details">
+  <div class="image-container" onclick="openModal('PokedexDetailsPreview.png', 'PokedexDetailsPreview')">
+    <img src="PokedexDetailsPreview.png" alt="PokedexDetailsPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexDetailsPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexDetails.kt</span>
+      <span class="card-size">311KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="pokedexdetailsheaderinfopreview" data-module="feature:details">
+  <div class="image-container" onclick="openModal('PokedexDetailsHeaderInfoPreview.png', 'PokedexDetailsHeaderInfoPreview')">
+    <img src="PokedexDetailsHeaderInfoPreview.png" alt="PokedexDetailsHeaderInfoPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexDetailsHeaderInfoPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexDetails.kt</span>
+      <span class="card-size">272KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="pokedexdetailsinfopreview" data-module="feature:details">
+  <div class="image-container" onclick="openModal('PokedexDetailsInfoPreview.png', 'PokedexDetailsInfoPreview')">
+    <img src="PokedexDetailsInfoPreview.png" alt="PokedexDetailsInfoPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexDetailsInfoPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexDetails.kt</span>
+      <span class="card-size">42KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="pokedexdetailsstatuspreview" data-module="feature:details">
+  <div class="image-container" onclick="openModal('PokedexDetailsStatusPreview.png', 'PokedexDetailsStatusPreview')">
+    <img src="PokedexDetailsStatusPreview.png" alt="PokedexDetailsStatusPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexDetailsStatusPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexDetails.kt</span>
+      <span class="card-size">53KB</span>
+    </div>
+    
+  </div>
+</div></div>
+      </div>
+      <div class="section" data-module="feature:home">
+        <h2 class="section-title">:feature:home <span class="section-count">2</span></h2>
+        <div class="grid"><div class="card" data-name="pokedexhomepreview" data-module="feature:home">
+  <div class="image-container" onclick="openModal('PokedexHomePreview.png', 'PokedexHomePreview')">
+    <img src="PokedexHomePreview.png" alt="PokedexHomePreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">PokedexHomePreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexHome.kt</span>
+      <span class="card-size">770KB</span>
+    </div>
+    
+  </div>
+</div>
+<div class="card" data-name="homecontentpreview" data-module="feature:home">
+  <div class="image-container" onclick="openModal('HomeContentPreview.png', 'HomeContentPreview')">
+    <img src="HomeContentPreview.png" alt="HomeContentPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">HomeContentPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexHome.kt</span>
+      <span class="card-size">801KB</span>
+    </div>
+    
+  </div>
+</div></div>
+      </div>
+      <div class="section" data-module="feature:settings">
+        <h2 class="section-title">:feature:settings <span class="section-count">1</span></h2>
+        <div class="grid"><div class="card" data-name="settingsdialogpreview" data-module="feature:settings">
+  <div class="image-container" onclick="openModal('SettingsDialogPreview.png', 'SettingsDialogPreview')">
+    <img src="SettingsDialogPreview.png" alt="SettingsDialogPreview" loading="lazy" />
+  </div>
+  <div class="card-info">
+    <div class="card-name">SettingsDialogPreview</div>
+    <div class="card-meta">
+      <span class="card-source">PokedexSettings.kt</span>
+      <span class="card-size">48KB</span>
+    </div>
+    
+  </div>
+</div></div>
+      </div>
+
+  <div class="flat-grid" id="flatGrid">
+    <div class="card" data-name="pokedexcircularprogresspreview" data-module="core:designsystem">
+          <div class="image-container" onclick="openModal('PokedexCircularProgressPreview.png', 'PokedexCircularProgressPreview')">
+            <img src="PokedexCircularProgressPreview.png" alt="PokedexCircularProgressPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexCircularProgressPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexCircularProgress.kt</span>
+              <span class="card-size">26KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexprogressbarpreview1" data-module="core:designsystem">
+          <div class="image-container" onclick="openModal('PokedexProgressBarPreview1.png', 'PokedexProgressBarPreview1')">
+            <img src="PokedexProgressBarPreview1.png" alt="PokedexProgressBarPreview1" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexProgressBarPreview1</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexProgressBar.kt</span>
+              <span class="card-size">27KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexprogressbarpreview2" data-module="core:designsystem">
+          <div class="image-container" onclick="openModal('PokedexProgressBarPreview2.png', 'PokedexProgressBarPreview2')">
+            <img src="PokedexProgressBarPreview2.png" alt="PokedexProgressBarPreview2" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexProgressBarPreview2</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexProgressBar.kt</span>
+              <span class="card-size">27KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedextextpreview" data-module="core:designsystem">
+          <div class="image-container" onclick="openModal('PokedexTextPreview.png', 'PokedexTextPreview')">
+            <img src="PokedexTextPreview.png" alt="PokedexTextPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexTextPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexText.kt</span>
+              <span class="card-size">25KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexappbarpreview" data-module="core:designsystem">
+          <div class="image-container" onclick="openModal('PokedexAppBarPreview.png', 'PokedexAppBarPreview')">
+            <img src="PokedexAppBarPreview.png" alt="PokedexAppBarPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexAppBarPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexAppBar.kt</span>
+              <span class="card-size">31KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="settingsdialogpreview" data-module="feature:settings">
+          <div class="image-container" onclick="openModal('SettingsDialogPreview.png', 'SettingsDialogPreview')">
+            <img src="SettingsDialogPreview.png" alt="SettingsDialogPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">SettingsDialogPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexSettings.kt</span>
+              <span class="card-size">48KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexhomepreview" data-module="feature:home">
+          <div class="image-container" onclick="openModal('PokedexHomePreview.png', 'PokedexHomePreview')">
+            <img src="PokedexHomePreview.png" alt="PokedexHomePreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexHomePreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexHome.kt</span>
+              <span class="card-size">770KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="homecontentpreview" data-module="feature:home">
+          <div class="image-container" onclick="openModal('HomeContentPreview.png', 'HomeContentPreview')">
+            <img src="HomeContentPreview.png" alt="HomeContentPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">HomeContentPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexHome.kt</span>
+              <span class="card-size">801KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexdetailspreview" data-module="feature:details">
+          <div class="image-container" onclick="openModal('PokedexDetailsPreview.png', 'PokedexDetailsPreview')">
+            <img src="PokedexDetailsPreview.png" alt="PokedexDetailsPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexDetailsPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexDetails.kt</span>
+              <span class="card-size">311KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexdetailsheaderinfopreview" data-module="feature:details">
+          <div class="image-container" onclick="openModal('PokedexDetailsHeaderInfoPreview.png', 'PokedexDetailsHeaderInfoPreview')">
+            <img src="PokedexDetailsHeaderInfoPreview.png" alt="PokedexDetailsHeaderInfoPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexDetailsHeaderInfoPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexDetails.kt</span>
+              <span class="card-size">272KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexdetailsinfopreview" data-module="feature:details">
+          <div class="image-container" onclick="openModal('PokedexDetailsInfoPreview.png', 'PokedexDetailsInfoPreview')">
+            <img src="PokedexDetailsInfoPreview.png" alt="PokedexDetailsInfoPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexDetailsInfoPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexDetails.kt</span>
+              <span class="card-size">42KB</span>
+            </div>
+          </div>
+        </div>
+<div class="card" data-name="pokedexdetailsstatuspreview" data-module="feature:details">
+          <div class="image-container" onclick="openModal('PokedexDetailsStatusPreview.png', 'PokedexDetailsStatusPreview')">
+            <img src="PokedexDetailsStatusPreview.png" alt="PokedexDetailsStatusPreview" loading="lazy" />
+          </div>
+          <div class="card-info">
+            <div class="card-name">PokedexDetailsStatusPreview</div>
+            <div class="card-meta">
+              <span class="card-source">PokedexDetails.kt</span>
+              <span class="card-size">53KB</span>
+            </div>
+          </div>
+        </div></div>
+
+  <div class="no-results" id="noResults">No previews match your search.</div>
+
+  <!-- Fullscreen Modal -->
+  <div class="modal" id="modal" onclick="closeModal()">
+    <span class="modal-close" onclick="closeModal()">×</span>
+    <span class="modal-title" id="modalTitle"></span>
+    <img id="modalImg" src="" alt="" />
+  </div>
+
+  <div class="footer">
+    Generated by <a href="https://hotswan.dev/" target="_blank" style="color:var(--text2);text-decoration:underline;font-weight:600;">Compose HotSwan</a> · 2026-03-26T16:49:35<br/>
+    sdk_gphone64_arm64 · 12 preview(s) captured
+  </div>
+
+  <script>
+    function filterCards() {
+      const q = document.getElementById('search').value.toLowerCase();
+      let total = 0;
+      // Filter grouped sections
+      document.querySelectorAll('.section').forEach(s => {
+        let visible = 0;
+        s.querySelectorAll('.card').forEach(c => {
+          const match = c.dataset.name.includes(q) || c.dataset.module.includes(q);
+          c.classList.toggle('hidden', !match);
+          if (match) visible++;
+        });
+        s.style.display = visible > 0 ? '' : 'none';
+        total += visible;
+      });
+      // Filter flat grid
+      document.querySelectorAll('.flat-grid .card').forEach(c => {
+        const match = c.dataset.name.includes(q) || c.dataset.module.includes(q);
+        c.classList.toggle('hidden', !match);
+      });
+      document.getElementById('noResults').style.display = total === 0 ? 'block' : 'none';
+    }
+
+    function toggleGrouping() {
+      const btn = document.getElementById('groupBtn');
+      document.body.classList.toggle('flat-mode');
+      btn.classList.toggle('active');
+      btn.textContent = document.body.classList.contains('flat-mode') ? 'Group by Module' : 'Group by Module';
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      document.getElementById('themeBtn').textContent = document.body.classList.contains('dark') ? '🌙' : '☀️';
+    }
+
+    // Init theme button to match default dark mode
+    document.getElementById('themeBtn').textContent = '🌙';
+
+    function toggleParams(el) {
+      const wrapper = el.parentElement;
+      const collapsed = wrapper.classList.toggle('collapsed');
+      const count = wrapper.querySelectorAll('tbody tr').length;
+      el.textContent = collapsed ? 'Show all ' + count + ' parameters' : 'Show less';
+    }
+
+    function openModal(src, name) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modalTitle').textContent = name;
+      document.getElementById('modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>

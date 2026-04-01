@@ -42,6 +42,7 @@ spotless = "6.25.0"
 baselineprofile = "1.5.0-alpha03"
 protobufPlugin = "0.9.6"
 protobuf = "4.31.1"
+hotswan = "1.1.1"
 
 [libraries]
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
@@ -79,6 +80,7 @@ hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+hotswan-preview = { module = "com.github.skydoves.compose.hotswan:preview", version.ref = "hotswan" }
 sandwich = { module = "com.github.skydoves:sandwich-retrofit", version.ref = "sandwich" }
 retrofit-bom = { module = "com.squareup.retrofit2:retrofit-bom", version.ref = "retrofit" }
 retrofit = { module = "com.squareup.retrofit2:retrofit" }
@@ -127,6 +129,7 @@ hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 protobuf-plugin = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
+hotswan-compiler = { id = "com.github.skydoves.compose.hotswan.compiler", version.ref = "hotswan" }
 
 [bundles]
 retrofitBundle = ["retrofit", "retrofit-kotlinx-serialization", "okhttp-logging-interceptor"]

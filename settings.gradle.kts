@@ -38,6 +38,8 @@ pluginManagement {
     // fetch plugins from gradle plugin portal (https://plugins.gradle.org)
     gradlePluginPortal()
 
+    mavenLocal()
+
     // fetch snapshot plugins from sonatype
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/") {
       mavenContent {
@@ -74,6 +76,8 @@ dependencyResolutionManagement {
         releasesOnly()
       }
     }
+
+    mavenLocal()
 
     // fetch snapshot libraries from sonatype
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/") {

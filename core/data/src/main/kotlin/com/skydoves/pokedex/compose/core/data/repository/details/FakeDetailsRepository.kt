@@ -19,6 +19,7 @@ package com.skydoves.pokedex.compose.core.data.repository.details
 import com.skydoves.pokedex.compose.core.model.PokemonInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.onEach
 
 class FakeDetailsRepository : DetailsRepository {
 
@@ -26,5 +27,23 @@ class FakeDetailsRepository : DetailsRepository {
     name: String,
     onComplete: () -> Unit,
     onError: (String?) -> Unit,
-  ): Flow<PokemonInfo> = flowOf()
+  ): Flow<PokemonInfo> = flowOf(mockPokemonInfo()).onEach { onComplete() }
+
+  fun mockPokemonInfo() = PokemonInfo(
+    id = 1,
+    name = "bulbasaur",
+    height = 7,
+    weight = 69,
+    experience = 60,
+    types = listOf(
+      PokemonInfo.TypeResponse(slot = 0, type = PokemonInfo.Type("grass")),
+      PokemonInfo.TypeResponse(slot = 0, type = PokemonInfo.Type("poison")),
+    ),
+    stats = listOf(
+      PokemonInfo.StatsResponse(baseStat = 20, effort = 0, stat = PokemonInfo.Stat("hp")),
+      PokemonInfo.StatsResponse(baseStat = 40, effort = 0, stat = PokemonInfo.Stat("attack")),
+      PokemonInfo.StatsResponse(baseStat = 60, effort = 0, stat = PokemonInfo.Stat("defense")),
+      PokemonInfo.StatsResponse(baseStat = 80, effort = 0, stat = PokemonInfo.Stat("attack")),
+    ),
+  )
 }

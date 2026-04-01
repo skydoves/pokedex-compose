@@ -27,8 +27,20 @@ object PreviewUtils {
     url = "https://pokeapi.co/api/v2/pokemon/1/",
   )
 
-  fun mockPokemonList() = List(10) {
-    Pokemon(page = 0, nameField = "bulbasaur$it", url = "")
+  fun mockPokemonList(): List<Pokemon> {
+    val pokemons = listOf(
+      "bulbasaur" to 1,
+      "charmander" to 4,
+      "squirtle" to 7,
+      "pikachu" to 25,
+      "eevee" to 133,
+      "snorlax" to 143,
+      "mewtwo" to 150,
+      "gengar" to 94,
+    )
+    return pokemons.map { (name, id) ->
+      Pokemon(page = 0, nameField = name, url = "https://pokeapi.co/api/v2/pokemon/$id/")
+    }
   }
 
   fun mockPokemonInfo() = PokemonInfo(

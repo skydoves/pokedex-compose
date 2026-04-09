@@ -63,9 +63,19 @@ android {
     enableAggregatingTask = true
   }
 
-  testOptions.unitTests {
-    isIncludeAndroidResources = true
-    isReturnDefaultValues = true
+  testOptions {
+    unitTests {
+      isIncludeAndroidResources = true
+      isReturnDefaultValues = true
+    }
+
+    managedDevices.localDevices {
+      create("pixel6api31") {
+        device = "Pixel 6"
+        apiLevel = 31
+        systemImageSource = "aosp"
+      }
+    }
   }
 }
 

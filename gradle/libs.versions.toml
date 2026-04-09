@@ -42,7 +42,7 @@ spotless = "6.25.0"
 baselineprofile = "1.5.0-alpha03"
 protobufPlugin = "0.9.6"
 protobuf = "4.31.1"
-hotswan = "1.1.1"
+hotswan = "1.2.0"
 
 [libraries]
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }

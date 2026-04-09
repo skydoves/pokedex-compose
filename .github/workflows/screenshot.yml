@@ -1,0 +1,94 @@
+name: Generate & Deploy Preview Screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.kt'
+      - '**/*.xml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "preview-screenshots"
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    name: Capture Preview Screenshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
+      - name: Create GMD emulator
+        run: ./gradlew :app:pixel6api31Setup
+
+      - name: Build and install debug APK
+        run: ./gradlew :app:installDebug
+
+      - name: Capture all preview screenshots
+        run: ./gradlew :app:captureAllPreviews
+
+      - name: Shutdown GMD emulator
+        if: always()
+        run: ./gradlew :app:pixel6api31TearDown || true
+
+      - name: Upload screenshot artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: preview-screenshots
+          path: .hotswan/preview-captures/
+          retention-days: 30
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: capture
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download screenshot artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: preview-screenshots
+          path: preview-captures
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: preview-captures
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

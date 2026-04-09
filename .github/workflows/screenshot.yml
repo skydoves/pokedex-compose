@@ -62,7 +62,8 @@ jobs:
           disable-animations: true
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            sleep 5
+            adb shell am start -n com.skydoves.pokedex.compose/.ui.main.MainActivity
+            sleep 10
             ./gradlew :app:captureAllPreviews
 
       - name: Upload screenshot artifact

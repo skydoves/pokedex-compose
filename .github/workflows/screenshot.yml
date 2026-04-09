@@ -45,18 +45,22 @@ jobs:
       - name: Make Gradle executable
         run: chmod +x ./gradlew
 
-      - name: Create GMD emulator
-        run: ./gradlew :app:pixel6api31Setup
+      - name: Build debug APK
+        run: ./gradlew :app:assembleDebug
 
-      - name: Build and install debug APK
-        run: ./gradlew :app:installDebug
-
-      - name: Capture all preview screenshots
-        run: ./gradlew :app:captureAllPreviews
-
-      - name: Shutdown GMD emulator
-        if: always()
-        run: ./gradlew :app:pixel6api31TearDown || true
+      - name: Run emulator and capture screenshots
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          arch: x86_64
+          profile: pixel_6
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          disable-animations: true
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            sleep 5
+            ./gradlew :app:captureAllPreviews
 
       - name: Upload screenshot artifact
         uses: actions/upload-artifact@v4

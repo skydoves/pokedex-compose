@@ -48,6 +48,9 @@ jobs:
       - name: Build debug APK
         run: ./gradlew :app:assembleDebug
 
+      - name: Clear previous captures
+        run: rm -rf .hotswan/preview-captures
+
       - name: Run emulator and capture screenshots
         uses: reactivecircus/android-emulator-runner@v2
         with:

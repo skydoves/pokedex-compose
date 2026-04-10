@@ -62,7 +62,7 @@ jobs:
           disable-animations: true
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            adb shell am start -n com.skydoves.pokedex.compose/.ui.main.MainActivity
+            adb shell am start -n com.skydoves.pokedex.compose/.MainActivity
             sleep 10
             ./gradlew :app:captureAllPreviews
 

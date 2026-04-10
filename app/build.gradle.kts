@@ -69,6 +69,13 @@ android {
   }
 }
 
+hotSwanCompiler {
+  preview {
+    sdkModeEnabled.set(true)
+    renderDelayMs.set(4000L)
+  }
+}
+
 kotlin {
   compilerOptions {
     freeCompilerArgs.addAll(

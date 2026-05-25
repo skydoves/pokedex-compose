@@ -26,8 +26,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
@@ -48,6 +50,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -192,12 +195,16 @@ private fun PokemonCard(
         modifier = Modifier
           .align(Alignment.CenterHorizontally)
           .fillMaxWidth()
-          .padding(12.dp),
+          .height(63.dp)
+          .padding(horizontal = 12.dp)
+          .wrapContentHeight(Alignment.CenterVertically),
         text = pokemon.name,
         color = PokedexTheme.colors.black,
         textAlign = TextAlign.Center,
         fontSize = 16.sp,
         fontWeight = FontWeight.Bold,
+        maxLines = 2,
+        overflow = TextOverflow.Ellipsis
       )
     }
   }

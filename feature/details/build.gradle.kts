@@ -6,3 +6,10 @@ plugins {
 android {
   namespace = "com.skydoves.pokedex.compose.feature.details"
 }
+
+dependencies {
+  testImplementation(projects.core.test)
+  testImplementation(libs.kotlinx.coroutines.test)
+  testImplementation(libs.junit)
+  testImplementation(libs.turbine)
+}
